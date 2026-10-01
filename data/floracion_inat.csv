@@ -1,0 +1,114 @@
+scientific_name;inat_taxon_id;inat_name;source;place;n;counts;profile
+Adesmia argentea;1075809;Adesmia argentea;inat_observaciones;atacama_coquimbo;97;5 3 4 4 6 3 5 14 18 21 10 4;0.6 0.52 0.72 0.93 1.0 0.7 0.72 0.82 0.61 0.6 0.63 0.62
+Adesmia elata;;;;;;;
+Adesmia littoralis;1286775;Adesmia littoralis;inat_observaciones;atacama_coquimbo;33;0 0 1 1 1 0 0 4 12 10 3 1;0.17 0.2 0.57 0.73 0.58 0.2 0.25 0.78 1.0 0.92 0.7 0.47
+Adesmia pungens;139817;Adesmia pungens;inat_observaciones;chile;8;0 0 0 0 0 0 0 0 4 4 0 0;0.14 0.14 0.14 0.14 0.14 0.14 0.14 0.37 1.0 0.94 0.34 0.14
+Alonsoa meridionalis;282861;Alonsoa meridionalis;inat_observaciones;atacama_coquimbo;69;2 2 1 1 2 1 0 6 22 20 9 3;0.54 0.43 0.39 0.46 0.57 0.35 0.24 0.65 0.94 1.0 0.95 0.76
+Alstroemeria diluta subsp. diluta;481553;Alstroemeria diluta;inat_floracion;atacama_coquimbo;18;0 0 0 0 0 0 0 0 0 1 15 2;0.13 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.05 0.36 1.0 0.59
+Alstroemeria kingii;564212;Alstroemeria kingii;inat_observaciones;atacama_coquimbo;40;0 0 0 0 0 0 0 0 2 13 19 6;0.2 0.03 0.03 0.03 0.03 0.03 0.03 0.04 0.13 0.5 1.0 0.79
+Alstroemeria leporina;122404;Alstroemeria leporina;inat_observaciones;atacama_coquimbo;18;0 0 0 0 0 0 0 0 2 6 10 0;0.06 0.06 0.06 0.06 0.06 0.06 0.06 0.08 0.21 0.61 1.0 0.35
+Alstroemeria philippii var. philippii;569091;Alstroemeria philippii;inat_observaciones;atacama_coquimbo;88;0 1 0 1 0 0 0 4 43 33 4 2;0.12 0.1 0.1 0.17 0.08 0.03 0.09 0.44 1.0 0.93 0.45 0.27
+Alstroemeria violacea;1244398;Alstroemeria violacea;inat_floracion;atacama_coquimbo;15;0 1 0 0 0 2 0 0 6 4 1 1;0.24 0.34 0.17 0.08 0.39 1.0 0.39 0.16 0.39 0.39 0.32 0.35
+Alstroemeria werdermannii var. werdermannii;607707;Alstroemeria werdermannii;inat_observaciones;atacama_coquimbo;38;0 0 0 0 0 0 0 0 10 11 9 8;0.31 0.03 0.03 0.03 0.03 0.03 0.03 0.09 0.29 0.45 0.79 1.0
+Anisomeria littoralis;853977;Anisomeria littoralis;inat_observaciones;atacama_coquimbo;196;7 0 0 1 3 14 18 45 48 41 16 3;0.26 0.08 0.03 0.11 0.35 0.8 0.99 1.0 0.62 0.45 0.36 0.26
+Argemone hunnemannii;568792;Argemone hunnemannii;inat_observaciones;atacama_coquimbo;59;0 4 1 0 0 1 1 1 6 24 18 3;0.22 0.37 0.25 0.07 0.07 0.17 0.17 0.13 0.29 0.75 1.0 0.55
+Argylia radiata;560725;Argylia radiata;inat_floracion;atacama_coquimbo;83;2 1 1 0 1 2 0 5 31 32 7 1;0.32 0.28 0.26 0.17 0.39 0.51 0.27 0.53 0.93 1.0 0.61 0.31
+Aristolochia vaginans;1681806;Aristolochia vaginans;inat_floracion;atacama_coquimbo;67;2 1 1 0 0 1 4 4 27 23 3 1;0.4 0.35 0.33 0.12 0.13 0.55 1.0 0.82 0.98 0.92 0.46 0.32
+Astragalus dodtii;1432662;Astragalus dodtii;;;;;
+Bahia ambrosioides;557705;Bahia ambrosioides;inat_floracion;atacama_coquimbo;30;0 0 0 0 1 1 1 5 15 4 2 1;0.14 0.07 0.07 0.22 0.66 0.74 0.74 1.0 0.91 0.5 0.39 0.35
+Balbisia peduncularis;481930;Balbisia peduncularis;inat_floracion;atacama_coquimbo;26;1 0 0 0 2 0 1 0 12 7 3 0;0.29 0.15 0.07 0.38 1.0 0.49 0.4 0.34 0.64 0.63 0.46 0.24
+Balsamocarpon brevifolium;786053;Balsamocarpon brevifolium;inat_floracion;atacama_coquimbo;19;0 0 1 0 1 1 0 0 10 5 1 0;0.11 0.3 0.68 0.53 1.0 0.96 0.32 0.3 0.79 0.67 0.36 0.15
+Bomarea ovallei;437713;Bomarea ovallei;inat_floracion;atacama_coquimbo;169;0 0 0 0 0 0 0 3 31 97 37 1;0.02 0.01 0.01 0.01 0.01 0.01 0.03 0.15 0.48 1.0 0.86 0.25
+Calliandra chilensis;338139;Calliandra chilensis;inat_floracion;atacama_coquimbo;15;0 0 0 0 0 0 0 3 6 5 0 1;0.27 0.13 0.13 0.13 0.13 0.13 0.38 1.0 0.94 0.69 0.4 0.54
+Camissonia dentata;567889;Camissonia dentata;inat_observaciones;atacama_coquimbo;134;0 1 0 0 0 0 2 9 67 42 12 1;0.06 0.07 0.03 0.02 0.02 0.06 0.22 0.56 1.0 0.87 0.53 0.19
+Chaetanthera albiflora;955257;Chaetanthera albiflora;inat_observaciones;atacama_coquimbo;30;3 3 0 0 0 0 0 0 2 4 15 3;0.6 0.45 0.14 0.04 0.04 0.04 0.04 0.05 0.11 0.42 1.0 0.79
+Chaetanthera glabrata;563531;Chaetanthera glabrata;inat_observaciones;atacama_coquimbo;37;0 4 0 0 0 0 0 1 5 17 10 0;0.24 0.62 0.24 0.05 0.05 0.05 0.08 0.19 0.43 0.94 1.0 0.3
+Cistanthe coquimbensis;830607;Cistanthe coquimbensis;inat_observaciones;atacama_coquimbo;48;0 0 0 0 0 0 1 4 11 29 3 0;0.04 0.04 0.04 0.04 0.04 0.08 0.26 0.44 0.67 1.0 0.49 0.1
+Cistanthe crassifolia;1612653;Cistanthe crassifolia;inat_floracion;atacama_coquimbo;31;0 0 0 0 0 0 0 1 8 18 3 1;0.14 0.07 0.07 0.07 0.07 0.07 0.11 0.29 0.65 1.0 0.65 0.36
+Cistanthe grandiflora;542062;Cistanthe grandiflora;inat_floracion;atacama_coquimbo;29;1 1 0 0 1 0 0 1 15 3 6 1;0.59 0.51 0.2 0.3 0.7 0.3 0.15 0.52 0.98 0.78 1.0 0.73
+Cistanthe longiscapa;830617;Cistanthe longiscapa;inat_floracion;atacama_coquimbo;20;0 0 0 0 0 0 0 3 7 9 1 0;0.12 0.12 0.12 0.12 0.12 0.12 0.33 0.91 1.0 0.98 0.49 0.17
+Copiapoa dealbata;438346;Copiapoa dealbata;inat_floracion;atacama_coquimbo;67;1 8 0 0 0 0 0 2 21 28 5 2;0.52 1.0 0.34 0.03 0.03 0.03 0.08 0.29 0.67 0.83 0.53 0.35
+Copiapoa echinoides;438348;Copiapoa echinoides;inat_floracion;atacama_coquimbo;66;0 2 4 0 0 0 0 6 31 19 4 0;0.13 0.59 0.99 0.33 0.04 0.04 0.18 0.69 1.0 0.79 0.4 0.11
+Copiapoa fiedleriana;438350;Copiapoa fiedleriana;inat_floracion;atacama_coquimbo;18;0 4 1 3 0 0 0 2 5 1 2 0;0.19 0.57 0.68 1.0 0.34 0.04 0.08 0.19 0.18 0.12 0.14 0.07
+Cordia decandra;563983;Cordia decandra;inat_floracion;atacama_coquimbo;36;1 1 2 0 0 0 0 2 11 11 6 2;0.54 0.68 0.98 0.35 0.08 0.08 0.17 0.5 0.79 0.94 1.0 0.81
+Cristaria glaucophylla;574787;Cristaria glaucophylla;inat_floracion;atacama_coquimbo;22;1 3 1 0 0 1 0 6 3 3 2 2;0.68 1.0 0.7 0.2 0.21 0.5 0.47 0.89 0.49 0.31 0.45 0.64
+Cristaria integerrima var. integerrima;882257;Cristaria integerrima;inat_observaciones;atacama_coquimbo;23;2 3 3 2 1 1 0 2 1 5 2 1;0.54 0.77 1.0 0.85 0.51 0.32 0.17 0.22 0.18 0.27 0.3 0.36
+Cruckshanksia hymenodon;564158;Cruckshanksia hymenodon;inat_floracion;atacama_coquimbo;16;1 0 0 0 0 0 1 1 0 5 4 4;0.51 0.13 0.06 0.06 0.06 0.16 0.38 0.27 0.17 0.37 0.72 1.0
+Cruckshanksia montiana;981383;Cruckshanksia montiana;inat_observaciones;atacama_coquimbo;35;1 0 0 0 0 0 0 0 10 19 5 0;0.23 0.11 0.06 0.06 0.06 0.06 0.06 0.17 0.62 1.0 0.69 0.25
+Cruckshanksia pumila;559932;Cruckshanksia pumila;inat_floracion;atacama_coquimbo;26;0 0 0 0 0 0 0 1 13 10 2 0;0.09 0.09 0.09 0.09 0.09 0.09 0.15 0.48 1.0 0.97 0.53 0.18
+Cryptantha clandestina;1594015;Cryptantha glomerata glomerata;;;;;
+Cuscuta micrantha;1488612;Cuscuta micrantha;inat_observaciones;chile;9;0 0 0 0 0 0 0 0 0 6 3 0;0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.36 1.0 0.82 0.27
+Dinemagonum gayanum;924679;Dinemagonum gayanum;inat_observaciones;atacama_coquimbo;62;3 5 1 2 1 1 1 2 12 19 12 3;0.7 0.74 0.52 0.55 0.4 0.29 0.25 0.29 0.52 0.84 1.0 0.77
+Encelia canescens;335463;Encelia canescens;inat_floracion;atacama_coquimbo;45;1 0 2 0 4 2 1 1 11 15 6 2;0.2 0.18 0.39 0.43 1.0 0.75 0.33 0.2 0.35 0.48 0.46 0.35
+Eriosyce aerocarpa;1623416;Eriosyce aerocarpa;;;;;
+Eriosyce crispa subsp. crispa;438687;Eriosyce crispa;inat_observaciones;atacama_coquimbo;62;4 10 3 3 1 0 4 4 5 15 8 5;0.76 1.0 0.77 0.61 0.29 0.18 0.42 0.34 0.26 0.43 0.58 0.7
+Eriosyce glabrescens;1622973;Eriosyce glabrescens;inat_floracion;atacama_coquimbo;15;0 0 0 0 0 0 0 0 3 7 5 0;0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.17 0.45 0.89 1.0 0.36
+Eriosyce heinrichiana;438693;Eriosyce heinrichiana;inat_floracion;atacama_coquimbo;23;0 0 0 0 0 0 0 0 0 5 13 5;0.25 0.04 0.04 0.04 0.04 0.04 0.04 0.04 0.08 0.4 1.0 0.9
+Eriosyce napina subsp. napina;438698;Eriosyce napina;inat_floracion;atacama_coquimbo;28;0 0 0 0 1 0 0 3 10 13 1 0;0.09 0.09 0.09 0.28 0.66 0.28 0.25 0.73 0.97 1.0 0.44 0.13
+Eriosyce villosa;438712;Eriosyce villosa;inat_floracion;atacama_coquimbo;27;0 0 2 5 1 11 1 1 5 1 0 0;0.01 0.07 0.37 0.71 0.62 1.0 0.4 0.07 0.06 0.04 0.02 0.01
+Erodium cicutarium;1438094;Erodium cicutarium;inat_observaciones;atacama_coquimbo;60;0 1 0 0 0 0 6 11 25 10 5 2;0.14 0.13 0.06 0.03 0.03 0.24 0.86 1.0 0.8 0.5 0.43 0.34
+Erythrostemon angulatus;1065362;Erythrostemon angulatus;inat_floracion;atacama_coquimbo;24;2 0 0 1 0 1 0 1 9 6 3 1;0.85 0.32 0.4 1.0 0.61 0.72 0.37 0.46 0.8 0.8 0.75 0.77
+Eulychnia acida;438759;Eulychnia acida;inat_floracion;atacama_coquimbo;59;5 5 0 0 0 0 0 1 13 16 13 6;0.93 0.77 0.22 0.03 0.03 0.03 0.05 0.17 0.4 0.63 0.92 1.0
+Eulychnia breviflora;438760;Eulychnia breviflora;inat_floracion;atacama_coquimbo;129;11 5 0 0 0 0 0 1 20 42 46 4;0.59 0.39 0.09 0.01 0.01 0.01 0.02 0.09 0.28 0.68 1.0 0.6
+Euphorbia thinophila;1068762;Euphorbia thinophila;inat_observaciones;atacama_coquimbo;28;0 0 0 0 0 0 0 1 18 8 1 0;0.07 0.07 0.07 0.07 0.07 0.07 0.11 0.44 1.0 0.74 0.3 0.11
+Fagonia chilensis;564161;Fagonia chilensis;inat_floracion;atacama_coquimbo;42;3 0 3 1 4 3 0 3 11 9 5 0;0.29 0.27 0.57 0.66 1.0 0.77 0.25 0.24 0.3 0.3 0.27 0.18
+Haplopappus rengifoanus;1411555;Haplopappus rengifoanus;inat_observaciones;atacama_coquimbo;22;1 2 0 2 7 0 1 0 5 0 2 2;0.22 0.21 0.17 0.61 1.0 0.35 0.11 0.08 0.11 0.08 0.17 0.27
+Helenium atacamense;607706;Helenium atacamense;inat_observaciones;atacama_coquimbo;20;1 0 0 0 0 0 0 0 5 10 3 1;0.52 0.2 0.1 0.1 0.1 0.1 0.1 0.2 0.61 1.0 0.86 0.68
+Heliotropium floridum;770031;Heliotropium floridum;inat_floracion;atacama_coquimbo;16;0 0 0 0 2 0 0 0 6 8 0 0;0.07 0.07 0.07 0.38 1.0 0.38 0.07 0.15 0.42 0.5 0.19 0.07
+Heliotropium sinuatum;770173;Heliotropium sinuatum;inat_observaciones;atacama_coquimbo;148;0 5 8 2 3 12 5 9 44 43 14 3;0.15 0.44 0.74 0.46 0.58 1.0 0.63 0.49 0.7 0.76 0.58 0.3
+Krameria cistoidea;564180;Krameria cistoidea;inat_floracion;atacama_coquimbo;60;4 1 2 1 4 2 3 4 13 16 5 5;0.58 0.36 0.47 0.65 1.0 0.77 0.62 0.45 0.41 0.46 0.48 0.67
+Leucheria tomentosa;874155;Leucheria tomentosa;inat_observaciones;chile;22;0 0 0 0 0 0 0 0 5 13 4 0;0.06 0.06 0.06 0.06 0.06 0.06 0.06 0.17 0.63 1.0 0.59 0.15
+Leucocoryne appendiculata;626815;Leucocoryne appendiculata;inat_floracion;atacama_coquimbo;15;0 0 0 0 0 0 0 0 13 2 0 0;0.12 0.12 0.12 0.12 0.12 0.12 0.12 0.4 1.0 0.54 0.17 0.12
+Leucocoryne coronata;870704;Leucocoryne coronata;inat_floracion;atacama_coquimbo;35;0 0 0 0 0 0 0 4 19 12 0 0;0.06 0.06 0.06 0.06 0.06 0.06 0.21 0.72 1.0 0.73 0.21 0.06
+Leucostele nigripilis;;;;;;;
+Loasa elongata;708282;Loasa elongata;inat_floracion;atacama_coquimbo;28;0 0 0 0 0 0 0 0 7 15 5 1;0.15 0.07 0.07 0.07 0.07 0.07 0.07 0.17 0.57 1.0 0.86 0.46
+Loasa illapelina;716880;Loasa illapelina;inat_observaciones;atacama_coquimbo;30;4 0 0 0 0 0 0 0 2 13 9 2;0.81 0.27 0.05 0.05 0.05 0.05 0.05 0.07 0.26 0.75 1.0 0.84
+Loasa tricolor;557707;Loasa tricolor;inat_floracion;atacama_coquimbo;26;0 0 0 0 0 0 0 1 16 9 0 0;0.08 0.08 0.08 0.08 0.08 0.08 0.13 0.47 1.0 0.78 0.24 0.08
+Lobelia polyphylla;533503;Lobelia polyphylla;inat_floracion;atacama_coquimbo;64;3 0 2 1 1 0 0 4 17 17 14 5;0.54 0.27 0.53 0.55 0.37 0.11 0.12 0.4 0.57 0.74 1.0 0.9
+Malesherbia humilis var. humilis;564163;Malesherbia humilis;inat_floracion;atacama_coquimbo;51;2 3 1 1 1 1 0 1 15 10 10 6;0.65 0.58 0.5 0.53 0.48 0.35 0.14 0.22 0.46 0.56 0.87 1.0
+Menonvillea linearifolia;1589426;Menonvillea linearifolia;;;;;
+Mesembryanthemum crystallinum;49319;Mesembryanthemum crystallinum;inat_observaciones;atacama_coquimbo;284;45 25 10 3 5 3 4 11 45 54 53 26;1.0 0.68 0.38 0.2 0.17 0.13 0.12 0.17 0.24 0.37 0.62 0.84
+Miqueliopuntia miquelii;440735;Miqueliopuntia miquelii;inat_floracion;atacama_coquimbo;46;3 4 0 1 0 2 1 2 4 5 17 7;0.66 0.54 0.26 0.29 0.24 0.44 0.32 0.21 0.16 0.38 0.97 1.0
+Mirabilis elegans;564179;Mirabilis elegans;inat_observaciones;atacama_coquimbo;66;0 0 0 0 0 0 0 0 30 34 2 0;0.03 0.03 0.03 0.03 0.03 0.03 0.03 0.23 0.86 1.0 0.37 0.06
+Nicotiana solanifolia;567881;Nicotiana solanifolia;inat_floracion;atacama_coquimbo;22;0 0 0 0 0 0 0 0 13 8 1 0;0.1 0.1 0.1 0.1 0.1 0.1 0.1 0.35 1.0 0.9 0.41 0.15
+Nolana acuminata;778292;Nolana acuminata;inat_observaciones;atacama_coquimbo;170;0 2 0 3 2 2 8 21 85 36 7 4;0.1 0.09 0.11 0.28 0.25 0.29 0.56 0.85 1.0 0.64 0.33 0.25
+Nolana baccata;899279;Nolana baccata;inat_observaciones;atacama_coquimbo;133;0 0 0 0 2 2 5 3 70 47 4 0;0.02 0.02 0.02 0.07 0.23 0.32 0.38 0.45 1.0 0.88 0.32 0.05
+Nolana carnosa;872177;Nolana carnosa;inat_observaciones;atacama_coquimbo;29;2 2 0 0 2 0 3 2 8 6 3 1;0.89 0.75 0.25 0.35 0.89 0.63 1.0 0.78 0.72 0.7 0.69 0.69
+Nolana divaricata;865945;Nolana divaricata;inat_floracion;atacama_coquimbo;26;1 0 3 0 1 1 3 6 6 4 1 0;0.2 0.37 0.87 0.43 0.47 0.68 1.0 0.87 0.43 0.25 0.16 0.12
+Nolana sedifolia;787145;Nolana sedifolia;inat_floracion;atacama_coquimbo;27;0 0 1 1 1 1 3 7 10 1 0 2;0.15 0.14 0.45 0.66 0.6 0.66 1.0 0.97 0.53 0.17 0.16 0.34
+Oenothera coquimbensis;626817;Oenothera coquimbensis;inat_floracion;atacama_coquimbo;17;0 0 0 0 0 0 0 1 4 9 3 0;0.12 0.12 0.12 0.12 0.12 0.12 0.19 0.41 0.65 1.0 0.8 0.27
+Olsynium scirpoideum;784756;Olsynium scirpoideum;inat_observaciones;atacama_coquimbo;91;0 0 0 0 0 0 8 15 61 7 0 0;0.02 0.02 0.02 0.02 0.02 0.2 0.72 0.97 1.0 0.38 0.05 0.02
+Oxalis brevis;1409144;Oxalis brevis;inat_observaciones;atacama_coquimbo;24;0 0 1 1 0 1 1 5 11 4 0 0;0.08 0.2 0.58 0.62 0.33 0.5 0.67 1.0 0.91 0.48 0.15 0.08
+Oxalis bulbocastanum;898486;Oxalis bulbocastanum;inat_observaciones;chile;13;1 0 0 0 0 1 0 4 0 6 1 0;0.23 0.14 0.1 0.1 0.24 0.51 0.54 1.0 0.59 0.73 0.42 0.18
+Oxalis gigantea;554804;Oxalis gigantea;inat_floracion;atacama_coquimbo;25;1 2 2 0 0 4 4 2 6 1 2 1;0.24 0.4 0.46 0.15 0.29 1.0 0.91 0.38 0.18 0.12 0.16 0.19
+Oxalis virgosa;556464;Oxalis virgosa;inat_observaciones;atacama_coquimbo;82;0 4 2 2 0 5 1 3 18 38 8 1;0.17 0.44 0.5 0.42 0.33 0.66 0.37 0.31 0.64 1.0 0.66 0.24
+Oziroe biflora;544949;Oziroe biflora;inat_floracion;atacama_coquimbo;31;0 0 0 0 0 0 0 1 16 13 1 0;0.08 0.08 0.08 0.08 0.08 0.08 0.12 0.44 1.0 0.95 0.39 0.11
+Pasithea caerulea;557708;Pasithea caerulea;inat_floracion;atacama_coquimbo;60;0 0 0 0 0 0 0 14 36 8 2 0;0.03 0.03 0.03 0.03 0.03 0.03 0.29 1.0 0.93 0.41 0.16 0.06
+Plectocephalus chilensis;910426;Plectocephalus chilensis;inat_observaciones;atacama_coquimbo;112;3 4 4 2 3 4 3 5 28 36 18 2;0.41 0.53 0.66 0.55 0.6 0.64 0.47 0.45 0.72 1.0 0.95 0.5
+Plumbago caerulea;779304;Plumbago caerulea;inat_observaciones;atacama_coquimbo;113;3 8 2 3 2 10 9 13 31 19 11 2;0.37 0.54 0.41 0.42 0.53 1.0 0.92 0.69 0.57 0.47 0.43 0.3
+Polyachyrus poeppigii subsp. multifidus;785842;Polyachyrus poeppigii multifidus;inat_observaciones;chile;5;0 0 0 0 0 0 1 0 3 1 0 0;0.21 0.21 0.21 0.21 0.21 0.44 0.9 0.68 1.0 0.66 0.28 0.21
+Puya alpestris subsp. zoellneri;884144;Puya alpestris zoellneri;inat_floracion;atacama_coquimbo;20;0 0 0 0 0 0 0 0 5 11 3 1;0.2 0.1 0.1 0.1 0.1 0.1 0.1 0.19 0.6 1.0 0.83 0.54
+Quinchamalium chilense;428962;Quinchamalium chilense;inat_floracion;atacama_coquimbo;24;0 1 0 0 0 0 0 0 9 11 2 1;0.31 0.43 0.21 0.1 0.1 0.1 0.1 0.26 0.79 1.0 0.67 0.48
+Schizanthus candidus;563534;Schizanthus candidus;inat_floracion;atacama_coquimbo;43;0 1 0 1 0 0 0 1 18 21 1 0;0.12 0.25 0.28 0.55 0.22 0.06 0.09 0.34 0.89 1.0 0.38 0.08
+Schizanthus lacteus;854047;Schizanthus lacteus;inat_observaciones;chile;33;0 0 0 0 1 5 0 0 9 12 5 1;0.06 0.04 0.04 0.09 0.5 1.0 0.34 0.19 0.66 0.8 0.51 0.19
+Schizanthus porrigens subsp. borealis;1419909;Schizanthus porrigens borealis;inat_observaciones;atacama_coquimbo;111;0 0 0 0 1 0 0 9 68 21 11 1;0.04 0.02 0.02 0.05 0.11 0.05 0.11 0.57 1.0 0.66 0.45 0.19
+Schizopetalon maritimum;835727;Schizopetalon maritimum;inat_observaciones;atacama_coquimbo;22;0 0 0 0 0 0 0 0 9 12 0 1;0.2 0.09 0.09 0.09 0.09 0.09 0.09 0.26 0.84 1.0 0.44 0.4
+Senecio myriophyllus;1434128;Senecio myriophyllus;;;;;
+Senna cumingii var. cumingii;464904;Senna cumingii;inat_floracion;atacama_coquimbo;17;2 1 1 3 1 0 1 1 3 1 2 1;0.3 0.27 0.53 1.0 0.52 0.15 0.2 0.16 0.11 0.1 0.16 0.23
+Sicyos baderoa var. baderoa;564159;Sicyos baderoa;inat_observaciones;atacama_coquimbo;209;0 3 1 0 2 5 10 35 91 51 10 1;0.06 0.13 0.1 0.06 0.2 0.41 0.67 1.0 1.0 0.68 0.33 0.11
+Sisyrinchium graminifolium;823778;Sisyrinchium graminifolium;inat_observaciones;atacama_coquimbo;60;0 0 0 0 0 0 0 2 39 16 1 2;0.11 0.03 0.03 0.03 0.03 0.03 0.07 0.41 1.0 0.69 0.29 0.29
+Skytanthus acutus;563544;Skytanthus acutus;inat_floracion;atacama_coquimbo;26;3 1 2 0 2 0 0 1 6 10 1 0;0.81 0.8 0.94 0.64 1.0 0.38 0.12 0.28 0.5 0.62 0.32 0.33
+Solanum trinominum;472817;Solanum trinominum;inat_floracion;atacama_coquimbo;26;0 1 0 1 0 2 0 0 12 10 0 0;0.17 0.34 0.39 0.75 0.61 1.0 0.39 0.25 0.74 0.72 0.24 0.08
+Sphaeropuntia sphaerica;;;;;;;
+Stachys grandidentata;607708;Stachys grandidentata;inat_observaciones;atacama_coquimbo;59;1 2 0 0 0 0 0 8 35 6 7 0;0.22 0.27 0.1 0.04 0.04 0.04 0.19 0.76 1.0 0.56 0.46 0.2
+Tetragonia maritima;1148107;Tetragonia maritima;inat_observaciones;atacama_coquimbo;150;3 6 6 8 3 3 7 8 52 37 10 7;0.42 0.53 0.84 1.0 0.58 0.45 0.56 0.56 0.8 0.73 0.57 0.58
+Tillandsia geissei;968882;Tillandsia geissei;inat_observaciones;chile;52;0 8 3 2 5 4 2 0 6 6 8 8;0.34 0.63 0.57 0.6 1.0 0.98 0.5 0.21 0.37 0.48 0.63 0.59
+Tristerix aphyllus;533505;Tristerix aphyllus;inat_floracion;atacama_coquimbo;46;2 4 6 5 3 4 8 8 2 1 2 1;0.21 0.45 0.86 1.0 0.69 0.7 0.81 0.45 0.12 0.05 0.08 0.11
+Tropaeolum azureum;557713;Tropaeolum azureum;inat_observaciones;atacama_coquimbo;50;0 0 0 0 0 0 0 13 19 18 0 0;0.04 0.04 0.04 0.04 0.04 0.04 0.31 1.0 0.91 0.65 0.19 0.04
+Tropaeolum tricolor;554805;Tropaeolum tricolor;inat_floracion;atacama_coquimbo;83;0 0 0 1 0 3 16 24 25 12 2 0;0.01 0.01 0.04 0.1 0.11 0.46 1.0 0.78 0.34 0.15 0.07 0.02
+Viola polypoda;742096;Viola polypoda;inat_floracion;atacama_coquimbo;20;0 0 0 0 0 0 0 0 13 6 1 0;0.11 0.11 0.11 0.11 0.11 0.11 0.11 0.36 1.0 0.81 0.38 0.16
+Zephyra compacta;575060;Zephyra compacta;inat_floracion;atacama_coquimbo;23;0 0 0 0 0 0 0 0 19 4 0 0;0.08 0.08 0.08 0.08 0.08 0.08 0.08 0.37 1.0 0.57 0.15 0.08
+Zephyra elegans;570893;Zephyra elegans;inat_floracion;atacama_coquimbo;35;0 0 0 0 0 0 0 1 16 16 2 0;0.07 0.07 0.07 0.07 0.07 0.07 0.11 0.39 0.93 1.0 0.48 0.13
+Zephyranthes bagnoldii;1264606;Zephyranthes bagnoldii;inat_floracion;atacama_coquimbo;77;0 0 0 0 3 0 0 4 36 33 1 0;0.03 0.03 0.03 0.25 0.69 0.25 0.12 0.5 1.0 0.95 0.31 0.05
+Zephyranthes phycelloides;1264608;Zephyranthes phycelloides;inat_floracion;atacama_coquimbo;32;0 0 0 0 0 0 0 7 15 9 1 0;0.06 0.06 0.06 0.06 0.06 0.06 0.32 1.0 0.93 0.59 0.26 0.09
+Zephyranthes sarae;1432774;Zephyranthes sarae;inat_floracion;atacama_coquimbo;26;10 6 0 0 0 1 0 0 3 0 3 3;1.0 0.76 0.19 0.02 0.07 0.17 0.07 0.04 0.06 0.07 0.19 0.52

@@ -1,0 +1,98 @@
+scientific_name;colors;growth;habit;flower_type;geophyte;cycle
+# Rasgos BORRADOR para completar vacíos del libro. Procedencia: conocimiento botánico general, NO extraído de la ficha.
+# Solo se aplican cuando la ficha no trae el dato. Verificar contra fotografías del libro y corregir aquí; luego ejecutar tools/build_catalog.py.
+# colors: blanco|amarillo|naranjo|rojo|rosado|morado|azul|verde   growth: hierba|arbusto|cactus|parasita
+# habit: rastrera|erecta|trepadora   flower_type: trimera|cruz4|libres5|muchos|tubo|cabezuela|irregular   geophyte/cycle: si|no / anual|perenne
+Adesmia argentea;amarillo;;;;;
+Adesmia elata;amarillo;;;;;
+Adesmia littoralis;amarillo;;;;;
+Alonsoa meridionalis;rojo|naranjo;hierba;erecta;irregular;no;perenne
+Alstroemeria diluta subsp. diluta;rosado|morado;hierba;erecta;trimera;si;perenne
+Alstroemeria kingii;amarillo;;;;;
+Alstroemeria leporina;rosado|blanco;hierba;erecta;trimera;si;perenne
+Alstroemeria philippii var. philippii;rosado|morado;;;;;
+Alstroemeria violacea;morado;hierba;erecta;trimera;si;perenne
+Alstroemeria werdermannii var. werdermannii;blanco|rosado;;;;;
+Argemone hunnemannii;blanco;;erecta;;;
+Argylia radiata;amarillo|naranjo|rojo;;;;;
+Aristolochia vaginans;verde;;;;;
+Bahia ambrosioides;amarillo;;;;;
+Balbisia peduncularis;amarillo;;;;;
+Balsamocarpon brevifolium;amarillo;;;;;
+Bomarea ovallei;rojo|amarillo;;;;;
+Calliandra chilensis;rojo;;;;;
+Camissonia dentata;amarillo;;;;;
+Chaetanthera albiflora;blanco;;;;;
+Chaetanthera glabrata;amarillo;;;;;
+Cistanthe coquimbensis;rosado;;;;;
+Cistanthe crassifolia;blanco;;;;;
+Cistanthe grandiflora;rosado;;;;;
+Cistanthe longiscapa;rosado|morado;;;;;
+Cordia decandra;blanco;;erecta;;;
+Cristaria glaucophylla;morado|rosado;;;;;
+Cristaria integerrima var. integerrima;morado|rosado;;;;;
+Cruckshanksia hymenodon;blanco|amarillo;;;;;
+Cruckshanksia montiana;rosado|amarillo;hierba;;libres5;;
+Cruckshanksia pumila;rosado|amarillo;hierba;;libres5;;
+Cryptantha clandestina;blanco;;;;;
+Cuscuta micrantha;blanco;;trepadora;;;
+Dinemagonum gayanum;amarillo;;;;;
+Encelia canescens;amarillo;;;;;
+Erodium cicutarium;rosado|morado;;rastrera;;;
+Erythrostemon angulatus;amarillo;;;;;
+Euphorbia thinophila;verde|amarillo;;;;;
+Fagonia chilensis;morado|rosado;;;;;
+Haplopappus rengifoanus;amarillo;;;;;
+Helenium atacamense;amarillo;;;;;
+Heliotropium floridum;blanco;arbusto;erecta;libres5;no;perenne
+Heliotropium sinuatum;blanco;;;;;
+Krameria cistoidea;rosado|rojo;;;;;
+Leucocoryne appendiculata;blanco|morado;;;;;
+Leucocoryne coronata;blanco|morado;;;;;
+Loasa elongata;blanco;;;;;
+Loasa illapelina;blanco;hierba;;libres5;;anual
+Loasa tricolor;rojo|amarillo;;;;;
+Lobelia polyphylla;morado|rojo;;erecta;;;
+Mesembryanthemum crystallinum;blanco|rosado;;rastrera;muchos;;
+Miqueliopuntia miquelii;blanco|rosado;cactus;;muchos;no;perenne
+Mirabilis elegans;rosado|morado;;;;;
+Nicotiana solanifolia;blanco|amarillo;;erecta;;;
+Nolana acuminata;azul|morado;;;;;
+Nolana baccata;blanco;;;;;
+Nolana carnosa;azul|morado;;;;;
+Nolana divaricata;azul|morado;arbusto;;tubo;no;perenne
+Nolana sedifolia;blanco|azul;;;;;
+Oenothera coquimbensis;amarillo;;;;;
+Olsynium scirpoideum;rosado|morado;;;;;
+Oxalis gigantea;amarillo;arbusto;erecta;libres5;no;perenne
+Oxalis virgosa;amarillo;arbusto;;libres5;no;perenne
+Oziroe biflora;blanco;;;;;
+Pasithea caerulea;azul;;;;;
+Plectocephalus chilensis;morado|rosado;;;;;
+Plumbago caerulea;azul|morado;;;;;
+Puya alpestris subsp. zoellneri;azul|verde;hierba;erecta;trimera;no;perenne
+Quinchamalium chilense;amarillo|naranjo;hierba;;tubo;;perenne
+Schizanthus candidus;blanco;;;;;
+Schizanthus lacteus;blanco;hierba;erecta;irregular;no;anual
+Schizanthus porrigens subsp. borealis;morado|rosado|blanco;;;;;
+Schizopetalon maritimum;blanco;;;;;
+Senecio myriophyllus;amarillo;arbusto;;cabezuela;no;perenne
+Senecio sp.;amarillo;;;cabezuela;;
+Senna cumingii var. cumingii;amarillo;arbusto;erecta;libres5;no;perenne
+Sicyos baderoa var. baderoa;verde|blanco;;;;;
+Sisyrinchium graminifolium;amarillo;hierba;erecta;trimera;;perenne
+Skytanthus acutus;amarillo;arbusto;erecta;tubo;no;perenne
+Sphaeropuntia sphaerica;amarillo|naranjo;cactus;;muchos;no;perenne
+Stachys grandidentata;rosado|morado;hierba;erecta;irregular;;perenne
+Tillandsia geissei;morado;hierba;;tubo;no;perenne
+Tristagma sp.;blanco|amarillo;hierba;;trimera;si;perenne
+Tristerix aphyllus;rojo;parasita;;tubo;no;perenne
+Tropaeolum azureum;azul;;;;;
+Tropaeolum tricolor;rojo|amarillo;hierba;trepadora;tubo;si;perenne
+Viola polypoda;morado|blanco;hierba;;irregular;;perenne
+Zephyra compacta;azul|blanco;hierba;erecta;trimera;si;perenne
+Zephyra elegans;azul|blanco;hierba;erecta;trimera;si;perenne
+Zephyranthes bagnoldii;amarillo;hierba;erecta;trimera;si;perenne
+Zephyranthes phycelloides;rojo;hierba;erecta;trimera;si;perenne
+Zephyranthes sarae;rosado;;;;;
+Zephyranthes sp.;blanco;hierba;erecta;trimera;si;perenne
