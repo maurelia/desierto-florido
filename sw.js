@@ -1,4 +1,4 @@
-const CACHE = 'flora-atacama-v10', TILES = 'flora-atacama-tiles', MAX_TILES = 1500;
+const CACHE = 'flora-atacama-v11', TILES = 'flora-atacama-tiles', MAX_TILES = 1500;
 // Modelo de fotos y motor ONNX: pesados, se guardan al primer uso y sobreviven a actualizaciones de la app.
 // Subir MODEL_CACHE solo si cambia vision.onnx (otro modelo base); head.json se actualiza solo.
 const MODEL_CACHE = 'flora-atacama-model-v1';

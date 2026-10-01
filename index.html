@@ -400,13 +400,18 @@ function renderPlace() {
 }
 
 function renderQuestions() {
+  // Planta sin flor: las preguntas sobre la flor no se pueden responder → al final y nunca sugeridas
+  const FLOWER_Q = ['colors', 'flower_type'], noFlower = !$('inBloom').checked;
   const ranked = FloraID.rankQuestions(species, idCtx());
-  const order = [...FloraID.QUESTIONS.filter(q => ID.answers[q.key] != null), ...ranked.map(r => QMAP[r.key])];
-  const suggested = ranked[0]?.gain > .02 ? ranked[0].key : null;
+  const usable = noFlower ? ranked.filter(r => !FLOWER_Q.includes(r.key)) : ranked;
+  const order = [...FloraID.QUESTIONS.filter(q => ID.answers[q.key] != null), ...usable.map(r => QMAP[r.key]),
+    ...ranked.filter(r => !usable.includes(r)).map(r => QMAP[r.key])];
+  const suggested = usable[0]?.gain > .02 ? usable[0].key : null;
   $('questions').replaceChildren(...order.map(q => {
     const box = document.createElement('div'), a = ID.answers[q.key];
     box.className = 'q';
-    box.innerHTML = `<h4>${escapeHtml(q.label)}${q.key === suggested ? '<span class="sug">sugerida</span>' : ''}${q.key === 'colors' && ID.fromPhoto && a ? '<span class="tag gray">desde foto</span>' : ''}</h4>${q.hint ? `<p class="hint">${escapeHtml(q.hint)}</p>` : ''}`;
+    const flowerless = noFlower && FLOWER_Q.includes(q.key) && a == null;
+    box.innerHTML = `<h4>${escapeHtml(q.label)}${q.key === suggested ? '<span class="sug">sugerida</span>' : ''}${q.key === 'colors' && ID.fromPhoto && a ? '<span class="tag gray">desde foto</span>' : ''}${flowerless ? '<span class="tag gray">solo si tiene flor</span>' : ''}</h4>${q.hint ? `<p class="hint">${escapeHtml(q.hint)}</p>` : ''}`;
     const chips = document.createElement('div');
     chips.className = 'chips';
     for (const [v, label, hex] of q.options) {
