@@ -1,4 +1,6 @@
 scientific_name;colors;growth;habit;flower_type;geophyte;cycle
+# 2026-09-30: todo este archivo quedó reemplazado por data/fichas_completadas.csv, colores_libro.csv y rasgos_libro.csv.
+# Se vaciaron los valores que el libro no permite verificar (hábito de 5 especies, forma floral de Tillandsia): quedan como dato desconocido.
 # NOTA 2026-09-30: los COLORES de este archivo quedaron reemplazados por data/colores_libro.csv (verificados en las fotos del libro).
 # Rasgos BORRADOR para completar vacíos del libro. Procedencia: conocimiento botánico general, NO extraído de la ficha.
 # Solo se aplican cuando la ficha no trae el dato. Verificar contra fotografías del libro y corregir aquí; luego ejecutar tools/build_catalog.py.
@@ -12,9 +14,9 @@ Alstroemeria diluta subsp. diluta;rosado|morado;hierba;erecta;trimera;si;perenne
 Alstroemeria kingii;amarillo;;;;;
 Alstroemeria leporina;rosado|blanco;hierba;erecta;trimera;si;perenne
 Alstroemeria philippii var. philippii;rosado|morado;;;;;
-Alstroemeria violacea;morado;hierba;erecta;trimera;si;perenne
+Alstroemeria violacea;morado;hierba;;trimera;si;perenne
 Alstroemeria werdermannii var. werdermannii;blanco|rosado;;;;;
-Argemone hunnemannii;blanco;;erecta;;;
+Argemone hunnemannii;blanco;;;;;
 Argylia radiata;amarillo|naranjo|rojo;;;;;
 Aristolochia vaginans;verde;;;;;
 Bahia ambrosioides;amarillo;;;;;
@@ -45,7 +47,7 @@ Euphorbia thinophila;verde|amarillo;;;;;
 Fagonia chilensis;morado|rosado;;;;;
 Haplopappus rengifoanus;amarillo;;;;;
 Helenium atacamense;amarillo;;;;;
-Heliotropium floridum;blanco;arbusto;erecta;libres5;no;perenne
+Heliotropium floridum;blanco;arbusto;;libres5;no;perenne
 Heliotropium sinuatum;blanco;;;;;
 Krameria cistoidea;rosado|rojo;;;;;
 Leucocoryne appendiculata;blanco|morado;;;;;
@@ -74,7 +76,7 @@ Plumbago caerulea;azul|morado;;;;;
 Puya alpestris subsp. zoellneri;azul|verde;hierba;erecta;trimera;no;perenne
 Quinchamalium chilense;amarillo|naranjo;hierba;;tubo;;perenne
 Schizanthus candidus;blanco;;;;;
-Schizanthus lacteus;blanco;hierba;erecta;irregular;no;anual
+Schizanthus lacteus;blanco;hierba;;irregular;no;anual
 Schizanthus porrigens subsp. borealis;morado|rosado|blanco;;;;;
 Schizopetalon maritimum;blanco;;;;;
 Senecio myriophyllus;amarillo;arbusto;;cabezuela;no;perenne
@@ -85,13 +87,13 @@ Sisyrinchium graminifolium;amarillo;hierba;erecta;trimera;;perenne
 Skytanthus acutus;amarillo;arbusto;erecta;tubo;no;perenne
 Sphaeropuntia sphaerica;amarillo|naranjo;cactus;;muchos;no;perenne
 Stachys grandidentata;rosado|morado;hierba;erecta;irregular;;perenne
-Tillandsia geissei;morado;hierba;;tubo;no;perenne
+Tillandsia geissei;morado;hierba;;;no;perenne
 Tristagma sp.;blanco|amarillo;hierba;;trimera;si;perenne
 Tristerix aphyllus;rojo;parasita;;tubo;no;perenne
 Tropaeolum azureum;azul;;;;;
 Tropaeolum tricolor;rojo|amarillo;hierba;trepadora;tubo;si;perenne
 Viola polypoda;morado|blanco;hierba;;irregular;;perenne
-Zephyra compacta;azul|blanco;hierba;erecta;trimera;si;perenne
+Zephyra compacta;azul|blanco;hierba;;trimera;si;perenne
 Zephyra elegans;azul|blanco;hierba;erecta;trimera;si;perenne
 Zephyranthes bagnoldii;amarillo;hierba;erecta;trimera;si;perenne
 Zephyranthes phycelloides;rojo;hierba;erecta;trimera;si;perenne

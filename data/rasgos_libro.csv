@@ -1,0 +1,32 @@
+id;scientific_name;trait;value;evidencia
+# Rasgos VERIFICADOS en las fotografías del libro (2ª ed. 2026) cuando el texto de la ficha no los indica (revisión 2026-09-30).
+# Solo se aplican si el texto no define ya el rasgo. Valores válidos: ver data/rasgos_por_verificar.csv
+6;Cordia decandra;habit;erecta;texto: "a veces con hábito arbóreo", foto de arbusto erguido
+9;Cuscuta micrantha;habit;trepadora;foto: tallos finos enredados sobre la planta huésped
+18;Mesembryanthemum crystallinum;habit;rastrera;foto: tapiz rastrero sobre el suelo
+50;Nicotiana solanifolia;habit;erecta;foto: tallo floral alto y erguido
+76;Erodium cicutarium;habit;rastrera;foto: plantas bajas extendidas sobre el suelo
+86;Lobelia polyphylla;habit;erecta;foto: espiga floral erguida
+29;Zephyranthes sp.;habit;erecta;foto: escapo floral erguido
+57;Senna cumingii var. cumingii;habit;erecta;foto: arbusto globoso erguido
+60;Sisyrinchium graminifolium;habit;erecta;foto: tallo floral erguido
+61;Skytanthus acutus;habit;erecta;foto: arbusto globoso erguido
+65;Zephyranthes bagnoldii;habit;erecta;foto: escapo floral erguido
+69;Tristerix aphyllus;flower_type;tubo;foto: flores rojas tubulares alargadas
+70;Zephyranthes phycelloides;habit;erecta;foto: escapo floral erguido
+74;Alstroemeria leporina;habit;erecta;foto: tallos florales erguidos
+75;Alstroemeria diluta subsp. diluta;habit;erecta;foto: tallos florales erguidos
+103;Zephyra elegans;habit;erecta;foto: escapos florales erguidos
+104;Puya alpestris subsp. zoellneri;habit;erecta;foto: espigón floral alto y erguido
+104;Puya alpestris subsp. zoellneri;flower_type;trimera;foto: flores de 3 pétalos
+67;Alonsoa meridionalis;habit;erecta;foto: tallo floral erguido
+73;Alstroemeria violacea;cycle;perenne;ícono de rizoma (leyenda p. 22: perenne = con órganos subterráneos de resistencia)
+74;Alstroemeria leporina;cycle;perenne;ícono de rizoma (leyenda p. 22: perenne = con órganos subterráneos de resistencia)
+75;Alstroemeria diluta subsp. diluta;cycle;perenne;ícono de rizoma (leyenda p. 22: perenne = con órganos subterráneos de resistencia)
+99;Nolana divaricata;cycle;perenne;ícono de subarbusto (leyenda p. 22: base lignificada)
+54;Oxalis virgosa;geophyte;no;arbusto con tallos aéreos persistentes (texto de la ficha)
+55;Oxalis gigantea;geophyte;no;arbusto con tallos aéreos persistentes (texto de la ficha)
+69;Tristerix aphyllus;geophyte;no;arbusto parásito sin órganos subterráneos (texto de la ficha)
+118;Miqueliopuntia miquelii;geophyte;no;cactácea de tallos aéreos (texto de la ficha)
+119;Sphaeropuntia sphaerica;geophyte;no;cactácea de tallos aéreos (texto de la ficha)
+63;Tropaeolum tricolor;geophyte;si;hierba perenne de raíz tuberosa, el libro llama geófita a T. azureum con la misma estructura

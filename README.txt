@@ -32,7 +32,10 @@ DATOS
   (≈10 min) y luego build_catalog.py. Para cambiar solo el suavizado: fetch_phenology.py --reprofile.
 - data/colores_libro.csv: color de flor VERIFICADO en las fotos del libro (2ª ed. 2026) para 116 de 117 especies;
   prioridad máxima. Columna "cambio" indica si se confirmó, corrigió o completó respecto del borrador.
-- data/rasgos_por_verificar.csv: rasgos BORRADOR (sus colores ya no se usan) (sobre todo colores) para vacíos del libro. Revisar contra
+- data/fichas_completadas.csv: las 33 fichas que estaban "pendientes de revisión", transcritas del libro (22 desde el
+  texto, 11 desde los íconos). Se aplican a catalogo.sqlite con  python tools/completar_fichas.py
+- data/rasgos_libro.csv: rasgos verificados en fotos o íconos del libro cuando el texto no los dice (con evidencia).
+- data/rasgos_por_verificar.csv: borradores antiguos, ya sin efecto (todo rasgo usado proviene del libro). (sobre todo colores) para vacíos del libro. Revisar contra
   las fotos del libro, corregir el CSV y volver a ejecutar el script. Los datos del libro siempre tienen prioridad.
 - Excluidos de la identificación: id 105 (encabezado "Cactáceas del…", no es especie) e id 66 (duplicado de Aristolochia vaginans).
 - Sensibles: marcadas en la ficha + estados "En Peligro"/"Vulnerable". En exportación PÚBLICA sus coordenadas se

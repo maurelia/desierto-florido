@@ -23,7 +23,8 @@ DB = ROOT / "catalogo.sqlite"
 OUT = ROOT / "species.json"
 DRAFT = ROOT / "data" / "rasgos_por_verificar.csv"
 PHENO = ROOT / "data" / "floracion_inat.csv"
-VERIFIED = ROOT / "data" / "colores_libro.csv"  # colores verificados en las fotos del libro (prioridad máxima)  # generado por tools/fetch_phenology.py
+VERIFIED = ROOT / "data" / "colores_libro.csv"
+VERIFIED_TRAITS = ROOT / "data" / "rasgos_libro.csv"  # rasgos verificados en fotos/íconos del libro cuando el texto no los dice  # colores verificados en las fotos del libro (prioridad máxima)  # generado por tools/fetch_phenology.py
 
 # Registros que no son una especie o duplican otro (se muestran, pero no compiten en la identificación)
 EXCLUDED = {105: "Encabezado de sección, no es especie", 66: "Duplicado de id 35 (Aristolochia vaginans)"}
@@ -108,7 +109,7 @@ def book_traits(sp):
         t["habit"] = "trepadora"
     elif re.search(r"rastrer|postrad|tendid|procumbente", desc):
         t["habit"] = "rastrera"
-    elif re.search(r"erect|derecho|ascendente", desc):
+    elif re.search(r"erect|derecho|ascendente|ascendient|tallos rectos", desc):
         t["habit"] = "erecta"
     if "cabezuela" in shape:
         t["flower_type"] = "cabezuela"
@@ -124,7 +125,8 @@ def book_traits(sp):
         t["flower_type"] = "tubo"
     elif t.get("growth") == "cactus":
         t["flower_type"] = "muchos"
-    if "geofita" in desc or "bulbo" in under:
+    # Leyenda del libro: bulbo, rizoma y cormo son órganos subterráneos de resistencia (rebrota cada año)
+    if "geofita" in desc or "bulbo" in under or (t.get("growth") == "hierba" and re.search(r"rizoma|cormo", under)):
         t["geophyte"] = "si"
     elif under.startswith("raiz pivotante") or under.startswith("raiz fasciculada"):
         t["geophyte"] = "no"
@@ -176,6 +178,20 @@ def load_verified(rows_by_id):
     return out
 
 
+def load_verified_traits(rows_by_id):
+    out = {}
+    with open(VERIFIED_TRAITS, encoding="utf-8") as f:
+        lines = [l for l in f if l.strip() and not l.startswith("#")]
+    for r in csv.DictReader(lines, delimiter=";"):
+        sid, key, val = int(r["id"]), r["trait"].strip(), r["value"].strip()
+        if sid not in rows_by_id or rows_by_id[sid]["scientific_name"] != r["scientific_name"]:
+            raise ValueError(f"rasgos_libro.csv: id {sid} no coincide con {r['scientific_name']}")
+        if key not in VALID or key == "colors" or val not in VALID[key]:
+            raise ValueError(f"rasgos_libro.csv: {key}={val} inválido ({r['scientific_name']})")
+        out.setdefault(sid, {})[key] = val
+    return out
+
+
 def load_phenology():
     if not PHENO.exists():
         return {}
@@ -206,6 +222,7 @@ def main():
             "growth_form", "life_cycle", "underground_structure", "habitat", "sensitive_location", "data_quality"]
     rows = [dict(r) for r in con.execute(f"select {', '.join(cols)} from species order by scientific_name, id")]
     verified = load_verified({r["id"]: r for r in rows})
+    verified_traits = load_verified_traits({r["id"]: r for r in rows})
     unused = set(draft) - {r["scientific_name"] for r in rows}
     if unused:
         raise ValueError(f"Especies del CSV que no están en el catálogo: {sorted(unused)}")
@@ -222,6 +239,9 @@ def main():
             traits["colors"], src["colors"] = name_colors(sp), "nombre"
         if sp["id"] in verified:
             traits["colors"], src["colors"] = verified[sp["id"]], "libro_foto"
+        for k, v in verified_traits.get(sp["id"], {}).items():
+            if k not in traits:  # el texto de la ficha manda
+                traits[k], src[k] = v, "libro_foto"
         for k, v in draft.get(sp["scientific_name"], {}).items():
             if k not in traits:
                 traits[k], src[k] = v, "por_verificar"

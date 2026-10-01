@@ -183,7 +183,7 @@ const val = s => s && String(s).trim() ? escapeHtml(s) : 'Sin datos en la ficha'
 const fold = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 const QMAP = Object.fromEntries(FloraID.QUESTIONS.map(q => [q.key, q]));
 const COLOR_HEX = Object.fromEntries(QMAP.colors.options.map(([k, , hex]) => [k, hex]));
-const SRC_LABEL = { libro: 'libro', libro_foto: 'libro (foto)', nombre: 'nombre común', por_verificar: 'por verificar' };
+const SRC_LABEL = { libro: 'libro', libro_foto: 'libro (foto o íconos)', nombre: 'nombre común', por_verificar: 'por verificar' };
 const REGIONS = [['Arica y Parinacota', -19.2, -17.5], ['Tarapacá', -21.6, -19.2], ['Antofagasta', -26.05, -21.6], ['Atacama', -29.3, -26.05],
   ['Coquimbo', -32.2, -29.3], ['Valparaíso', -33.0, -32.2], ['Metropolitana / O’Higgins', -35.0, -33.0], ['Maule o más al sur', -90, -35.0]];
 const regionOf = lat => lat == null ? null : REGIONS.find(([, s, n]) => lat >= s && lat <= n)?.[0] || null;
