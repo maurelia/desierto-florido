@@ -6,19 +6,23 @@
   const MODEL = 'model/vision.onnx', HEAD = 'model/head.json';
   let session = null, head = null, loading = null;
 
-  async function fetchWithProgress(url, onProgress) {
+  // `expected`: tamaño descomprimido. No usar content-length: el hosting puede enviar el archivo comprimido (gzip)
+  // y el navegador entrega más bytes de los que indica la cabecera.
+  async function fetchWithProgress(url, expected, onProgress) {
     const r = await fetch(url);
     if (!r.ok) throw Error(`No se pudo descargar ${url} (${r.status})`);
-    const total = Number(r.headers.get('content-length')) || 0;
-    if (!r.body || !total) return new Uint8Array(await r.arrayBuffer());
-    const reader = r.body.getReader(), buf = new Uint8Array(total);
+    if (!r.body) return new Uint8Array(await r.arrayBuffer());
+    const reader = r.body.getReader(), chunks = [];
     let got = 0;
     for (;;) {
       const { done, value } = await reader.read();
       if (done) break;
-      buf.set(value, got); got += value.length;
-      onProgress?.(got / total);
+      chunks.push(value); got += value.length;
+      if (expected) onProgress?.(Math.min(1, got / expected));
     }
+    const buf = new Uint8Array(got);
+    let at = 0;
+    for (const c of chunks) { buf.set(c, at); at += c.length; }
     return buf;
   }
 
@@ -29,7 +33,7 @@
       ort.env.wasm.wasmPaths = new URL('lib/ort/', location.href).href;
       ort.env.wasm.numThreads = root.crossOriginIsolated ? Math.min(4, navigator.hardwareConcurrency || 1) : 1;
       head = await (await fetch(HEAD)).json();
-      const bytes = await fetchWithProgress(MODEL, onProgress);
+      const bytes = await fetchWithProgress(MODEL, head.model_mb * 1e6, onProgress);
       session = await ort.InferenceSession.create(bytes, { executionProviders: ['wasm'], graphOptimizationLevel: 'all' });
       return head;
     })();
