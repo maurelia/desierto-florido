@@ -2,6 +2,7 @@
 
 Agrega a cada especie un bloque `traits` normalizado para el identificador:
   - rasgos extraídos del texto de la ficha (procedencia "libro"),
+  - color verificado en las fotografías del libro (procedencia "libro_foto", data/colores_libro.csv),
   - color por nombre común (procedencia "nombre"),
   - rasgos borrador de data/rasgos_por_verificar.csv (procedencia "por_verificar"),
   - rango latitudinal derivado de las regiones citadas en la distribución,
@@ -21,7 +22,8 @@ ROOT = Path(__file__).resolve().parent.parent
 DB = ROOT / "catalogo.sqlite"
 OUT = ROOT / "species.json"
 DRAFT = ROOT / "data" / "rasgos_por_verificar.csv"
-PHENO = ROOT / "data" / "floracion_inat.csv"  # generado por tools/fetch_phenology.py
+PHENO = ROOT / "data" / "floracion_inat.csv"
+VERIFIED = ROOT / "data" / "colores_libro.csv"  # colores verificados en las fotos del libro (prioridad máxima)  # generado por tools/fetch_phenology.py
 
 # Registros que no son una especie o duplican otro (se muestran, pero no compiten en la identificación)
 EXCLUDED = {105: "Encabezado de sección, no es especie", 66: "Duplicado de id 35 (Aristolochia vaginans)"}
@@ -158,6 +160,22 @@ def load_draft():
     return rows
 
 
+def load_verified(rows_by_id):
+    out = {}
+    with open(VERIFIED, encoding="utf-8") as f:
+        lines = [l for l in f if l.strip() and not l.startswith("#")]
+    for r in csv.DictReader(lines, delimiter=";"):
+        sid = int(r["id"])
+        if sid not in rows_by_id or rows_by_id[sid]["scientific_name"] != r["scientific_name"]:
+            raise ValueError(f"colores_libro.csv: id {sid} no coincide con {r['scientific_name']}")
+        cols = [c for c in r["colors"].split("|") if c]
+        bad = [c for c in cols if c not in VALID["colors"]]
+        if bad:
+            raise ValueError(f"colores_libro.csv: color inválido {bad} en {r['scientific_name']}")
+        out[sid] = cols
+    return out
+
+
 def load_phenology():
     if not PHENO.exists():
         return {}
@@ -187,6 +205,7 @@ def main():
             "origin_status", "description_source", "conservation_status", "flower_color", "flower_shape",
             "growth_form", "life_cycle", "underground_structure", "habitat", "sensitive_location", "data_quality"]
     rows = [dict(r) for r in con.execute(f"select {', '.join(cols)} from species order by scientific_name, id")]
+    verified = load_verified({r["id"]: r for r in rows})
     unused = set(draft) - {r["scientific_name"] for r in rows}
     if unused:
         raise ValueError(f"Especies del CSV que no están en el catálogo: {sorted(unused)}")
@@ -201,6 +220,8 @@ def main():
             traits["colors"], src["colors"] = bc, "libro"
         elif name_colors(sp):
             traits["colors"], src["colors"] = name_colors(sp), "nombre"
+        if sp["id"] in verified:
+            traits["colors"], src["colors"] = verified[sp["id"]], "libro_foto"
         for k, v in draft.get(sp["scientific_name"], {}).items():
             if k not in traits:
                 traits[k], src[k] = v, "por_verificar"
@@ -247,7 +268,7 @@ def main():
 
     n = len(out)
     cover = {k: sum(k in s["traits"] for s in out) for k in list(VALID) + ["succulent", "spiny", "zone"]}
-    by_src = {s: sum(v == s for sp in out for v in sp["trait_sources"].values()) for s in ("libro", "nombre", "por_verificar")}
+    by_src = {s: sum(v == s for sp in out for v in sp["trait_sources"].values()) for s in ("libro", "libro_foto", "nombre", "por_verificar")}
     print(f"{n} registros → {OUT.name}")
     print("cobertura por rasgo:", cover)
     print("con rango latitudinal:", sum(s["lat_min"] is not None for s in out), "| sensibles:",

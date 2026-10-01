@@ -1,0 +1,119 @@
+id;scientific_name;colors;cambio;nota
+# Color de flor VERIFICADO en las fotografías de "Expresiones del Desierto Florido", 2ª ed. agosto 2026 (revisión 2026-09-30).
+# Tiene prioridad sobre el texto extraído, el nombre común y los borradores. cambio: = confirmado | corregido | ajustado | nuevo
+1;Argemone hunnemannii;blanco;=;
+2;Bahia ambrosioides;blanco;corregido;cabezuela blanca con centro amarillo (borrador: amarillo)
+3;Chaetanthera albiflora;blanco;=;
+4;Cistanthe coquimbensis;blanco;corregido;flores blancas (borrador: rosado)
+5;Cistanthe crassifolia;blanco;=;
+6;Cordia decandra;blanco;=;
+7;Cryptantha clandestina;blanco;=;
+8;Cruckshanksia hymenodon;blanco|amarillo;ajustado;brácteas blancas-rosadas, flores amarillas
+9;Cuscuta micrantha;blanco;=;
+10;Heliotropium floridum;blanco|amarillo;ajustado;blanco con centro amarillo-anaranjado
+11;Heliotropium sinuatum;blanco;=;
+12;Leucocoryne appendiculata;blanco|morado;=;
+13;Leucocoryne coronata;blanco|azul|morado;ajustado;forma blanca y forma azul-violeta
+14;Loasa elongata;blanco;=;
+15;Loasa illapelina;blanco;=;
+16;Leucheria tomentosa;blanco;=;
+17;Menonvillea linearifolia;blanco;nuevo;
+18;Mesembryanthemum crystallinum;blanco|rosado;=;
+19;Nolana baccata;blanco;=;
+20;Nolana sedifolia;blanco;corregido;blanco-crema (borrador: blanco|azul)
+21;Oziroe biflora;blanco;=;
+22;Plectocephalus chilensis;blanco|rosado|morado;ajustado;blanco a rosado-lila, centro amarillo
+23;Schizopetalon maritimum;blanco;=;
+24;Schizanthus lacteus;morado;corregido;lila-violeta con centro blanco y magenta (borrador: blanco)
+25;Schizanthus candidus;blanco;=;
+26;Sicyos baderoa var. baderoa;blanco|verde;=;
+27;Tristagma sp.;blanco;ajustado;blanco algo azulado (borrador: blanco|amarillo)
+28;Zephyra compacta;blanco;corregido;blanca en el libro (nombre "Celestina" sugería azul)
+29;Zephyranthes sp.;blanco;=;
+30;Adesmia argentea;amarillo|naranjo;ajustado;
+31;Adesmia elata;amarillo;=;
+32;Adesmia littoralis;amarillo|naranjo;ajustado;
+33;Adesmia pungens;amarillo;=;
+34;Argylia radiata;amarillo|naranjo;ajustado;anaranjado-amarillo en el libro
+35;Aristolochia vaginans;verde;=;verde amarillento con tonos café-púrpura
+36;Alstroemeria kingii;amarillo;=;
+37;Balbisia peduncularis;amarillo;=;
+38;Balsamocarpon brevifolium;amarillo;=;
+39;Bomarea ovallei;amarillo;=;forma amarilla
+40;Camissonia dentata;amarillo;=;
+41;Chaetanthera glabrata;amarillo|naranjo;ajustado;
+42;Cruckshanksia pumila;amarillo;corregido;flores y brácteas amarillas (borrador: rosado|amarillo)
+43;Cruckshanksia montiana;amarillo;corregido;flores y brácteas amarillas (borrador: rosado|amarillo)
+44;Dinemagonum gayanum;amarillo;=;
+45;Encelia canescens;amarillo;=;
+46;Erythrostemon angulatus;amarillo;=;
+47;Haplopappus rengifoanus;amarillo;=;
+48;Helenium atacamense;amarillo;=;
+49;Loasa tricolor;amarillo|rojo;=;
+50;Nicotiana solanifolia;amarillo;corregido;amarillo verdoso (borrador: blanco|amarillo)
+51;Oenothera coquimbensis;amarillo;=;
+52;Oxalis brevis;amarillo;nuevo;
+53;Oxalis bulbocastanum;amarillo;nuevo;
+54;Oxalis virgosa;amarillo;=;
+55;Oxalis gigantea;amarillo;=;
+56;Quinchamalium chilense;amarillo|naranjo;=;
+57;Senna cumingii var. cumingii;amarillo;=;
+58;Senecio myriophyllus;amarillo;=;
+59;Senecio sp.;amarillo;=;
+60;Sisyrinchium graminifolium;amarillo;=;
+61;Skytanthus acutus;amarillo;=;
+62;Tetragonia maritima;amarillo;nuevo;flores pequeñas
+63;Tropaeolum tricolor;rojo|naranjo|amarillo;ajustado;
+64;Viola polypoda;amarillo;corregido;amarilla con centro oscuro (nombre "violeta" sugería morado)
+65;Zephyranthes bagnoldii;amarillo;=;
+67;Alonsoa meridionalis;rojo|naranjo;=;
+68;Bomarea ovallei;rojo;=;forma roja
+69;Tristerix aphyllus;rojo;=;
+70;Zephyranthes phycelloides;rojo;=;
+71;Alstroemeria philippii var. philippii;rosado|morado;=;
+72;Alstroemeria werdermannii var. werdermannii;rosado|morado;corregido;rosado-púrpura (borrador: blanco|rosado)
+73;Alstroemeria violacea;morado|rosado;ajustado;
+74;Alstroemeria leporina;rosado|blanco;=;
+75;Alstroemeria diluta subsp. diluta;rosado|blanco;corregido;rosado pálido a blanco (borrador: rosado|morado)
+76;Erodium cicutarium;rosado|morado;=;
+77;Olsynium scirpoideum;rosado|morado;ajustado;
+78;Polyachyrus poeppigii subsp. multifidus;rosado|blanco;nuevo;pompón rosado
+79;Schizanthus porrigens subsp. borealis;morado;ajustado;lila-violeta con centro amarillo
+80;Zephyranthes sarae;rosado;=;
+82;Calliandra chilensis;rojo|rosado;ajustado;estambres rojo-magenta
+83;Cistanthe grandiflora;rosado|morado;ajustado;
+84;Cistanthe longiscapa;rosado|morado;=;
+85;Krameria cistoidea;rosado|rojo;=;
+86;Lobelia polyphylla;morado|rojo;=;
+87;Stachys grandidentata;morado|rosado;=;
+88;Tillandsia geissei;rojo;corregido;brácteas rojas (borrador: morado)
+89;Astragalus dodtii;blanco|morado;nuevo;
+90;Cristaria glaucophylla;rosado|morado;=;
+91;Cristaria integerrima var. integerrima;morado|rosado;=;
+92;Euphorbia thinophila;verde|rojo;corregido;verde con ciatios rojo oscuro (borrador: verde|amarillo)
+93;Fagonia chilensis;morado|rosado;=;
+94;Malesherbia humilis var. humilis;blanco|rosado;nuevo;pétalos blancos, cáliz rosado
+95;Mirabilis elegans;morado|rosado;=;
+96;Solanum trinominum;morado;nuevo;violeta con anteras amarillas
+97;Nolana acuminata;azul;=;
+98;Nolana carnosa;azul|morado;=;
+99;Nolana divaricata;azul|morado;=;
+100;Pasithea caerulea;azul;=;
+101;Plumbago caerulea;azul;=;
+102;Tropaeolum azureum;azul|morado;=;
+103;Zephyra elegans;azul;=;
+104;Puya alpestris subsp. zoellneri;azul|verde;=;turquesa
+106;Copiapoa dealbata;amarillo;=;
+107;Copiapoa echinoides;amarillo;=;
+108;Copiapoa fiedleriana;amarillo;=;
+109;Eriosyce aerocarpa;naranjo|rojo;ajustado;anaranjado-rojizo en la foto (texto: tépalos rojizos)
+110;Eriosyce crispa subsp. crispa;rosado;=;
+111;Eriosyce glabrescens;amarillo|blanco|rosado;=;
+112;Eriosyce heinrichiana;amarillo|naranjo;=;
+113;Eriosyce napina subsp. napina;amarillo|rojo;=;
+114;Eriosyce villosa;rosado|morado;=;
+115;Eulychnia acida;blanco|rosado;=;
+116;Eulychnia breviflora;blanco|rosado;=;
+117;Leucostele nigripilis;blanco;=;
+118;Miqueliopuntia miquelii;rosado|amarillo;corregido;texto de la ficha: "amarillo pálido o rosadas" (borrador: blanco|rosado)
+119;Sphaeropuntia sphaerica;amarillo|naranjo;=;

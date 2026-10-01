@@ -39,7 +39,7 @@
     habit: { erecta: { trepadora: .1 }, rastrera: { trepadora: .3 }, trepadora: { rastrera: .3 } },
   };
   // Probabilidad mínima si el rasgo contradice la respuesta, según la procedencia del dato
-  const EPS = { libro: .03, nombre: .08, por_verificar: .15 };
+  const EPS = { libro: .03, libro_foto: .03, nombre: .08, por_verificar: .15 };
   // Piso de la verosimilitud de imagen: una foto sola nunca descarta por completo una especie
   const IMAGE_FLOOR = .003;
 

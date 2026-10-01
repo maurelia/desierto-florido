@@ -30,7 +30,9 @@ DATOS
 - catalogo.sqlite: fuente de verdad. species.json se genera con:  python tools/build_catalog.py
 - data/floracion_inat.csv: conteos mensuales y perfil de floración. Actualizar con  python tools/fetch_phenology.py
   (≈10 min) y luego build_catalog.py. Para cambiar solo el suavizado: fetch_phenology.py --reprofile.
-- data/rasgos_por_verificar.csv: rasgos BORRADOR (sobre todo colores) para vacíos del libro. Revisar contra
+- data/colores_libro.csv: color de flor VERIFICADO en las fotos del libro (2ª ed. 2026) para 116 de 117 especies;
+  prioridad máxima. Columna "cambio" indica si se confirmó, corrigió o completó respecto del borrador.
+- data/rasgos_por_verificar.csv: rasgos BORRADOR (sus colores ya no se usan) (sobre todo colores) para vacíos del libro. Revisar contra
   las fotos del libro, corregir el CSV y volver a ejecutar el script. Los datos del libro siempre tienen prioridad.
 - Excluidos de la identificación: id 105 (encabezado "Cactáceas del…", no es especie) e id 66 (duplicado de Aristolochia vaginans).
 - Sensibles: marcadas en la ficha + estados "En Peligro"/"Vulnerable". En exportación PÚBLICA sus coordenadas se

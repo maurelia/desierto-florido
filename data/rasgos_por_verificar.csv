@@ -1,4 +1,5 @@
 scientific_name;colors;growth;habit;flower_type;geophyte;cycle
+# NOTA 2026-09-30: los COLORES de este archivo quedaron reemplazados por data/colores_libro.csv (verificados en las fotos del libro).
 # Rasgos BORRADOR para completar vacíos del libro. Procedencia: conocimiento botánico general, NO extraído de la ficha.
 # Solo se aplican cuando la ficha no trae el dato. Verificar contra fotografías del libro y corregir aquí; luego ejecutar tools/build_catalog.py.
 # colors: blanco|amarillo|naranjo|rojo|rosado|morado|azul|verde   growth: hierba|arbusto|cactus|parasita
