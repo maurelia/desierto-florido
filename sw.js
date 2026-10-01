@@ -1,6 +1,6 @@
-const CACHE = 'flora-atacama-v9', TILES = 'flora-atacama-tiles', MAX_TILES = 1500;
+const CACHE = 'flora-atacama-v10', TILES = 'flora-atacama-tiles', MAX_TILES = 1500;
 // Modelo de fotos y motor ONNX: pesados, se guardan al primer uso y sobreviven a actualizaciones de la app.
-// Al reentrenar el modelo, subir MODEL_CACHE para forzar la descarga nueva.
+// Subir MODEL_CACHE solo si cambia vision.onnx (otro modelo base); head.json se actualiza solo.
 const MODEL_CACHE = 'flora-atacama-model-v1';
 const ASSETS = ['./', './index.html', './identify.js', './vision.js', './lib/ort/ort.wasm.min.js', './species.json', './manifest.webmanifest', './icon.svg',
   './lib/leaflet.js', './lib/leaflet.css', './lib/images/marker-icon.png', './lib/images/marker-icon-2x.png', './lib/images/marker-shadow.png'];
@@ -27,6 +27,12 @@ self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
   if (url.hostname === 'tile.openstreetmap.org') { e.respondWith(tile(e.request)); return; }
   if (url.origin !== location.origin) return;
+  // Clasificador (head.json): red primero, así un reentrenamiento llega sin volver a bajar el modelo de 25 MB
+  if (url.pathname.endsWith('/model/head.json')) {
+    e.respondWith(fetch(e.request).then(r => { const c = r.clone(); if (r.ok) caches.open(MODEL_CACHE).then(x => x.put(e.request, c)); return r; })
+      .catch(() => caches.match(e.request)));
+    return;
+  }
   if (/\/(model|lib\/ort)\//.test(url.pathname) && !url.pathname.endsWith('ort.wasm.min.js')) {
     e.respondWith(caches.open(MODEL_CACHE).then(async c => {
       const hit = await c.match(e.request);

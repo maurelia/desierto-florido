@@ -20,7 +20,8 @@ Puntaje aproximadamente bayesiano: P(S | M,G,T,I) ∝ P(M|S)·P(G|S)·P(T|S)·P(
   I = reconocimiento de fotos en el dispositivo (vision.js + model/): DINOv2-small + clasificador lineal, 107 especies,
       91% top-1 / 97% top-3 en validación cruzada. Descarga única ~40 MB (modelo 25 MB + motor ONNX 14 MB), luego sin señal.
       Varias fotos de la misma planta se combinan. Especies sin fotos de entrenamiento reciben valor neutro.
-      Reentrenar: ver ../model_training/README.txt.
+      Reentrenar con tus fotos: Mis registros → "📷 Fotos para entrenamiento" (ZIP) → copiar a
+      ../model_training/campo_zips → python retrain.py → publicar model/head.json. Ver ../model_training/README.txt.
 - Un dato ausente nunca descarta una especie. Un dato contradictorio penaliza según su procedencia:
   libro (fuerte) > nombre común > por_verificar (débil).
 - La pregunta "sugerida" es la de mayor ganancia de información, ponderada por lo fácil que es responderla.

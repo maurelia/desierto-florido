@@ -160,10 +160,10 @@ input,select,textarea{padding:12px;border:1px solid #d8ded4;border-radius:11px;b
   <div class="row" style="justify-content:space-between"><h2>Mis observaciones</h2>
     <div class="row">
       <select id="exportMode" aria-label="Tipo de exportación"><option value="private">Privada: coordenadas exactas (QGIS)</option><option value="public">Pública: protege especies sensibles</option></select>
-      <button id="export" class="btn">GeoJSON</button><button id="exportKml" class="btn alt">KML</button><button id="exportCsv" class="btn alt">CSV</button>
+      <button id="export" class="btn">GeoJSON</button><button id="exportKml" class="btn alt">KML</button><button id="exportCsv" class="btn alt">CSV</button><button id="exportTrain" class="btn alt" title="Fotos con especie, para reentrenar el reconocimiento">📷 Fotos para entrenamiento</button>
     </div>
   </div>
-  <p id="savedCount" class="count"></p>
+  <p id="savedCount" class="count"></p><p id="trainStatus" class="muted" role="status" style="font-size:13px"></p>
   <div class="detail" id="summaryBox"><div class="row" style="justify-content:space-between"><h3>Resumen por especie</h3><button class="btn alt small" id="toggleMap">🗺️ Ver en el mapa</button></div><ul id="summary" class="summary"></ul><div id="map" class="hidden"></div><p id="mapNote" class="muted hidden" style="font-size:12px">El mapa base necesita conexión; las zonas ya vistas quedan guardadas para uso sin señal.</p></div>
   <div id="savedItems" style="margin-top:14px"></div>
 </section>
@@ -686,6 +686,62 @@ $('exportKml').onclick = async () => {
 <ExtendedData>${['scientific_name', 'observed_at', 'elevation_m', 'habitat', 'observer', 'validation', 'identification_method', 'confidence', 'coordinates_generalized', 'notes'].map(k => `<Data name="${k}"><value>${x(o[k])}</value></Data>`).join('')}</ExtendedData>
 <Point><coordinates>${o.longitude},${o.latitude}${o.elevation_m != null ? ',' + o.elevation_m : ''}</coordinates></Point></Placemark>`).join('\n');
   download(stamp(m) + '.kml', `<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>Desierto Florido</name>\n${marks}\n</Document></kml>`, 'application/vnd.google-earth.kml+xml');
+};
+
+/* ---------- Fotos para entrenamiento ---------- */
+// ZIP sin compresión (las fotos ya son JPEG): fotos/<Especie>/<registro>_<n>.jpg + manifest.csv
+const CRC_TABLE = Array.from({ length: 256 }, (_, n) => { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; return c >>> 0; });
+function crc32(b) { let c = 0xFFFFFFFF; for (let i = 0; i < b.length; i++) c = CRC_TABLE[(c ^ b[i]) & 0xFF] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+function makeZip(files) {
+  const enc = new TextEncoder(), parts = [], central = [];
+  let offset = 0;
+  for (const f of files) {
+    const name = enc.encode(f.name), crc = crc32(f.data), size = f.data.length;
+    const local = new DataView(new ArrayBuffer(30));
+    // firma, versión 2.0, bandera UTF-8 (bit 11), método 0 (sin compresión)
+    [[0, 0x04034b50, 4], [4, 20, 2], [6, 0x0800, 2], [8, 0, 2], [10, 0, 2], [12, 0x21, 2], [14, crc, 4], [18, size, 4], [22, size, 4], [26, name.length, 2], [28, 0, 2]]
+      .forEach(([o, v, n]) => n === 4 ? local.setUint32(o, v, true) : local.setUint16(o, v, true));
+    const cen = new DataView(new ArrayBuffer(46));
+    [[0, 0x02014b50, 4], [4, 20, 2], [6, 20, 2], [8, 0x0800, 2], [10, 0, 2], [12, 0, 2], [14, 0x21, 2], [16, crc, 4], [20, size, 4], [24, size, 4],
+      [28, name.length, 2], [30, 0, 2], [32, 0, 2], [34, 0, 2], [36, 0, 2], [38, 0, 4], [42, offset, 4]]
+      .forEach(([o, v, n]) => n === 4 ? cen.setUint32(o, v, true) : cen.setUint16(o, v, true));
+    parts.push(new Uint8Array(local.buffer), name, f.data);
+    central.push(new Uint8Array(cen.buffer), name);
+    offset += 30 + name.length + size;
+  }
+  const cenSize = central.reduce((t, b) => t + b.length, 0), end = new DataView(new ArrayBuffer(22));
+  [[0, 0x06054b50, 4], [4, 0, 2], [6, 0, 2], [8, files.length, 2], [10, files.length, 2], [12, cenSize, 4], [16, offset, 4], [20, 0, 2]]
+    .forEach(([o, v, n]) => n === 4 ? end.setUint32(o, v, true) : end.setUint16(o, v, true));
+  return new Blob([...parts, ...central, new Uint8Array(end.buffer)], { type: 'application/zip' });
+}
+const dataUrlBytes = u => Uint8Array.from(atob(u.slice(u.indexOf(',') + 1)), c => c.charCodeAt(0));
+const TRAIN_COLS = ['file', 'record_id', 'species_id', 'scientific_name', 'observed_at', 'latitude', 'longitude', 'elevation_m',
+  'validation', 'identification_method', 'confidence', 'ai_probability', 'observer'];
+$('exportTrain').onclick = async () => {
+  const recs = (await records()).filter(o => o.species_id && photosOf(o).length);
+  if (!recs.length) { $('trainStatus').textContent = 'No hay registros con especie y foto todavía.'; return; }
+  const files = [], rows = [];
+  for (const o of recs) {
+    const folder = o.scientific_name.replace(/[^\p{L}\p{N}]+/gu, '_').replace(/_+$/, '');
+    photosOf(o).forEach((ph, i) => {
+      const file = `fotos/${folder}/${o.id}_${i + 1}.jpg`;
+      files.push({ name: file, data: dataUrlBytes(ph) });
+      rows.push({ ...o, file, record_id: o.id });
+    });
+  }
+  const csv = [TRAIN_COLS.join(','), ...rows.map(o => TRAIN_COLS.map(k => '"' + String(o[k] ?? '').replace(/"/g, '""') + '"').join(','))].join('\r\n');
+  files.push({ name: 'manifest.csv', data: new TextEncoder().encode('\ufeff' + csv) });
+  const zip = makeZip(files), name = `fotos_entrenamiento_desierto_florido_${todayIso()}.zip`;
+  const nSp = new Set(recs.map(o => o.species_id)).size;
+  const pl = (n, s, p) => `${n} ${n === 1 ? s : p}`;
+  $('trainStatus').textContent = `${pl(rows.length, 'foto', 'fotos')} de ${pl(recs.length, 'registro', 'registros')} (${pl(nSp, 'especie', 'especies')}), ${(zip.size / 1e6).toFixed(1)} MB. Copia el ZIP a model_training/campo_zips en el PC y ejecuta retrain.py.`;
+  const file = new File([zip], name, { type: 'application/zip' });
+  // En el teléfono: menú compartir (WhatsApp, Drive, correo); si no está disponible, descarga
+  if (navigator.canShare?.({ files: [file] })) {
+    try { await navigator.share({ files: [file], title: 'Fotos para entrenamiento' }); return; }
+    catch (err) { if (err.name === 'AbortError') return; }
+  }
+  download(name, zip, 'application/zip');
 };
 
 /* ---------- Carga ---------- */
