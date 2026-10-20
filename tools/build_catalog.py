@@ -6,7 +6,8 @@ Agrega a cada especie un bloque `traits` normalizado para el identificador:
   - color por nombre común (procedencia "nombre"),
   - rasgos borrador de data/rasgos_por_verificar.csv (procedencia "por_verificar"),
   - rango latitudinal derivado de las regiones citadas en la distribución,
-  - perfil mensual de floración desde iNaturalist (data/floracion_inat.csv).
+  - perfil mensual de floración desde iNaturalist (data/floracion_inat.csv),
+  - foto de la guía con su crédito (data/fotos_guia.csv, imágenes en img/).
 También escribe esos campos de vuelta en catalogo.sqlite.
 
 Uso:  python tools/build_catalog.py
@@ -25,6 +26,8 @@ DRAFT = ROOT / "data" / "rasgos_por_verificar.csv"
 PHENO = ROOT / "data" / "floracion_inat.csv"
 VERIFIED = ROOT / "data" / "colores_libro.csv"
 VERIFIED_TRAITS = ROOT / "data" / "rasgos_libro.csv"  # rasgos verificados en fotos/íconos del libro cuando el texto no los dice  # colores verificados en las fotos del libro (prioridad máxima)  # generado por tools/fetch_phenology.py
+
+PHOTOS = ROOT / "data" / "fotos_guia.csv"
 
 # Registros que no son una especie o duplican otro (se muestran, pero no compiten en la identificación)
 EXCLUDED = {105: "Encabezado de sección, no es especie", 66: "Duplicado de id 35 (Aristolochia vaginans)"}
@@ -199,6 +202,19 @@ def load_phenology():
         return {r["scientific_name"]: r for r in csv.DictReader(f, delimiter=";") if r.get("profile")}
 
 
+def load_photos():
+    if not PHOTOS.exists():
+        return {}
+    with open(PHOTOS, encoding="utf-8") as f:
+        lines = [l for l in f if l.strip() and not l.startswith("#")]
+    out = {}
+    for r in csv.DictReader(lines, delimiter=";"):
+        if not (ROOT / r["file"]).exists():
+            raise ValueError(f"fotos_guia.csv: falta {r['file']}")
+        out[int(r["id"])] = {"file": r["file"], "author": r["author"], "license": r["license"], "url": r["source_url"]}
+    return out
+
+
 def flowering_window(profile, threshold=.3):
     """Meses consecutivos (circulares) alrededor del máximo con floración ≥ umbral del máximo."""
     if min(profile) >= threshold:
@@ -217,6 +233,7 @@ def main():
     con.row_factory = sqlite3.Row
     draft = load_draft()
     pheno = load_phenology()
+    photos = load_photos()
     cols = ["id", "scientific_name", "common_names", "group_name", "book_page", "pdf_page", "distribution_text",
             "origin_status", "description_source", "conservation_status", "flower_color", "flower_shape",
             "growth_form", "life_cycle", "underground_structure", "habitat", "sensitive_location", "data_quality"]
@@ -258,7 +275,7 @@ def main():
             sp.update(flowering_start_month=None, flowering_end_month=None, flowering_profile=None,
                       flowering_source=None, flowering_n=None, flowering_place=None)
         sp.update(traits=traits, trait_sources=src, lat_min=lat_min, lat_max=lat_max,
-                  sensitive_location=int(sensitive), excluded_reason=EXCLUDED.get(sp["id"]))
+                  sensitive_location=int(sensitive), excluded_reason=EXCLUDED.get(sp["id"]), photo=photos.get(sp["id"]))
         out.append(sp)
 
     OUT.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
@@ -294,6 +311,7 @@ def main():
     print("con rango latitudinal:", sum(s["lat_min"] is not None for s in out), "| sensibles:",
           [s["scientific_name"] for s in out if s["sensitive_location"]])
     print("rasgos por procedencia:", by_src)
+    print("con foto:", sum(s["photo"] is not None for s in out))
     print("con perfil de floración:", sum(s["flowering_profile"] is not None for s in out))
 
 

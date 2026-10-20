@@ -1,13 +1,15 @@
-const CACHE = 'flora-atacama-v11', TILES = 'flora-atacama-tiles', MAX_TILES = 1500;
+const CACHE = 'flora-atacama-v12', TILES = 'flora-atacama-tiles', MAX_TILES = 1500;
 // Modelo de fotos y motor ONNX: pesados, se guardan al primer uso y sobreviven a actualizaciones de la app.
 // Subir MODEL_CACHE solo si cambia vision.onnx (otro modelo base); head.json se actualiza solo.
 const MODEL_CACHE = 'flora-atacama-model-v1';
+// Fotos de la guía (~4 MB): se guardan al verlas y se precargan en segundo plano tras la instalación
+const IMG_CACHE = 'flora-atacama-img-v1';
 const ASSETS = ['./', './index.html', './identify.js', './vision.js', './lib/ort/ort.wasm.min.js', './species.json', './manifest.webmanifest', './icon.svg',
   './lib/leaflet.js', './lib/leaflet.css', './lib/images/marker-icon.png', './lib/images/marker-icon-2x.png', './lib/images/marker-shadow.png'];
 
 self.addEventListener('install', e => e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting())));
 self.addEventListener('activate', e => e.waitUntil(
-  caches.keys().then(ks => Promise.all(ks.filter(k => ![CACHE, TILES, MODEL_CACHE].includes(k)).map(k => caches.delete(k)))).then(() => self.clients.claim())));
+  caches.keys().then(ks => Promise.all(ks.filter(k => ![CACHE, TILES, MODEL_CACHE, IMG_CACHE].includes(k)).map(k => caches.delete(k)))).then(() => self.clients.claim())));
 
 // Guarda las teselas del mapa que ya se vieron, para usarlas sin señal
 async function tile(req) {
@@ -31,6 +33,10 @@ self.addEventListener('fetch', e => {
   if (url.pathname.endsWith('/model/head.json')) {
     e.respondWith(fetch(e.request).then(r => { const c = r.clone(); if (r.ok) caches.open(MODEL_CACHE).then(x => x.put(e.request, c)); return r; })
       .catch(() => caches.match(e.request)));
+    return;
+  }
+  if (url.pathname.includes('/img/')) {
+    e.respondWith(caches.open(IMG_CACHE).then(async c => (await c.match(e.request)) || fetch(e.request).then(r => { if (r.ok) c.put(e.request, r.clone()); return r; })));
     return;
   }
   if (/\/(model|lib\/ort)\//.test(url.pathname) && !url.pathname.endsWith('ort.wasm.min.js')) {

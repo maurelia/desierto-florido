@@ -1,0 +1,112 @@
+# Foto de cada especie para la guía (Explorar/ficha). Elegida entre las fotos de iNaturalist vía GBIF del entrenamiento,
+# priorizando que se vea la flor; revisada a mano. scientific_name = clase del modelo.
+id;scientific_name;file;author;license;source_url
+1;Argemone hunnemannii;img/Argemone_hunnemannii.jpg;Isadora;CC BY-NC 4.0;https://www.gbif.org/occurrence/4600178163
+2;Bahia ambrosioides;img/Bahia_ambrosioides.jpg;Gabriela Cartes;CC BY 4.0;https://www.gbif.org/occurrence/5168471267
+3;Chaetanthera albiflora;img/Chaetanthera_albiflora.jpg;James Bailey;CC BY-NC 4.0;https://www.gbif.org/occurrence/5760170064
+4;Cistanthe coquimbensis;img/Cistanthe_coquimbensis.jpg;Diego Almendras;CC BY-NC 4.0;https://www.gbif.org/occurrence/6163353890
+5;Cistanthe crassifolia;img/Cistanthe_crassifolia.jpg;Carlos E. Valdivia;CC BY-NC 4.0;https://www.gbif.org/occurrence/6179473599
+6;Cordia decandra;img/Cordia_decandra.jpg;Francisco Riquelme Tapia;CC BY-NC 4.0;https://www.gbif.org/occurrence/6413704026
+8;Cruckshanksia hymenodon;img/Cruckshanksia_hymenodon.jpg;Elías Acosta Quiroz;CC BY 4.0;https://www.gbif.org/occurrence/6133500583
+9;Cuscuta micrantha;img/Cuscuta_micrantha.jpg;Rodrigo ignacio Barraza carvajal;CC BY-NC 4.0;https://www.gbif.org/occurrence/5935347804
+10;Heliotropium floridum;img/Heliotropium_floridum.jpg;fpclmarjoriecaceres;CC BY-NC 4.0;https://www.gbif.org/occurrence/5908651031
+11;Heliotropium sinuatum;img/Heliotropium_sinuatum.jpg;Javiera Moreno Guerrero;CC BY-NC 4.0;https://www.gbif.org/occurrence/6441092584
+12;Leucocoryne appendiculata;img/Leucocoryne_appendiculata.jpg;Álvaro Parra Valdivia;CC BY 4.0;https://www.gbif.org/occurrence/6479827520
+13;Leucocoryne coronata;img/Leucocoryne_coronata.jpg;Matías;CC BY-NC 4.0;https://www.gbif.org/occurrence/6551388195
+14;Loasa elongata;img/Loasa_elongata.jpg;Defiendelatierra;CC BY-NC 4.0;https://www.gbif.org/occurrence/5890264551
+15;Loasa illapelina;img/Loasa_illapelina.jpg;Ben Lyle Bedard;CC BY 4.0;https://www.gbif.org/occurrence/4137706735
+16;Leucheria tomentosa;img/Leucheria_tomentosa.jpg;Nodora L. Moyano;CC BY-NC 4.0;https://www.gbif.org/occurrence/4028731767
+18;Mesembryanthemum crystallinum;img/Mesembryanthemum_crystallinum.jpg;Álvaro Parra Valdivia;CC BY 4.0;https://www.gbif.org/occurrence/6130599936
+19;Nolana baccata;img/Nolana_baccata.jpg;Carlos E. Valdivia;CC BY-NC 4.0;https://www.gbif.org/occurrence/5908721399
+20;Nolana sedifolia;img/Nolana_sedifolia.jpg;Álvaro Parra Valdivia;CC BY 4.0;https://www.gbif.org/occurrence/6552351135
+21;Oziroe biflora;img/Oziroe_biflora.jpg;Defiendelatierra;CC BY-NC 4.0;https://www.gbif.org/occurrence/5890015764
+22;Plectocephalus chilensis;img/Plectocephalus_chilensis.jpg;Chantal Villalba;CC BY-NC 4.0;https://www.gbif.org/occurrence/6498382785
+23;Schizopetalon maritimum;img/Schizopetalon_maritimum.jpg;pau_miranda;CC BY-NC 4.0;https://www.gbif.org/occurrence/3947623143
+24;Schizanthus lacteus;img/Schizanthus_lacteus.jpg;Juan Mauricio Contreras;CC BY-NC 4.0;https://www.gbif.org/occurrence/3399426150
+25;Schizanthus candidus;img/Schizanthus_candidus.jpg;Álvaro Parra Valdivia;CC BY 4.0;https://www.gbif.org/occurrence/6234904555
+26;Sicyos baderoa var. baderoa;img/Sicyos_baderoa_var_baderoa.jpg;Álvaro Parra Valdivia;CC BY 4.0;https://www.gbif.org/occurrence/6519827310
+28;Zephyra compacta;img/Zephyra_compacta.jpg;Carlos E. Valdivia;CC BY-NC 4.0;https://www.gbif.org/occurrence/6178802684
+30;Adesmia argentea;img/Adesmia_argentea.jpg;Álvaro Parra Valdivia;CC BY 4.0;https://www.gbif.org/occurrence/6551356245
+32;Adesmia littoralis;img/Adesmia_littoralis.jpg;Álvaro Parra Valdivia;CC BY 4.0;https://www.gbif.org/occurrence/6519132690
+33;Adesmia pungens;img/Adesmia_pungens.jpg;Álvaro Parra Valdivia;CC BY 4.0;https://www.gbif.org/occurrence/6551755721
+34;Argylia radiata;img/Argylia_radiata.jpg;Isidora Huerta;CC BY-NC 4.0;https://www.gbif.org/occurrence/6129888704
+36;Alstroemeria kingii;img/Alstroemeria_kingii.jpg;James Bailey;CC BY-NC 4.0;https://www.gbif.org/occurrence/5087108509
+37;Balbisia peduncularis;img/Balbisia_peduncularis.jpg;Elías Acosta Quiroz;CC BY 4.0;https://www.gbif.org/occurrence/6550941888
+38;Balsamocarpon brevifolium;img/Balsamocarpon_brevifolium.jpg;Paula Carraha;CC BY-NC 4.0;https://www.gbif.org/occurrence/6550916937
+39;Bomarea ovallei;img/Bomarea_ovallei_amarilla.jpg;Pilar Molina Albornoz;CC BY-NC 4.0;https://www.gbif.org/occurrence/5908651549
+40;Camissonia dentata;img/Camissonia_dentata.jpg;Nicolás Garcés;CC0;https://www.gbif.org/occurrence/5828081558
+41;Chaetanthera glabrata;img/Chaetanthera_glabrata.jpg;Fabian Andrade;CC BY-NC 4.0;https://www.gbif.org/occurrence/6170874890
+42;Cruckshanksia pumila;img/Cruckshanksia_pumila.jpg;martintaceae;CC BY-NC 4.0;https://www.gbif.org/occurrence/6133447478
+43;Cruckshanksia montiana;img/Cruckshanksia_montiana.jpg;Cesar Ormazabal;CC BY 4.0;https://www.gbif.org/occurrence/5889438616
+44;Dinemagonum gayanum;img/Dinemagonum_gayanum.jpg;Gaston Carvallo B.;CC BY 4.0;https://www.gbif.org/occurrence/6551107743
+45;Encelia canescens;img/Encelia_canescens.jpg;Janina Guerrero Espinoza;CC BY-NC 4.0;https://www.gbif.org/occurrence/6519604657
+46;Erythrostemon angulatus;img/Erythrostemon_angulatus.jpg;andreabot_;CC BY-NC 4.0;https://www.gbif.org/occurrence/5141128897
+47;Haplopappus rengifoanus;img/Haplopappus_rengifoanus.jpg;Isabel (AlikantoChile);CC BY-NC 4.0;https://www.gbif.org/occurrence/5007845153
+48;Helenium atacamense;img/Helenium_atacamense.jpg;Nicolás Lavandero;CC BY 4.0;https://www.gbif.org/occurrence/3925347640
+49;Loasa tricolor;img/Loasa_tricolor.jpg;eltontitodelosbichos;CC BY-NC 4.0;https://www.gbif.org/occurrence/6498760162
+50;Nicotiana solanifolia;img/Nicotiana_solanifolia.jpg;Pablo y Hélène;CC BY-NC 4.0;https://www.gbif.org/occurrence/6551315982
+51;Oenothera coquimbensis;img/Oenothera_coquimbensis.jpg;Álvaro Parra Valdivia;CC BY 4.0;https://www.gbif.org/occurrence/4908560144
+52;Oxalis brevis;img/Oxalis_brevis.jpg;capacoscar;CC BY 4.0;https://www.gbif.org/occurrence/5230079845
+53;Oxalis bulbocastanum;img/Oxalis_bulbocastanum.jpg;James Bailey;CC BY-NC 4.0;https://www.gbif.org/occurrence/4987487566
+54;Oxalis virgosa;img/Oxalis_virgosa.jpg;Bastian Riveros Flores;CC BY-NC 4.0;https://www.gbif.org/occurrence/6253166490
+55;Oxalis gigantea;img/Oxalis_gigantea.jpg;Jorge Herreros de Lartundo;CC BY 4.0;https://www.gbif.org/occurrence/5838396773
+56;Quinchamalium chilense;img/Quinchamalium_chilense.jpg;Cody Hinchliff;CC BY 4.0;https://www.gbif.org/occurrence/5938499034
+57;Senna cumingii var. cumingii;img/Senna_cumingii_var_cumingii.jpg;Aron Teixeira;CC BY-NC 4.0;https://www.gbif.org/occurrence/6479105645
+60;Sisyrinchium graminifolium;img/Sisyrinchium_graminifolium.jpg;Gaston Carvallo B.;CC BY 4.0;https://www.gbif.org/occurrence/6551556692
+61;Skytanthus acutus;img/Skytanthus_acutus.jpg;Gaston Carvallo B.;CC BY 4.0;https://www.gbif.org/occurrence/6553109307
+62;Tetragonia maritima;img/Tetragonia_maritima.jpg;Jan Doležal;CC BY-NC 4.0;https://www.gbif.org/occurrence/6185223334
+63;Tropaeolum tricolor;img/Tropaeolum_tricolor.jpg;SebaArosZ;CC BY 4.0;https://www.gbif.org/occurrence/6480865894
+64;Viola polypoda;img/Viola_polypoda.jpg;Cesar Ormazabal;CC BY 4.0;https://www.gbif.org/occurrence/5920069226
+65;Zephyranthes bagnoldii;img/Zephyranthes_bagnoldii.jpg;daniela villela;CC BY-NC 4.0;https://www.gbif.org/occurrence/6552271940
+67;Alonsoa meridionalis;img/Alonsoa_meridionalis.jpg;eltontitodelosbichos;CC BY-NC 4.0;https://www.gbif.org/occurrence/6551374176
+68;Bomarea ovallei;img/Bomarea_ovallei.jpg;constanza galvez carvacho;CC BY-NC 4.0;https://www.gbif.org/occurrence/5868347692
+69;Tristerix aphyllus;img/Tristerix_aphyllus.jpg;Cody Hinchliff;CC BY 4.0;https://www.gbif.org/occurrence/6162882338
+70;Zephyranthes phycelloides;img/Zephyranthes_phycelloides.jpg;Diego Almendras;CC BY-NC-SA 4.0;https://www.gbif.org/occurrence/6552378712
+71;Alstroemeria philippii var. philippii;img/Alstroemeria_philippii_var_philippii.jpg;Cesar Ormazabal;CC BY 4.0;https://www.gbif.org/occurrence/5892948388
+72;Alstroemeria werdermannii var. werdermannii;img/Alstroemeria_werdermannii_var_werdermannii.jpg;Pilar Molina Albornoz;CC BY-NC 4.0;https://www.gbif.org/occurrence/3947536773
+73;Alstroemeria violacea;img/Alstroemeria_violacea.jpg;Rodrigo Barros;CC BY-NC 4.0;https://www.gbif.org/occurrence/5828500566
+74;Alstroemeria leporina;img/Alstroemeria_leporina.jpg;Nico;CC BY-NC 4.0;https://www.gbif.org/occurrence/1802646117
+75;Alstroemeria diluta subsp. diluta;img/Alstroemeria_diluta_subsp_diluta.jpg;ANDREA UGARTE;CC BY-NC 4.0;https://www.gbif.org/occurrence/5920341948
+76;Erodium cicutarium;img/Erodium_cicutarium.jpg;Cesar Ormazabal;CC BY 4.0;https://www.gbif.org/occurrence/6520107360
+77;Olsynium scirpoideum;img/Olsynium_scirpoideum.jpg;Nutri Gabi Barrera;CC0;https://www.gbif.org/occurrence/6518580769
+78;Polyachyrus poeppigii subsp. multifidus;img/Polyachyrus_poeppigii_subsp_multifidus.jpg;fjlealu;CC BY-NC 4.0;https://www.gbif.org/occurrence/5840173844
+79;Schizanthus porrigens subsp. borealis;img/Schizanthus_porrigens_subsp_borealis.jpg;Nelson Caja Herrera;CC BY-NC 4.0;https://www.gbif.org/occurrence/5830550704
+80;Zephyranthes sarae;img/Zephyranthes_sarae.jpg;Ariel Cabrera Foix;CC BY-NC-SA 4.0;https://www.gbif.org/occurrence/5064062948
+81;Anisomeria littoralis;img/Anisomeria_littoralis.jpg;Paulina Sofía;CC BY-NC 4.0;https://www.gbif.org/occurrence/6320071562
+82;Calliandra chilensis;img/Calliandra_chilensis.jpg;Defiendelatierra;CC BY-NC 4.0;https://www.gbif.org/occurrence/5153690884
+83;Cistanthe grandiflora;img/Cistanthe_grandiflora.jpg;Alain Le Hérissé;CC BY-NC 4.0;https://www.gbif.org/occurrence/5063330700
+84;Cistanthe longiscapa;img/Cistanthe_longiscapa.jpg;Ana Sandoval;CC BY-NC 4.0;https://www.gbif.org/occurrence/4946585954
+85;Krameria cistoidea;img/Krameria_cistoidea.jpg;Álvaro Parra Valdivia;CC BY 4.0;https://www.gbif.org/occurrence/6440988392
+86;Lobelia polyphylla;img/Lobelia_polyphylla.jpg;redlobeliabloom;CC BY-NC 4.0;https://www.gbif.org/occurrence/6188457476
+87;Stachys grandidentata;img/Stachys_grandidentata.jpg;Bruno Avilez;CC BY 4.0;https://www.gbif.org/occurrence/6552591509
+88;Tillandsia geissei;img/Tillandsia_geissei.jpg;diegoarr;CC BY-NC 4.0;https://www.gbif.org/occurrence/6451552119
+89;Astragalus dodtii;img/Astragalus_dodtii.jpg;Juan Mauricio Contreras;CC BY-NC 4.0;https://www.gbif.org/occurrence/4076236086
+90;Cristaria glaucophylla;img/Cristaria_glaucophylla.jpg;Diego Almendras;CC BY-NC-SA 4.0;https://www.gbif.org/occurrence/6399668982
+91;Cristaria integerrima var. integerrima;img/Cristaria_integerrima_var_integerrima.jpg;Rodrigo Castillo Tapia;CC BY 4.0;https://www.gbif.org/occurrence/6273937992
+92;Euphorbia thinophila;img/Euphorbia_thinophila.jpg;pau_miranda;CC BY-NC 4.0;https://www.gbif.org/occurrence/3947113033
+93;Fagonia chilensis;img/Fagonia_chilensis.jpg;Álvaro Parra Valdivia;CC BY 4.0;https://www.gbif.org/occurrence/6552332389
+94;Malesherbia humilis var. humilis;img/Malesherbia_humilis_var_humilis.jpg;Francisco Riquelme Tapia;CC BY-NC 4.0;https://www.gbif.org/occurrence/6130904399
+95;Mirabilis elegans;img/Mirabilis_elegans.jpg;Cesar Ormazabal;CC BY 4.0;https://www.gbif.org/occurrence/5932202924
+96;Solanum trinominum;img/Solanum_trinominum.jpg;paulette_naulin;CC BY-NC 4.0;https://www.gbif.org/occurrence/5761045489
+97;Nolana acuminata;img/Nolana_acuminata.jpg;Fernanda Isidora Améstica Rojas;CC BY 4.0;https://www.gbif.org/occurrence/5293029556
+98;Nolana carnosa;img/Nolana_carnosa.jpg;Ricardo Catalán Garrido;CC BY-NC 4.0;https://www.gbif.org/occurrence/4161997872
+99;Nolana divaricata;img/Nolana_divaricata.jpg;Aira Francisca Faúndez Fallau;CC BY 4.0;https://www.gbif.org/occurrence/5838328931
+100;Pasithea caerulea;img/Pasithea_caerulea.jpg;Cesar Ormazabal;CC BY 4.0;https://www.gbif.org/occurrence/6520099135
+101;Plumbago caerulea;img/Plumbago_caerulea.jpg;Ninosca Angel;CC BY-NC 4.0;https://www.gbif.org/occurrence/6147695653
+102;Tropaeolum azureum;img/Tropaeolum_azureum.jpg;eltontitodelosbichos;CC BY-NC 4.0;https://www.gbif.org/occurrence/6552102335
+103;Zephyra elegans;img/Zephyra_elegans.jpg;Cesar Ormazabal;CC BY 4.0;https://www.gbif.org/occurrence/5897139632
+104;Puya alpestris subsp. zoellneri;img/Puya_alpestris_subsp_zoellneri.jpg;Francisco Cifuentes;CC BY-NC 4.0;https://www.gbif.org/occurrence/6130664281
+106;Copiapoa dealbata;img/Copiapoa_dealbata.jpg;cesaredpr;CC BY-NC 4.0;https://www.gbif.org/occurrence/6178708490
+107;Copiapoa echinoides;img/Copiapoa_echinoides.jpg;Álvaro Parra Valdivia;CC BY 4.0;https://www.gbif.org/occurrence/6441696127
+108;Copiapoa fiedleriana;img/Copiapoa_fiedleriana.jpg;diegoarr;CC BY-NC 4.0;https://www.gbif.org/occurrence/6321234995
+109;Eriosyce aerocarpa;img/Eriosyce_aerocarpa.jpg;Nicolás Villaseca Merino;CC BY-SA 4.0;https://www.gbif.org/occurrence/3947750626
+110;Eriosyce crispa subsp. crispa;img/Eriosyce_crispa_subsp_crispa.jpg;guyrufray;CC BY-NC 4.0;https://www.gbif.org/occurrence/3966396592
+111;Eriosyce glabrescens;img/Eriosyce_glabrescens.jpg;Álvaro Parra Valdivia;CC BY 4.0;https://www.gbif.org/occurrence/6499166191
+112;Eriosyce heinrichiana;img/Eriosyce_heinrichiana.jpg;César Piñones Cañete;CC BY-NC 4.0;https://www.gbif.org/occurrence/5903815235
+113;Eriosyce napina subsp. napina;img/Eriosyce_napina_subsp_napina.jpg;huascoindomito;CC BY-NC 4.0;https://www.gbif.org/occurrence/6498343775
+114;Eriosyce villosa;img/Eriosyce_villosa.jpg;Álvaro Parra Valdivia;CC BY 4.0;https://www.gbif.org/occurrence/5198303658
+115;Eulychnia acida;img/Eulychnia_acida.jpg;Ariel Cabrera Foix;CC BY-NC-SA 4.0;https://www.gbif.org/occurrence/6179033171
+116;Eulychnia breviflora;img/Eulychnia_breviflora.jpg;Nodora L. Moyano;CC BY-NC 4.0;https://www.gbif.org/occurrence/6273915117
+117;Leucostele nigripilis;img/Leucostele_nigripilis.jpg;jacquelinekunz;CC BY-NC 4.0;https://www.gbif.org/occurrence/6518476613
+118;Miqueliopuntia miquelii;img/Miqueliopuntia_miquelii.jpg;Jan Doležal;CC BY-NC 4.0;https://www.gbif.org/occurrence/6179486123
+119;Sphaeropuntia sphaerica;img/Sphaeropuntia_sphaerica.jpg;Brandon Ortiz Arenas;CC BY-NC 4.0;https://www.gbif.org/occurrence/4535720875
