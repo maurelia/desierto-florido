@@ -169,7 +169,7 @@ input,select,textarea{padding:12px;border:1px solid #d8ded4;border-radius:11px;b
 </section>
 
 <section id="detailPanel" class="panel"><button id="back" class="btn alt" style="margin-bottom:15px">← Volver</button><div id="detailContent" class="detail"></div></section>
-<footer>Fuente principal: <i>Expresiones del Desierto Florido</i>, Fundación R.A. Philippi, segunda edición 2026. Rasgos “por verificar” y rangos latitudinales derivados de la distribución por regiones: sujetos a revisión. Fotos de la guía y reconocimiento de fotos: observaciones de iNaturalist vía GBIF, con autor y licencia en cada ficha (data/fotos_guia.csv); el reconocimiento se entrenó con ellas (licencias CC0, CC BY, CC BY-NC; atribución en model_training/photos/attribution.csv). Mapa © colaboradores de OpenStreetMap.</footer>
+<footer>Fuente principal: <i>Expresiones del Desierto Florido</i>, Fundación R.A. Philippi, segunda edición 2026. Rasgos “por verificar” y rangos latitudinales derivados de la distribución por regiones: sujetos a revisión. Fotos de la guía y reconocimiento de fotos: observaciones de iNaturalist (directo o vía GBIF), con autor y licencia en cada ficha (data/fotos_guia.csv); el reconocimiento se entrenó con ellas (licencias CC0, CC BY, CC BY-NC; atribución en model_training/photos/attribution.csv). Mapa © colaboradores de OpenStreetMap.</footer>
 </main>
 <script src="identify.js"></script>
 <script src="lib/ort/ort.wasm.min.js"></script>
@@ -251,7 +251,7 @@ function showDetail(s) {
     <div class="meta" style="margin-top:6px">Principal: <b>${bloomWindow(s)}</b> · ${BLOOM_SRC[s.flowering_source]}, ${BLOOM_PLACE[s.flowering_place]}, n=${s.flowering_n}; corregido por esfuerzo de observación mensual.</div>` : 'Sin datos';
   const range = s.lat_min != null ? `${Math.abs(s.lat_max).toFixed(1)}° S a ${Math.abs(s.lat_min).toFixed(1)}° S (derivado de las regiones citadas)` : 'Sin datos';
   const ph = s.photo ? `<img class="hero-ph" src="${s.photo.file}" alt="${escapeHtml(photoAlt(s))}">` : '';
-  const credit = s.photo ? `<p class="credit">Foto: ${escapeHtml(s.photo.author)} · ${escapeHtml(s.photo.license)} · <a href="${escapeHtml(s.photo.url)}" target="_blank" rel="noopener">iNaturalist vía GBIF</a></p>` : '';
+  const credit = s.photo ? `<p class="credit">Foto: ${escapeHtml(s.photo.author)} · ${escapeHtml(s.photo.license)} · <a href="${escapeHtml(s.photo.url)}" target="_blank" rel="noopener">${s.photo.url.includes('gbif.org') ? 'iNaturalist vía GBIF' : 'iNaturalist'}</a>${s.photo.note ? ` · ⚠️ ${escapeHtml(s.photo.note)}` : ''}</p>` : '';
   $('detailContent').innerHTML = `${ph}${credit}<h2>${escapeHtml(speciesName(s))}</h2><p class="latin">${escapeHtml(s.scientific_name)}</p>
     ${s.excluded_reason ? `<p class="notice">No participa en la identificación: ${escapeHtml(s.excluded_reason)}.</p>` : ''}
     ${s.sensitive_location ? '<p class="notice">⚠️ Especie sensible o amenazada: no la manipules. Sus coordenadas se generalizan en la exportación pública.</p>' : ''}

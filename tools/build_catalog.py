@@ -211,7 +211,8 @@ def load_photos():
     for r in csv.DictReader(lines, delimiter=";"):
         if not (ROOT / r["file"]).exists():
             raise ValueError(f"fotos_guia.csv: falta {r['file']}")
-        out[int(r["id"])] = {"file": r["file"], "author": r["author"], "license": r["license"], "url": r["source_url"]}
+        out[int(r["id"])] = {"file": r["file"], "author": r["author"], "license": r["license"], "url": r["source_url"],
+                             "note": (r.get("note") or "").strip() or None}
     return out
 
 
