@@ -30,7 +30,7 @@ input,select,textarea{padding:12px;border:1px solid #d8ded4;border-radius:11px;b
 .muted{color:#65756a}.count{margin:0 0 12px;color:#607168}
 .detail{background:white;border-radius:18px;padding:24px;border:1px solid #e4e7df}.detail h2{margin:0}.detail h3{margin:0 0 6px;font-size:17px}
 .detail dl{display:grid;grid-template-columns:180px 1fr;gap:12px 15px}.detail dt{color:#6c796f}.detail dd{margin:0;line-height:1.5}
-.btn{background:#285748;color:white;border:0;padding:12px 16px;border-radius:12px}.btn.alt{background:#e8eee8;color:#285748}.btn.small{padding:8px 12px;font-size:13px;border-radius:10px}.btn.danger{background:#fbe3e1;color:#9a3a31}
+.btn{background:#285748;color:white;border:0;padding:12px 16px;border-radius:12px}.btn.alt{background:#e8eee8;color:#285748}.btn.small{padding:8px 12px;font-size:13px;border-radius:10px}.btn.danger{background:#fbe3e1;color:#9a3a31}.btn:disabled{opacity:.45;cursor:default}
 .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .field{display:flex;flex-direction:column;gap:5px;flex:1;min-width:150px;margin-bottom:12px}.field label{font-size:13px;font-weight:650}
 .notice{border-radius:13px;padding:12px 15px;background:#fff5e7;color:#775f38;font-size:13px;line-height:1.5;margin:14px 0}.notice.green{background:#edf3e8;color:#3f674e}
@@ -164,6 +164,14 @@ input,select,textarea{padding:12px;border:1px solid #d8ded4;border-radius:11px;b
     </div>
   </div>
   <p id="savedCount" class="count"></p><p id="trainStatus" class="muted" role="status" style="font-size:13px"></p>
+  <div class="detail hidden" id="sendBox" style="margin-bottom:14px">
+    <div class="row" style="justify-content:space-between"><h3>☁ Aportar al proyecto</h3><span id="sendCount" class="muted" style="font-size:13px"></span></div>
+    <p class="muted" style="font-size:13px;margin:4px 0 12px">Envía tus registros con foto y especie a la colección central del proyecto: mejoran el reconocimiento de fotos y pueden ilustrar la guía. Se envían las fotos, la especie, la fecha, las coordenadas exactas, la validación y tu nombre; las coordenadas no se publican.</p>
+    <div class="row"><div class="field"><label for="sendName">Tu nombre (crédito de tus fotos)</label><input id="sendName" placeholder="Nombre y apellido"></div>
+      <div class="field"><label for="sendContact">Contacto (opcional)</label><input id="sendContact" placeholder="Correo o teléfono, por si hay dudas"></div></div>
+    <label style="font-size:14px;display:flex;gap:8px;align-items:flex-start;margin-bottom:12px"><input type="checkbox" id="consentGuide" style="width:18px;height:18px;flex:none;margin-top:2px"> Autorizo usar mis fotos en la guía de campo de la app, con crédito a mi nombre (licencia CC BY-NC 4.0).</label>
+    <button class="btn" id="sendNow" type="button">☁ Enviar registros nuevos</button> <span id="sendStatus" class="muted" role="status" style="font-size:13px"></span>
+  </div>
   <div class="detail" id="summaryBox"><div class="row" style="justify-content:space-between"><h3>Resumen por especie</h3><button class="btn alt small" id="toggleMap">🗺️ Ver en el mapa</button></div><ul id="summary" class="summary"></ul><div id="map" class="hidden"></div><p id="mapNote" class="muted hidden" style="font-size:12px">El mapa base necesita conexión; las zonas ya vistas quedan guardadas para uso sin señal.</p></div>
   <div id="savedItems" style="margin-top:14px"></div>
 </section>
@@ -251,7 +259,7 @@ function showDetail(s) {
     <div class="meta" style="margin-top:6px">Principal: <b>${bloomWindow(s)}</b> · ${BLOOM_SRC[s.flowering_source]}, ${BLOOM_PLACE[s.flowering_place]}, n=${s.flowering_n}; corregido por esfuerzo de observación mensual.</div>` : 'Sin datos';
   const range = s.lat_min != null ? `${Math.abs(s.lat_max).toFixed(1)}° S a ${Math.abs(s.lat_min).toFixed(1)}° S (derivado de las regiones citadas)` : 'Sin datos';
   const ph = s.photo ? `<img class="hero-ph" src="${s.photo.file}" alt="${escapeHtml(photoAlt(s))}">` : '';
-  const credit = s.photo ? `<p class="credit">Foto: ${escapeHtml(s.photo.author)} · ${escapeHtml(s.photo.license)} · <a href="${escapeHtml(s.photo.url)}" target="_blank" rel="noopener">${s.photo.url.includes('gbif.org') ? 'iNaturalist vía GBIF' : 'iNaturalist'}</a>${s.photo.note ? ` · ⚠️ ${escapeHtml(s.photo.note)}` : ''}</p>` : '';
+  const credit = s.photo ? `<p class="credit">Foto: ${escapeHtml(s.photo.author)} · ${escapeHtml(s.photo.license)} · ${s.photo.url ? `<a href="${escapeHtml(s.photo.url)}" target="_blank" rel="noopener">${s.photo.url.includes('gbif.org') ? 'iNaturalist vía GBIF' : 'iNaturalist'}</a>` : 'Desierto Florido'}${s.photo.note ? ` · ${escapeHtml(s.photo.note)}` : ''}</p>` : '';
   $('detailContent').innerHTML = `${ph}${credit}<h2>${escapeHtml(speciesName(s))}</h2><p class="latin">${escapeHtml(s.scientific_name)}</p>
     ${s.excluded_reason ? `<p class="notice">No participa en la identificación: ${escapeHtml(s.excluded_reason)}.</p>` : ''}
     ${s.sensitive_location ? '<p class="notice">⚠️ Especie sensible o amenazada: no la manipules. Sus coordenadas se generalizan en la exportación pública.</p>' : ''}
@@ -608,6 +616,7 @@ let map = null, mapLayer = null;
 async function renderSaved() {
   const a = (await records()).sort((x, y) => y.observed_at.localeCompare(x.observed_at));
   $('savedCount').textContent = `${a.length} observaciones guardadas · ${a.filter(o => o.latitude != null).length} con GPS`;
+  renderSend(a);
   const counts = new Map();
   for (const o of a) { const k = o.species_id ?? 0; counts.set(k, (counts.get(k) || 0) + 1); }
   $('summary').innerHTML = [...counts].sort((x, y) => y[1] - x[1]).map(([k, n]) => {
@@ -666,7 +675,7 @@ function download(name, content, type) {
 }
 // Versión pública: especies sensibles con coordenadas generalizadas a 0.1° (~10 km)
 function exported(o, mode) {
-  const { photo, photos, id_answers, id_alternatives, ai_top, ...rest } = o;
+  const { photo, photos, id_answers, id_alternatives, ai_top, sent_at, ...rest } = o;
   const hide = mode === 'public' && o.sensitive_location && o.latitude != null, g = x => Math.round(x * 10) / 10;
   return {
     ...rest, latitude: hide ? g(o.latitude) : o.latitude, longitude: hide ? g(o.longitude) : o.longitude,
@@ -726,25 +735,41 @@ function makeZip(files) {
 }
 const dataUrlBytes = u => Uint8Array.from(atob(u.slice(u.indexOf(',') + 1)), c => c.charCodeAt(0));
 const TRAIN_COLS = ['file', 'record_id', 'species_id', 'scientific_name', 'observed_at', 'latitude', 'longitude', 'elevation_m',
-  'validation', 'identification_method', 'confidence', 'ai_probability', 'observer'];
-$('exportTrain').onclick = async () => {
-  const recs = (await records()).filter(o => o.species_id && photosOf(o).length);
-  if (!recs.length) { $('trainStatus').textContent = 'No hay registros con especie y foto todavía.'; return; }
-  const files = [], rows = [];
+  'validation', 'identification_method', 'confidence', 'ai_probability', 'observer', 'consent_guide', 'license'];
+const pl = (n, s, p) => `${n} ${n === 1 ? s : p}`;
+const trainable = o => o.species_id && photosOf(o).length;
+const consentGuide = () => $('consentGuide').checked;
+// Uno o más ZIP de hasta maxBytes de fotos (un registro nunca se divide entre dos ZIP)
+function trainZips(recs, maxBytes = Infinity) {
+  const out = [], name = $('sendName').value.trim(), guide = consentGuide() ? 'si' : 'no';
+  let files = [], rows = [], ids = [], size = 0;
+  const flush = () => {
+    if (!rows.length) return;
+    const csv = [TRAIN_COLS.join(','), ...rows.map(o => TRAIN_COLS.map(k => '"' + String(o[k] ?? '').replace(/"/g, '""') + '"').join(','))].join('\r\n');
+    const zip = makeZip([...files, { name: 'manifest.csv', data: new TextEncoder().encode('﻿' + csv) }]);
+    out.push({ zip, ids, nPhotos: rows.length });
+    files = []; rows = []; ids = []; size = 0;
+  };
   for (const o of recs) {
     const folder = o.scientific_name.replace(/[^\p{L}\p{N}]+/gu, '_').replace(/_+$/, '');
-    photosOf(o).forEach((ph, i) => {
-      const file = `fotos/${folder}/${o.id}_${i + 1}.jpg`;
-      files.push({ name: file, data: dataUrlBytes(ph) });
-      rows.push({ ...o, file, record_id: o.id });
-    });
+    const photos = photosOf(o).map((ph, i) => ({ name: `fotos/${folder}/${o.id}_${i + 1}.jpg`, data: dataUrlBytes(ph) }));
+    const bytes = photos.reduce((s, f) => s + f.data.length, 0);
+    if (size && size + bytes > maxBytes) flush();
+    for (const f of photos) {
+      files.push(f);
+      rows.push({ ...o, file: f.name, record_id: o.id, observer: o.observer || name, consent_guide: guide, license: guide === 'si' ? 'CC BY-NC 4.0' : '' });
+    }
+    ids.push(o.id); size += bytes;
   }
-  const csv = [TRAIN_COLS.join(','), ...rows.map(o => TRAIN_COLS.map(k => '"' + String(o[k] ?? '').replace(/"/g, '""') + '"').join(','))].join('\r\n');
-  files.push({ name: 'manifest.csv', data: new TextEncoder().encode('\ufeff' + csv) });
-  const zip = makeZip(files), name = `fotos_entrenamiento_desierto_florido_${todayIso()}.zip`;
+  flush();
+  return out;
+}
+$('exportTrain').onclick = async () => {
+  const recs = (await records()).filter(trainable);
+  if (!recs.length) { $('trainStatus').textContent = 'No hay registros con especie y foto todavía.'; return; }
+  const [{ zip, nPhotos }] = trainZips(recs), name = `fotos_entrenamiento_desierto_florido_${todayIso()}.zip`;
   const nSp = new Set(recs.map(o => o.species_id)).size;
-  const pl = (n, s, p) => `${n} ${n === 1 ? s : p}`;
-  $('trainStatus').textContent = `${pl(rows.length, 'foto', 'fotos')} de ${pl(recs.length, 'registro', 'registros')} (${pl(nSp, 'especie', 'especies')}), ${(zip.size / 1e6).toFixed(1)} MB. Copia el ZIP a model_training/campo_zips en el PC y ejecuta retrain.py.`;
+  $('trainStatus').textContent = `${pl(nPhotos, 'foto', 'fotos')} de ${pl(recs.length, 'registro', 'registros')} (${pl(nSp, 'especie', 'especies')}), ${(zip.size / 1e6).toFixed(1)} MB. Copia el ZIP a model_training/campo_zips en el PC y ejecuta retrain.py.`;
   const file = new File([zip], name, { type: 'application/zip' });
   // En el teléfono: menú compartir (WhatsApp, Drive, correo); si no está disponible, descarga
   if (navigator.canShare?.({ files: [file] })) {
@@ -752,6 +777,55 @@ $('exportTrain').onclick = async () => {
     catch (err) { if (err.name === 'AbortError') return; }
   }
   download(name, zip, 'application/zip');
+};
+
+/* ---------- Aportar al proyecto: envío a la carpeta central (Drive) ---------- */
+// URL /exec del receptor de Apps Script (model_training/drive_receptor.gs). Vacía: el envío no se muestra.
+const UPLOAD_URL = '';
+const blobBase64 = b => new Promise((res, rej) => {
+  const r = new FileReader();
+  r.onload = () => res(r.result.slice(r.result.indexOf(',') + 1)); r.onerror = () => rej(r.error);
+  r.readAsDataURL(b);
+});
+function renderSend(all) {
+  if (!UPLOAD_URL) return;
+  $('sendBox').classList.remove('hidden');
+  const pending = all.filter(o => trainable(o) && !o.sent_at);
+  $('sendCount').textContent = `${pl(pending.length, 'registro nuevo', 'registros nuevos')} por enviar · ${pl(all.filter(o => o.sent_at).length, 'enviado', 'enviados')}`;
+  $('sendNow').disabled = !pending.length;
+}
+try {
+  $('sendName').value = localStorage.getItem('observer') || '';
+  $('sendContact').value = localStorage.getItem('contact') || '';
+  $('consentGuide').checked = localStorage.getItem('consentGuide') === 'si';
+} catch { }
+$('consentGuide').onchange = () => { try { localStorage.setItem('consentGuide', consentGuide() ? 'si' : 'no'); } catch { } };
+$('sendNow').onclick = async () => {
+  const name = $('sendName').value.trim(), st = $('sendStatus');
+  if (!name) { st.textContent = 'Escribe tu nombre: identifica tus aportes y da el crédito de tus fotos.'; $('sendName').focus(); return; }
+  if (!navigator.onLine) { st.textContent = 'Sin señal: envía cuando tengas conexión. Tus registros siguen guardados en el teléfono.'; return; }
+  try { localStorage.setItem('observer', name); localStorage.setItem('contact', $('sendContact').value.trim()); } catch { }
+  const recs = (await records()).filter(o => trainable(o) && !o.sent_at), byId = new Map(recs.map(o => [o.id, o]));
+  const parts = trainZips(recs, 12e6);
+  $('sendNow').disabled = true;
+  let sent = 0;
+  try {
+    for (const [i, p] of parts.entries()) {
+      st.textContent = `Enviando${parts.length > 1 ? ` parte ${i + 1} de ${parts.length}` : ''}… ${(p.zip.size / 1e6).toFixed(1)} MB`;
+      // text/plain (por defecto) evita la consulta previa CORS que Apps Script no responde
+      const res = await (await fetch(UPLOAD_URL, { method: 'POST', body: JSON.stringify({
+        name: `fotos_entrenamiento_${todayIso()}_${i + 1}.zip`, observer: name, contact: $('sendContact').value.trim(),
+        consent_guide: consentGuide() ? 'si' : 'no', app: '0.7', n_photos: p.nPhotos, data: await blobBase64(p.zip) }) })).json();
+      if (!res.ok) throw Error(res.error || 'el servidor rechazó el envío');
+      const now = new Date().toISOString();
+      await storeOp(s => p.ids.forEach(id => s.put({ ...byId.get(id), sent_at: now })));
+      sent += p.ids.length;
+    }
+    st.textContent = `✓ ${pl(sent, 'registro enviado', 'registros enviados')}. ¡Gracias por aportar!`;
+  } catch (err) {
+    st.textContent = (sent ? `Se enviaron ${sent}; ` : '') + 'no se pudo enviar: ' + err.message + '. Intenta de nuevo más tarde.';
+  }
+  renderSaved();
 };
 
 /* ---------- Carga ---------- */
