@@ -781,7 +781,7 @@ $('exportTrain').onclick = async () => {
 
 /* ---------- Aportar al proyecto: envío a la carpeta central (Drive) ---------- */
 // URL /exec del receptor de Apps Script (model_training/drive_receptor.gs). Vacía: el envío no se muestra.
-const UPLOAD_URL = '';
+const UPLOAD_URL = 'https://script.google.com/macros/s/AKfycbwo7MS0mFgDgK6zIW53fnvVKLqUiuuygCludZ-PxpyF4xdnuFHiKNS8u5iBn480Io_x4A/exec';
 const blobBase64 = b => new Promise((res, rej) => {
   const r = new FileReader();
   r.onload = () => res(r.result.slice(r.result.indexOf(',') + 1)); r.onerror = () => rej(r.error);
