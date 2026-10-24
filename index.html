@@ -71,6 +71,7 @@ a{color:var(--tint-text)}b,strong{font-weight:600}
 .tab svg{width:24px;height:24px;flex:none}
 .tab.active{color:var(--tint-text);background:var(--fill)}
 .tab:active{background:var(--fill)}
+.tab{position:relative}.tab.draft::after{content:"";position:absolute;top:7px;left:calc(50% + 8px);width:8px;height:8px;border-radius:50%;background:var(--bloom);border:2px solid var(--glass-solid)}
 .tabs.mini{width:min(260px,calc(100% - 32px));padding:3px}
 .tabs.mini .tab{min-height:44px}.tabs.mini .tab span{display:none}
 
@@ -231,6 +232,7 @@ footer{color:var(--label3);font-size:var(--fs-cap);line-height:1.5;margin-top:28
 <section id="observe" class="panel">
   <div class="detail">
     <p class="lead">Tus datos quedan guardados en este dispositivo, también sin señal. Exporta periódicamente a GeoJSON, KML o CSV desde Registros.</p>
+    <div id="draftNote" class="notice green hidden" style="margin:0 0 14px"><span id="draftText"></span> <button type="button" class="btn alt small" id="draftDiscard" style="margin-top:8px">Descartar borrador</button></div>
     <div id="fromId" class="notice green hidden" style="margin:0 0 14px"></div>
     <form id="obsform">
       <div class="field"><label for="speciesSelect">Especie (puedes dejar sin identificar)</label><select id="speciesSelect"><option value="">Sin identificar</option></select></div>
@@ -254,6 +256,7 @@ footer{color:var(--label3);font-size:var(--fs-cap);line-height:1.5;margin-top:28
       <div class="field"><label for="notes">Notas de campo</label><textarea id="notes" rows="3" placeholder="Color, número de pétalos, abundancia, observaciones…"></textarea></div>
       <button class="btn big" type="submit">Guardar observación</button>
       <p id="saveStatus" class="muted" role="status" style="margin:8px 0 0;font-size:var(--fs-sub)"></p>
+      <p id="draftStatus" class="muted" style="margin:4px 0 0;font-size:var(--fs-foot)"></p>
     </form>
     <p class="notice">No arranques flores ni abandones senderos habilitados: bajo el suelo hay semillas y bulbos latentes. Las especies amenazadas o sensibles se exportan con coordenadas generalizadas (~10 km) en la versión pública.</p>
   </div>
@@ -684,7 +687,7 @@ function registerFromId(r) {
   pendingId = {
     species_id: s.id, probability: r.p, answers: { ...ID.answers },
     alternatives: ID.last.slice(0, 3).map(x => ({ species_id: x.species.id, scientific_name: x.species.scientific_name, p: +x.p.toFixed(4) })),
-    image: ID.image,
+    image: ID.image, in_bloom: $('inBloom').checked,
   };
   $('speciesSelect').value = s.id;
   $('lat').value = $('idLat').value; $('lon').value = $('idLon').value; $('elev').value = ID.elev ?? '';
@@ -701,6 +704,7 @@ function registerFromId(r) {
 $('gps').onclick = () => getGps($('gpsStatus'), c => {
   $('lat').value = c.latitude.toFixed(7); $('lon').value = c.longitude.toFixed(7);
   if (c.altitude !== null) $('elev').value = Math.round(c.altitude);
+  scheduleDraft();
 });
 $('photo').onchange = async e => {
   try { for (const f of [...e.target.files]) if (obsPhotos.length < 3) obsPhotos.push(await photoData(f)); }
@@ -715,14 +719,20 @@ function renderObsPhotos() {
     im.onclick = () => { obsPhotos.splice(i, 1); renderObsPhotos(); };
     return im;
   }));
+  scheduleDraft();
 }
 
 const DB = 'flora-atacama-records';
 function openDb() {
   return new Promise((res, rej) => {
-    const r = indexedDB.open(DB, 1);
-    r.onupgradeneeded = () => r.result.createObjectStore('observations', { keyPath: 'id' });
-    r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error);
+    const r = indexedDB.open(DB, 2);
+    r.onupgradeneeded = () => {
+      const db = r.result;
+      if (!db.objectStoreNames.contains('observations')) db.createObjectStore('observations', { keyPath: 'id' });
+      if (!db.objectStoreNames.contains('drafts')) db.createObjectStore('drafts');
+    };
+    r.onsuccess = () => { r.result.onversionchange = () => r.result.close(); res(r.result); };  // no bloquear futuras actualizaciones de la base
+    r.onerror = () => rej(r.error);
   });
 }
 async function records() {
@@ -740,7 +750,7 @@ $('obsform').onsubmit = async e => {
   if ((a && !b) || (!a && b)) { $('saveStatus').textContent = 'Indica ambas coordenadas o deja ambas vacías.'; return; }
   const id = Number($('speciesSelect').value) || null, s = byId.get(id);
   const fromId = pendingId && id != null;
-  const p = fromId ? (ID.last.find(r => r.species.id === id)?.p ?? null) : null;
+  const p = fromId ? (ID.last.find(r => r.species.id === id)?.p ?? (id === pendingId.species_id ? pendingId.probability : null)) : null;
   try { localStorage.setItem('observer', $('observer').value); } catch { }
   const o = {
     id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
@@ -755,7 +765,7 @@ $('obsform').onsubmit = async e => {
     ai_top: fromId && pendingId.image ? pendingId.image.top.map(t => ({ scientific_name: t.name, p: +t.p.toFixed(4) })) : null,
     ai_model: fromId && pendingId.image ? FloraVision.info?.backbone + ' / ' + FloraVision.info?.metrics.n_classes + ' clases' : null,
     id_answers: fromId ? pendingId.answers : null, id_alternatives: fromId ? pendingId.alternatives : null,
-    in_bloom: fromId ? $('inBloom').checked : null,
+    in_bloom: fromId ? pendingId.in_bloom ?? $('inBloom').checked : null,
     catalog_version: '0.7',
   };
   try {
@@ -764,8 +774,71 @@ $('obsform').onsubmit = async e => {
     const observer = $('observer').value;
     $('obsform').reset(); $('observer').value = observer; $('date').value = nowLocal();
     obsPhotos = []; pendingId = null; renderObsPhotos(); $('fromId').classList.add('hidden');
+    await clearDraft();
   } catch (err) { $('saveStatus').textContent = 'Error al guardar: ' + err.message; }
 };
+
+/* ---------- Borrador de Registrar: se guarda solo, para no perder datos si la app se cierra ---------- */
+const DRAFT_FIELDS = ['speciesSelect', 'date', 'lat', 'lon', 'elev', 'habitat', 'observer', 'validation', 'notes'];
+let draftTimer = null, draftReady = false;
+const draftEmpty = () => !obsPhotos.length && ['speciesSelect', 'lat', 'lon', 'elev', 'habitat', 'notes'].every(id => !$(id).value.trim());
+const hhmm = t => new Date(t).toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit' });
+async function draftOp(fn) {
+  const db = await openDb();
+  return new Promise((res, rej) => { const t = db.transaction('drafts', 'readwrite'), r = fn(t.objectStore('drafts')); t.oncomplete = () => res(r?.result); t.onerror = () => rej(t.error); });
+}
+function scheduleDraft() {
+  if (!draftReady) return;  // no sobrescribir antes de recuperar el borrador guardado
+  clearTimeout(draftTimer);
+  draftTimer = setTimeout(saveDraft, 400);
+}
+async function saveDraft() {
+  draftTimer = null;
+  try {
+    if (draftEmpty()) { await clearDraft(); return; }
+    const d = { fields: Object.fromEntries(DRAFT_FIELDS.map(id => [id, $(id).value])), photos: obsPhotos, pendingId,
+      fromId: $('fromId').classList.contains('hidden') ? null : $('fromId').innerHTML, saved_at: new Date().toISOString() };
+    await draftOp(st => st.put(d, 'obs'));
+    $('draftStatus').innerHTML = `${ic('check')} Borrador guardado en el dispositivo · ${hhmm(d.saved_at)}`;
+    document.querySelector('[data-tab=observe]').classList.add('draft');
+  } catch (err) { $('draftStatus').textContent = 'No se pudo guardar el borrador: ' + err.message; }
+}
+async function clearDraft() {
+  clearTimeout(draftTimer); draftTimer = null;
+  try { await draftOp(st => st.delete('obs')); } catch { }
+  $('draftStatus').textContent = ''; $('draftNote').classList.add('hidden');
+  document.querySelector('[data-tab=observe]').classList.remove('draft');
+}
+async function restoreDraft() {
+  try {
+    const d = await draftOp(st => st.get('obs'));
+    if (d) {
+      for (const id of DRAFT_FIELDS) if (d.fields[id] != null) $(id).value = d.fields[id];
+      obsPhotos = d.photos || []; pendingId = d.pendingId || null;
+      if (d.fromId) { $('fromId').innerHTML = d.fromId; $('fromId').classList.remove('hidden'); }
+      $('draftText').innerHTML = `${ic('check')} Recuperamos tu borrador sin guardar (${new Date(d.saved_at).toLocaleDateString('es-CL')} ${hhmm(d.saved_at)}). Revísalo y toca <b>Guardar observación</b>.`;
+      $('draftNote').classList.remove('hidden');
+      document.querySelector('[data-tab=observe]').classList.add('draft');
+      renderObsPhotos();
+    }
+  } catch { }
+  draftReady = true;
+}
+['input', 'change'].forEach(ev => $('obsform').addEventListener(ev, e => { if (e.target.id !== 'photo') scheduleDraft(); }));
+$('draftDiscard').onclick = async () => {
+  const b = $('draftDiscard');
+  if (!b.dataset.armed) {
+    b.dataset.armed = 1; b.textContent = '¿Descartar? Tocar de nuevo';
+    setTimeout(() => { delete b.dataset.armed; b.textContent = 'Descartar borrador'; }, 4000);
+    return;
+  }
+  const observer = $('observer').value;
+  $('obsform').reset(); $('observer').value = observer; $('date').value = nowLocal();
+  obsPhotos = []; pendingId = null; $('fromId').classList.add('hidden');
+  renderObsPhotos(); await clearDraft();
+};
+// Guardado inmediato si la app pasa a segundo plano (en iOS puede cerrarse sin aviso)
+document.addEventListener('visibilitychange', () => { if (document.hidden && draftTimer) { clearTimeout(draftTimer); saveDraft(); } });
 
 /* ---------- Mis registros ---------- */
 const photosOf = o => o.photos?.length ? o.photos : o.photo ? [o.photo] : [];
@@ -998,7 +1071,7 @@ fetch('species.json').then(r => { if (!r.ok) throw Error('No se pudo cargar el c
   for (const s of [...a].sort((x, y) => speciesName(x).localeCompare(speciesName(y), 'es')))
     if (!s.excluded_reason) $('speciesSelect').add(new Option(speciesName(s) + ' · ' + s.scientific_name, s.id));
   $('idDate').value = todayIso();
-  renderExplore(); renderIdentify(); aiStatus();
+  renderExplore(); renderIdentify(); aiStatus(); restoreDraft();
   // Precarga las fotos de la guía para tenerlas sin señal (el service worker las guarda)
   if (navigator.serviceWorker?.controller) setTimeout(() => a.forEach(s => s.photo && fetch(s.photo.file).catch(() => { })), 5000);
 }).catch(e => $('cards').textContent = e.message + '; abre la app desde un servidor local o HTTPS, no como archivo suelto.');
