@@ -21,7 +21,7 @@
   --bg:#f1f6ee;--surface:#fff;--surface2:#f5faf3;--label:#0f2716;--label2:#2f4a36;--label3:#4a6150;--sep:#d3e3cf;
   --fill:#d9f2d3;--fill-ink:#1a5727;--tint:#2a7b34;--on-tint:#fff;--tint-text:#1a5727;
   --warn-bg:#fff0b8;--warn-ink:#5e4a00;--bad-bg:#fbe4e1;--bad-ink:#97281d;--ok:#2a7b34;--no:#b02c20;--partial:#7d6200;
-  --sug-bg:#ffce1b;--sug-ink:#3f3100;--glass:rgba(241,246,238,.72);--glass-solid:#f1f6ee;--glass-line:rgba(8,77,27,.1);
+  --sug-bg:#ffce1b;--sug-ink:#3f3100;--glass:rgba(241,246,238,.72);--sheet:rgba(241,246,238,.9);--glass-solid:#f1f6ee;--glass-line:rgba(8,77,27,.1);
   --shadow:0 8px 28px rgba(8,77,27,.16);--bloom:#b08a00;--mustard:#ffce1b;
   --fs-large:2rem;--fs-title2:1.295rem;--fs-title3:1.176rem;--fs-headline:1rem;--fs-callout:.94rem;--fs-sub:.882rem;--fs-foot:.765rem;--fs-cap:.706rem;
   color-scheme:light;
@@ -30,7 +30,7 @@
   --bg:#0a1a0f;--surface:#13261a;--surface2:#183020;--label:#eaf5e7;--label2:#c2d9c0;--label3:#9fbb9f;--sep:#2a4430;
   --fill:#1f3a26;--fill-ink:#b3e0b1;--tint:#66cc7a;--on-tint:#06210d;--tint-text:#8cd69c;
   --warn-bg:#3f3100;--warn-ink:#ffe175;--bad-bg:#3d1b18;--bad-ink:#ffb4aa;--ok:#8cd69c;--no:#ff8b7e;--partial:#ffd848;
-  --sug-bg:#ffce1b;--sug-ink:#3f3100;--glass:rgba(19,38,26,.72);--glass-solid:#13261a;--glass-line:rgba(217,242,211,.12);
+  --sug-bg:#ffce1b;--sug-ink:#3f3100;--glass:rgba(19,38,26,.72);--sheet:rgba(19,38,26,.9);--glass-solid:#13261a;--glass-line:rgba(217,242,211,.12);
   --shadow:0 8px 28px rgba(0,0,0,.5);--bloom:#ffce1b;--mustard:#ffce1b;color-scheme:dark;
 }}
 /* Dynamic Type: en Safari iOS toma el tamaño de texto del sistema (Body = 17 pt por defecto) */
@@ -169,9 +169,35 @@ footer{color:var(--label3);font-size:var(--fs-cap);line-height:1.5;margin-top:28
 
 @media(max-width:650px){.detail dl{grid-template-columns:1fr;gap:4px}.detail dt{margin-top:12px;font-size:var(--fs-sub)}.cards{grid-template-columns:repeat(2,1fr);gap:10px}.card h3{font-size:var(--fs-sub)}}
 @media(min-width:651px){.search{flex:2 1 260px}.filters{flex:3 1 400px}.exportbox select{flex:0 1 auto}}
+/* Hoja inferior (preguntas de Identificar): vidrio inset, dos alturas (media / grande), no modal para ver el resultado detrás */
+.sheet{position:fixed;z-index:40;left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));bottom:max(8px,env(safe-area-inset-bottom));
+  margin:0 auto;max-width:640px;height:var(--sheet-h);display:flex;flex-direction:column;border-radius:28px;
+  background:var(--sheet);-webkit-backdrop-filter:blur(30px) saturate(180%);backdrop-filter:blur(30px) saturate(180%);
+  border:1px solid var(--glass-line);box-shadow:var(--shadow);
+  --sheet-h:52vh;--sheet-h:52dvh;transform:translateY(calc(100% + 24px));visibility:hidden;
+  transition:transform .32s cubic-bezier(.2,.8,.2,1),height .32s cubic-bezier(.2,.8,.2,1),visibility 0s .32s}
+.sheet.open{transform:none;visibility:visible;transition-delay:0s}
+.sheet.large{--sheet-h:calc(100vh - 56px);--sheet-h:calc(100dvh - env(safe-area-inset-top) - 56px)}
+.sheet.dragging{transition:none}
+.sheet .grab{display:block;width:100%;height:22px;border:0;background:none;padding:0;touch-action:none}
+.sheet .grab::before{content:"";display:block;width:36px;height:5px;border-radius:3px;background:var(--label3);opacity:.45;margin:8px auto 0}
+.sheet .sh-head{padding:0 12px 8px 20px;touch-action:none;border-bottom:1px solid var(--glass-line)}
+.sheet .sh-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.sheet h2{margin:0;font-size:var(--fs-title3);font-weight:700}.sheet h2:focus{outline:none}
+.sheet .done{background:none;border:0;color:var(--tint-text);font-weight:600;font-size:var(--fs-headline);min-height:44px;min-width:44px;padding:0 8px}
+.sheet #qTop{margin:6px 8px 0 0}
+.sheet .sh-body{flex:1;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;padding:10px 20px 16px}
+.sheet .sh-body .lead{margin:0;font-size:var(--fs-sub)}
+body.sheet-open .tabs{transform:translate(-50%,calc(100% + 30px));opacity:0;pointer-events:none}
+body.sheet-open .shell{padding-bottom:calc(52vh + 24px);padding-bottom:calc(52dvh + 24px)}
+.tabs{transition:width .25s ease,padding .25s ease,transform .3s ease,opacity .2s}
+#idResults{scroll-margin-top:calc(env(safe-area-inset-top) + 56px)}
+.qopen{flex-direction:column;gap:0;line-height:1.25;margin:2px 0 12px}
+.qopen .main{display:inline-flex;align-items:center;gap:8px}
+.qopen small{font-weight:500;font-size:var(--fs-foot);opacity:.9}
 /* Sin vidrio: "Reducir transparencia" o navegador sin backdrop-filter */
-@media (prefers-reduced-transparency:reduce){.tabs,.navbar{background:var(--glass-solid);-webkit-backdrop-filter:none;backdrop-filter:none}}
-@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.tabs,.navbar{background:var(--glass-solid)}}
+@media (prefers-reduced-transparency:reduce){.tabs,.navbar,.sheet{background:var(--glass-solid);-webkit-backdrop-filter:none;backdrop-filter:none}}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.tabs,.navbar,.sheet{background:var(--glass-solid)}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
 </style>
 </head>
@@ -207,7 +233,7 @@ footer{color:var(--label3);font-size:var(--fs-cap);line-height:1.5;margin-top:28
   <div class="idgrid">
     <div>
       <div class="detail">
-        <div class="step">Paso 1 de 4</div><h3>Fotografía la planta</h3>
+        <div class="step">Paso 1 de 3</div><h3>Fotografía la planta</h3>
         <p class="lead">Hasta 3 fotos: flor completa, planta u hojas y un detalle. Luego <b>toca un pétalo en la foto</b> para estimar el color.</p>
         <label class="btn big" for="idPhotos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.6-2.2h5.8L16.5 7h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5Z"/><circle cx="12" cy="13" r="3.5"/></svg>Agregar foto</label><input id="idPhotos" type="file" accept="image/*" capture="environment" multiple class="hidden">
         <p id="photoStatus" class="muted" role="status" style="margin:8px 0 0;font-size:var(--fs-sub)"></p>
@@ -216,7 +242,7 @@ footer{color:var(--label3);font-size:var(--fs-cap);line-height:1.5;margin-top:28
         <div class="sampler"><canvas id="sampler" class="hidden" aria-label="Toca un pétalo para estimar el color"></canvas></div>
       </div>
       <div class="detail">
-        <div class="step">Paso 2 de 4</div><h3>¿Dónde y cuándo?</h3>
+        <div class="step">Paso 2 de 3</div><h3>¿Dónde y cuándo?</h3>
         <button type="button" class="btn alt" id="idGps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4 3.5 10.8l7 2.7 2.7 7Z"/></svg>Usar mi ubicación</button>
         <p id="idGpsStatus" class="muted" role="status" style="margin:6px 0 0;font-size:var(--fs-sub)"></p>
         <div class="row" style="margin-top:10px">
@@ -228,21 +254,28 @@ footer{color:var(--label3);font-size:var(--fs-cap);line-height:1.5;margin-top:28
         <div id="placeNote" class="muted" style="font-size:var(--fs-foot)"></div>
       </div>
       <div class="detail" id="idResultsBox">
-        <div class="row spread"><div><div class="step">Paso 3 de 4</div><h3>Especies más probables</h3></div><button class="btn alt small" id="idReset">Nueva identificación</button></div>
+        <div class="row spread"><div><div class="step">Paso 3 de 3</div><h3>Especies más probables</h3></div><button class="btn alt small" id="idReset">Nueva identificación</button></div>
+        <button type="button" class="btn big qopen" id="qOpen" aria-controls="qSheet" aria-expanded="false"><span class="main"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></svg>Observar la planta</span><small id="qOpenSub"></small></button>
         <div id="idVerdict"></div>
         <div id="idResults"></div>
         <button class="btn alt small hidden" id="idMore">Ver más candidatas</button>
         <p class="notice">Los porcentajes combinan tus respuestas, la distribución conocida y la procedencia de cada dato. Los rasgos <span class="tag warn">por verificar</span> son borradores aún no contrastados con el libro y pesan menos. El reconocimiento de fotos es una pista más, no un veredicto: se combina con tus respuestas y la ubicación.</p>
       </div>
-      <div class="detail">
-        <div class="step">Paso 4 de 4</div><h3>Observa la planta</h3>
-        <p class="lead" style="margin:0">La pregunta <span class="sug">sugerida</span> es la que más separa a las candidatas actuales. “No sé” nunca descarta especies. Cada respuesta reordena el resultado de arriba.</p>
-        <p id="qTop" class="confirm hidden" style="margin:10px 0 0"></p>
-        <div id="questions"></div>
-      </div>
     </div>
   </div>
 </section>
+
+<aside id="qSheet" class="sheet" role="dialog" aria-modal="false" aria-labelledby="qSheetTitle" aria-hidden="true">
+  <button type="button" class="grab" id="qGrab" aria-label="Ampliar hoja"></button>
+  <div class="sh-head" id="qHead">
+    <div class="sh-row"><h2 id="qSheetTitle" tabindex="-1">Observa la planta</h2><button type="button" class="done" id="qDone">Listo</button></div>
+    <p id="qTop" class="confirm hidden" role="status"></p>
+  </div>
+  <div class="sh-body">
+    <p class="lead">La pregunta <span class="sug">sugerida</span> es la que más separa a las candidatas actuales. “No sé” nunca descarta especies. Cada respuesta reordena el resultado al instante.</p>
+    <div id="questions"></div>
+  </div>
+</aside>
 
 <section id="observe" class="panel">
   <div class="detail">
@@ -362,6 +395,7 @@ function switchTab(t, title) {
   });
   document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id === t));
   currentTab = t;
+  if (t !== 'identify') closeSheet(false);
   // Título grande en las pantallas raíz; en la ficha manda el nombre de la especie
   $('pageTitle').classList.toggle('hidden', detail); $('pageSub').classList.toggle('hidden', t !== 'explore');
   $('pageTitle').textContent = TAB_TITLES[tab];
@@ -609,6 +643,8 @@ function renderQuestions() {
   const order = [...FloraID.QUESTIONS.filter(q => ID.answers[q.key] != null), ...usable.map(r => QMAP[r.key]),
     ...ranked.filter(r => !usable.includes(r)).map(r => QMAP[r.key])];
   const suggested = usable[0]?.gain > .02 ? usable[0].key : null;
+  const nAns = FloraID.QUESTIONS.filter(q => ID.answers[q.key] != null).length;
+  $('qOpenSub').textContent = `${nAns} de ${FloraID.QUESTIONS.length} respondidas` + (suggested ? ` · sugerida: ${QMAP[suggested].label}` : '');
   $('questions').replaceChildren(...order.map(q => {
     const box = document.createElement('div'), a = ID.answers[q.key];
     box.className = 'q';
@@ -618,15 +654,15 @@ function renderQuestions() {
     chips.className = 'chips';
     for (const [v, label, hex] of q.options) {
       const b = document.createElement('button');
-      b.type = 'button'; b.className = 'chip' + (a === v ? ' on' : '');
+      b.type = 'button'; b.className = 'chip' + (a === v ? ' on' : ''); b.dataset.k = q.key + '|' + v;
       b.innerHTML = (hex ? `<span class="dot" style="background:${hex}"></span>` : '') + escapeHtml(label);
-      b.onclick = () => { ID.answers[q.key] = a === v ? null : v; if (q.key === 'colors') ID.fromPhoto = false; ID.shown = 5; renderIdentify(); };
+      b.onclick = () => { ID.answers[q.key] = a === v ? null : v; if (q.key === 'colors') ID.fromPhoto = false; ID.shown = 5; refocus(b.dataset.k); };
       chips.appendChild(b);
     }
     if (a != null) {
       const b = document.createElement('button');
-      b.type = 'button'; b.className = 'chip clear'; b.textContent = 'No sé';
-      b.onclick = () => { ID.answers[q.key] = null; renderIdentify(); };
+      b.type = 'button'; b.className = 'chip clear'; b.textContent = 'No sé'; b.dataset.k = q.key + '|clear';
+      b.onclick = () => { ID.answers[q.key] = null; refocus(q.key + '|' + a); };
       chips.appendChild(b);
     }
     box.appendChild(chips);
@@ -678,7 +714,7 @@ function renderResults() {
     return;
   }
   const [a, b] = res, strong = a.p >= .5 && a.p >= 3 * b.p;
-  $('qTop').innerHTML = `Ahora la más probable: <b>${escapeHtml(speciesName(a.species).split(',')[0])}</b> <i>${escapeHtml(a.species.scientific_name)}</i> ${(a.p * 100).toFixed(0)}% · <a href="#idResultsBox">ver resultado ${ic('up')}</a>`;
+  $('qTop').innerHTML = `Ahora la más probable: <b>${escapeHtml(speciesName(a.species).split(',')[0])}</b> <i>${escapeHtml(a.species.scientific_name)}</i> · ${(a.p * 100).toFixed(0)}%`;
   $('qTop').classList.remove('hidden');
   $('idVerdict').innerHTML = (strong ? `<p class="notice green">Identificación probable. Confirma con la ficha antes de registrar.</p>`
     : `<p class="muted" style="font-size:var(--fs-sub)">Varias candidatas compatibles. Responde la pregunta sugerida para separarlas.</p>`)
@@ -698,6 +734,12 @@ function renderResults() {
 $('idMore').onclick = () => { ID.shown += 10; renderResults(); };
 
 function renderIdentify() { renderPlace(); renderQuestions(); renderResults(); }
+// Las preguntas se redibujan al responder: devolver el foco al mismo botón y, con la hoja abierta, mantener las candidatas a la vista
+function refocus(k) {
+  renderIdentify();
+  document.querySelector(`#questions [data-k="${CSS.escape(k)}"]`)?.focus({ preventScroll: true });
+  if (sheet.classList.contains('open')) $('idResults').scrollIntoView({ block: 'start' });
+}
 
 $('idReset').onclick = () => {
   Object.assign(ID, { answers: {}, fromPhoto: false, photos: [], active: 0, elev: null, shown: 5, image: null });
@@ -706,6 +748,44 @@ $('idReset').onclick = () => {
   $('idDate').value = todayIso(); $('photoStatus').textContent = ''; $('idGpsStatus').textContent = '';
   renderPhotos(); renderIdentify();
 };
+
+/* Hoja inferior de preguntas: altura media deja ver el resultado; arrastrar hacia arriba la amplía, hacia abajo la cierra */
+const sheet = $('qSheet');
+function openSheet() {
+  sheet.classList.add('open'); sheet.classList.remove('large'); sheet.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('sheet-open'); $('qOpen').setAttribute('aria-expanded', 'true'); $('qGrab').setAttribute('aria-label', 'Ampliar hoja');
+  requestAnimationFrame(() => $('qSheetTitle').focus({ preventScroll: true }));
+  $('idResults').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+}
+function closeSheet(focus = true) {
+  if (!sheet.classList.contains('open')) return;
+  sheet.classList.remove('open', 'large'); sheet.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('sheet-open'); $('qOpen').setAttribute('aria-expanded', 'false');
+  if (focus) $('qOpen').focus({ preventScroll: true });
+}
+function setLarge(on) { sheet.classList.toggle('large', on); $('qGrab').setAttribute('aria-label', on ? 'Reducir hoja' : 'Ampliar hoja'); }
+$('qOpen').onclick = openSheet;
+$('qDone').onclick = () => closeSheet();
+$('qGrab').onclick = () => { if ($('qGrab').dataset.skip) { delete $('qGrab').dataset.skip; return; } setLarge(!sheet.classList.contains('large')); };
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && sheet.classList.contains('open')) closeSheet(); });
+let drag = null;
+[$('qGrab'), $('qHead')].forEach(el => el.addEventListener('pointerdown', e => {
+  if (e.target.closest('.done, a')) return;
+  drag = { y: e.clientY, dy: 0 }; sheet.classList.add('dragging'); el.setPointerCapture(e.pointerId);
+}));
+[$('qGrab'), $('qHead')].forEach(el => el.addEventListener('pointermove', e => {
+  if (!drag) return;
+  drag.dy = e.clientY - drag.y;
+  sheet.style.transform = `translateY(${Math.max(0, drag.dy)}px)`;
+}));
+[$('qGrab'), $('qHead')].forEach(el => ['pointerup', 'pointercancel', 'lostpointercapture'].forEach(ev => el.addEventListener(ev, () => {
+  if (!drag) return;
+  const dy = drag.dy; drag = null;
+  sheet.classList.remove('dragging'); sheet.style.transform = '';
+  if (dy > 90) sheet.classList.contains('large') ? setLarge(false) : closeSheet();
+  else if (dy < -50) setLarge(true);
+  if (el === $('qGrab') && Math.abs(dy) > 8) el.dataset.skip = 1;  // el arrastre no cuenta como toque
+})));
 
 /* ---------- Registrar ---------- */
 let pendingId = null, obsPhotos = [];
