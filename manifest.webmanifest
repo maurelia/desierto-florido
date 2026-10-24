@@ -1,1 +1,1 @@
-{"name": "Desierto Florido · Atacama", "short_name": "Flora Atacama", "start_url": "./index.html", "display": "standalone", "background_color": "#f2f1ea", "theme_color": "#f2f1ea", "icons": [{"src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}]}
+{"name": "Desierto Florido · Atacama", "short_name": "Flora Atacama", "start_url": "./index.html", "display": "standalone", "background_color": "#f1f6ee", "theme_color": "#f1f6ee", "icons": [{"src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable"}]}

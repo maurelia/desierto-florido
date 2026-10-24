@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#f2f1ea" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0f1412" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f1f6ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0a1a0f" media="(prefers-color-scheme: dark)">
 <meta name="color-scheme" content="light dark">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -17,20 +17,21 @@
 <style>
 /* Tokens (colores semánticos). Contraste reforzado para uso a pleno sol. */
 :root{
-  --bg:#f2f1ea;--surface:#fff;--surface2:#f7f8f4;--label:#17241d;--label2:#3d4d43;--label3:#4f5f55;--sep:#dce1d8;
-  --fill:#e4eae1;--fill-ink:#1d5642;--tint:#1f5a45;--on-tint:#fff;--tint-text:#1d6a4f;
-  --warn-bg:#fdf0d9;--warn-ink:#7a4e12;--bad-bg:#fbe4e1;--bad-ink:#97281d;--ok:#1e7a3d;--no:#b02c20;--partial:#8a5a0c;
-  --sug-bg:#f6c77b;--sug-ink:#4d3608;--glass:rgba(250,250,246,.72);--glass-solid:#fafaf6;--glass-line:rgba(0,0,0,.08);
-  --shadow:0 8px 28px rgba(20,35,28,.16);--bloom:#d6408d;
+  /* Paleta: verdes orgánicos (#d9f2d3 → #084d1b) y amarillo mostaza (#ffce1b, tintes #fff0b8 / sombras #5e4a00) */
+  --bg:#f1f6ee;--surface:#fff;--surface2:#f5faf3;--label:#0f2716;--label2:#2f4a36;--label3:#4a6150;--sep:#d3e3cf;
+  --fill:#d9f2d3;--fill-ink:#1a5727;--tint:#2a7b34;--on-tint:#fff;--tint-text:#1a5727;
+  --warn-bg:#fff0b8;--warn-ink:#5e4a00;--bad-bg:#fbe4e1;--bad-ink:#97281d;--ok:#2a7b34;--no:#b02c20;--partial:#7d6200;
+  --sug-bg:#ffce1b;--sug-ink:#3f3100;--glass:rgba(241,246,238,.72);--glass-solid:#f1f6ee;--glass-line:rgba(8,77,27,.1);
+  --shadow:0 8px 28px rgba(8,77,27,.16);--bloom:#b08a00;--mustard:#ffce1b;
   --fs-large:2rem;--fs-title2:1.295rem;--fs-title3:1.176rem;--fs-headline:1rem;--fs-callout:.94rem;--fs-sub:.882rem;--fs-foot:.765rem;--fs-cap:.706rem;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){:root{
-  --bg:#0f1412;--surface:#1a211d;--surface2:#202924;--label:#eef3ef;--label2:#c3cec6;--label3:#a6b3aa;--sep:#2e3833;
-  --fill:#26312b;--fill-ink:#9fe0c0;--tint:#4cbf8c;--on-tint:#05170e;--tint-text:#74d6a8;
-  --warn-bg:#3a2c12;--warn-ink:#f3cf8c;--bad-bg:#3d1b18;--bad-ink:#ffb4aa;--ok:#6fd38f;--no:#ff8b7e;--partial:#eebf62;
-  --sug-bg:#f6c77b;--sug-ink:#3b2904;--glass:rgba(30,37,33,.7);--glass-solid:#1e2521;--glass-line:rgba(255,255,255,.1);
-  --shadow:0 8px 28px rgba(0,0,0,.5);--bloom:#f06aac;color-scheme:dark;
+  --bg:#0a1a0f;--surface:#13261a;--surface2:#183020;--label:#eaf5e7;--label2:#c2d9c0;--label3:#9fbb9f;--sep:#2a4430;
+  --fill:#1f3a26;--fill-ink:#b3e0b1;--tint:#66cc7a;--on-tint:#06210d;--tint-text:#8cd69c;
+  --warn-bg:#3f3100;--warn-ink:#ffe175;--bad-bg:#3d1b18;--bad-ink:#ffb4aa;--ok:#8cd69c;--no:#ff8b7e;--partial:#ffd848;
+  --sug-bg:#ffce1b;--sug-ink:#3f3100;--glass:rgba(19,38,26,.72);--glass-solid:#13261a;--glass-line:rgba(217,242,211,.12);
+  --shadow:0 8px 28px rgba(0,0,0,.5);--bloom:#ffce1b;--mustard:#ffce1b;color-scheme:dark;
 }}
 /* Dynamic Type: en Safari iOS toma el tamaño de texto del sistema (Body = 17 pt por defecto) */
 html{font-size:106.25%;font:-apple-system-body;-webkit-text-size-adjust:100%}
@@ -51,7 +52,7 @@ a{color:var(--tint-text)}b,strong{font-weight:600}
 /* Encabezado con título grande */
 .top{max-width:1100px;margin:auto;padding:calc(env(safe-area-inset-top) + 14px) max(16px,env(safe-area-inset-right)) 4px max(16px,env(safe-area-inset-left))}
 .top .app{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:var(--fs-sub);color:var(--label2);font-weight:600}
-.top .app .flor{color:var(--bloom)}
+.top .app .flor{color:var(--mustard)}
 .top h1{font-size:var(--fs-large);line-height:1.15;font-weight:700;margin:2px 0 0;letter-spacing:.01em}
 .top .sub{margin:4px 0 0;color:var(--label3);font-size:var(--fs-sub)}
 .pill{border-radius:30px;padding:5px 11px;font-size:var(--fs-foot);font-weight:600;white-space:nowrap;display:inline-flex;gap:6px;align-items:center}
@@ -71,7 +72,7 @@ a{color:var(--tint-text)}b,strong{font-weight:600}
 .tab svg{width:24px;height:24px;flex:none}
 .tab.active{color:var(--tint-text);background:var(--fill)}
 .tab:active{background:var(--fill)}
-.tab{position:relative}.tab.draft::after{content:"";position:absolute;top:7px;left:calc(50% + 8px);width:8px;height:8px;border-radius:50%;background:var(--bloom);border:2px solid var(--glass-solid)}
+.tab{position:relative}.tab.draft::after{content:"";position:absolute;top:7px;left:calc(50% + 8px);width:9px;height:9px;border-radius:50%;background:var(--mustard);border:2px solid var(--glass-solid)}
 .tabs.mini{width:min(260px,calc(100% - 32px));padding:3px}
 .tabs.mini .tab{min-height:44px}.tabs.mini .tab span{display:none}
 
@@ -152,6 +153,19 @@ footer{color:var(--label3);font-size:var(--fs-cap);line-height:1.5;margin-top:28
 .phenolab{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;max-width:420px;font-size:var(--fs-cap);color:var(--label3);text-align:center;margin-top:3px}
 #map{height:420px;border-radius:12px;margin:12px 0}
 .exportbox select{flex:1 1 100%}
+/* Miniaturas con botón para quitar */
+.thumbs .th{position:relative}.th img{width:104px;height:92px;object-fit:cover;border-radius:10px;display:block;border:3px solid transparent}
+.th .pick{padding:0;border:0;background:none;border-radius:12px;display:block}.th .pick.on img{border-color:var(--tint)}
+.th .x{position:absolute;top:-10px;right:-10px;width:44px;height:44px;border:0;background:none;padding:0;display:flex;align-items:center;justify-content:center}
+.th .x span{width:26px;height:26px;border-radius:50%;background:rgba(10,26,15,.78);color:#fff;display:flex;align-items:center;justify-content:center;border:2px solid #fff}.th .x .ic{width:14px;height:14px;stroke-width:3}
+.dots{display:inline-flex;gap:3px;vertical-align:-2px}
+/* Carga del catálogo: tarjetas provisionales */
+.card.sk{min-height:220px}.card.sk .ph{aspect-ratio:4/3}.card.sk i{display:block;height:12px;border-radius:6px;background:var(--fill);margin-top:8px;width:70%}.card.sk i.s{width:45%}
+.card.sk .ph,.card.sk i{animation:pulse 1.4s ease-in-out infinite}@keyframes pulse{50%{opacity:.5}}
+/* Estado vacío */
+.empty{text-align:center;padding:28px 18px}.empty .emptyic{width:56px;height:56px;margin:0 auto 10px;color:var(--tint-text)}.empty .emptyic svg{width:100%;height:100%}.empty .lead{max-width:440px;margin:6px auto 16px}
+/* Controles del mapa: 44 px */
+.leaflet-bar a,.leaflet-touch .leaflet-bar a{width:44px;height:44px;line-height:44px;font-size:22px}
 
 @media(max-width:650px){.detail dl{grid-template-columns:1fr;gap:4px}.detail dt{margin-top:12px;font-size:var(--fs-sub)}.cards{grid-template-columns:repeat(2,1fr);gap:10px}.card h3{font-size:var(--fs-sub)}}
 @media(min-width:651px){.search{flex:2 1 260px}.filters{flex:3 1 400px}.exportbox select{flex:0 1 auto}}
@@ -170,10 +184,10 @@ footer{color:var(--label3);font-size:var(--fs-cap);line-height:1.5;margin-top:28
 </header>
 <main class="shell">
 <nav class="tabs" id="tabs" aria-label="Secciones">
-  <button class="tab active" data-tab="identify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><span>Identificar</span></button>
-  <button class="tab" data-tab="explore"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6.6" r="3.4"/><circle cx="17.1" cy="10.3" r="3.4"/><circle cx="15.2" cy="16.4" r="3.4"/><circle cx="8.8" cy="16.4" r="3.4"/><circle cx="6.9" cy="10.3" r="3.4"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg><span>Guía</span></button>
-  <button class="tab" data-tab="observe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><path d="M12 6.5v6M9 9.5h6"/></svg><span>Registrar</span></button>
-  <button class="tab" data-tab="saved"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="M8 8.5h8M8 12h8M8 15.5h5"/></svg><span>Registros</span></button>
+  <button class="tab active" data-tab="identify" aria-label="Identificar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><span>Identificar</span></button>
+  <button class="tab" data-tab="explore" aria-label="Guía de campo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6.6" r="3.4"/><circle cx="17.1" cy="10.3" r="3.4"/><circle cx="15.2" cy="16.4" r="3.4"/><circle cx="8.8" cy="16.4" r="3.4"/><circle cx="6.9" cy="10.3" r="3.4"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg><span>Guía</span></button>
+  <button class="tab" data-tab="observe" aria-label="Registrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><path d="M12 6.5v6M9 9.5h6"/></svg><span>Registrar</span></button>
+  <button class="tab" data-tab="saved" aria-label="Mis registros"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="M8 8.5h8M8 12h8M8 15.5h5"/></svg><span>Registros</span></button>
 </nav>
 
 <section id="explore" class="panel">
@@ -186,7 +200,7 @@ footer{color:var(--label3);font-size:var(--fs-cap);line-height:1.5;margin-top:28
       <select id="origin" aria-label="Origen"><option value="">Origen</option></select>
     </div>
   </div>
-  <p id="resultsCount" class="count" role="status"></p><div id="cards" class="cards"></div>
+  <p id="resultsCount" class="count" role="status"></p><div id="cards" class="cards" aria-busy="true"><div class="card sk" aria-hidden="true"><div class="ph"></div><i></i><i class="s"></i></div><div class="card sk" aria-hidden="true"><div class="ph"></div><i></i><i class="s"></i></div><div class="card sk" aria-hidden="true"><div class="ph"></div><i></i><i class="s"></i></div><div class="card sk" aria-hidden="true"><div class="ph"></div><i></i><i class="s"></i></div><div class="card sk" aria-hidden="true"><div class="ph"></div><i></i><i class="s"></i></div><div class="card sk" aria-hidden="true"><div class="ph"></div><i></i><i class="s"></i></div></div>
 </section>
 
 <section id="identify" class="panel active">
@@ -206,8 +220,8 @@ footer{color:var(--label3);font-size:var(--fs-cap);line-height:1.5;margin-top:28
         <button type="button" class="btn alt" id="idGps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4 3.5 10.8l7 2.7 2.7 7Z"/></svg>Usar mi ubicación</button>
         <p id="idGpsStatus" class="muted" role="status" style="margin:6px 0 0;font-size:var(--fs-sub)"></p>
         <div class="row" style="margin-top:10px">
-          <div class="field"><label for="idLat">Latitud</label><input id="idLat" type="number" inputmode="decimal" step="any" min="-90" max="90" placeholder="-28.2"></div>
-          <div class="field"><label for="idLon">Longitud</label><input id="idLon" type="number" inputmode="decimal" step="any" min="-180" max="180" placeholder="-71.1"></div>
+          <div class="field"><label for="idLat">Latitud</label><input id="idLat" type="number" step="any" min="-90" max="90" placeholder="Ej. -28.2"></div>
+          <div class="field"><label for="idLon">Longitud</label><input id="idLon" type="number" step="any" min="-180" max="180" placeholder="Ej. -71.1"></div>
           <div class="field"><label for="idDate">Fecha</label><input id="idDate" type="date"></div>
         </div>
         <label class="check"><input type="checkbox" id="inBloom" checked> La planta está en flor (usar la fecha para filtrar por floración)</label>
@@ -245,8 +259,8 @@ footer{color:var(--label3);font-size:var(--fs-cap);line-height:1.5;margin-top:28
       <button type="button" class="btn alt" id="gps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4 3.5 10.8l7 2.7 2.7 7Z"/></svg>Usar mi ubicación</button>
       <p id="gpsStatus" class="muted" role="status" style="margin:6px 0 0;font-size:var(--fs-sub)"></p>
       <div class="row" style="margin-top:10px">
-        <div class="field"><label for="lat">Latitud</label><input id="lat" type="number" inputmode="decimal" step="any" min="-90" max="90" placeholder="-28.5"></div>
-        <div class="field"><label for="lon">Longitud</label><input id="lon" type="number" inputmode="decimal" step="any" min="-180" max="180" placeholder="-70.7"></div>
+        <div class="field"><label for="lat">Latitud</label><input id="lat" type="number" step="any" min="-90" max="90" placeholder="Ej. -28.5"></div>
+        <div class="field"><label for="lon">Longitud</label><input id="lon" type="number" step="any" min="-180" max="180" placeholder="Ej. -70.7"></div>
         <div class="field"><label for="elev">Elevación (m)</label><input id="elev" type="number" inputmode="decimal" step="any" placeholder="Opcional"></div>
       </div>
       <div class="row">
@@ -275,13 +289,19 @@ footer{color:var(--label3);font-size:var(--fs-cap);line-height:1.5;margin-top:28
     <button class="btn big" id="sendNow" type="button">Enviar registros nuevos</button>
     <p id="sendStatus" class="muted" role="status" style="margin:8px 0 0;font-size:var(--fs-sub)"></p>
   </div>
-  <div class="detail exportbox">
+  <div class="detail exportbox" id="exportBox">
     <h3>Exportar</h3>
     <div class="row">
       <select id="exportMode" aria-label="Tipo de exportación"><option value="private">Privada: coordenadas exactas (QGIS)</option><option value="public">Pública: protege especies sensibles</option></select>
       <button id="export" class="btn alt small">GeoJSON</button><button id="exportKml" class="btn alt small">KML</button><button id="exportCsv" class="btn alt small">CSV</button><button id="exportTrain" class="btn alt small" title="Fotos con especie, para reentrenar el reconocimiento">Fotos para entrenamiento</button>
     </div>
     <p id="trainStatus" class="muted" role="status" style="font-size:var(--fs-foot);margin:8px 0 0"></p>
+  </div>
+  <div class="detail empty hidden" id="emptySaved">
+    <div class="emptyic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="M8 8.5h8M8 12h8M8 15.5h5"/></svg></div>
+    <h3>Aún no tienes registros</h3>
+    <p class="lead">Identifica una flor y toca <b>Es esta: registrar</b>, o registra directamente lo que encuentres. Tus registros quedan en el teléfono y luego puedes verlos en el mapa y exportarlos.</p>
+    <div class="row" style="justify-content:center"><button type="button" class="btn" data-go="identify">Identificar una flor</button><button type="button" class="btn alt" data-go="observe">Registrar</button></div>
   </div>
   <div id="savedItems"></div>
 </section>
@@ -376,20 +396,23 @@ function netState() {
 addEventListener('online', netState); addEventListener('offline', netState); netState();
 
 /* ---------- Explorar ---------- */
+const colorNames = s => (s.traits?.colors || []).map(c => FloraID.optionLabel('colors', c).toLowerCase()).join(', ');
 function colorDots(s) {
-  return (s.traits?.colors || []).map(c => `<span class="dot" title="${c}" style="background:${COLOR_HEX[c]}"></span>`).join(' ');
+  const c = s.traits?.colors || [];
+  return c.length ? `<span class="dots" role="img" aria-label="Color de flor: ${escapeHtml(colorNames(s))}">${c.map(k => `<span class="dot" style="background:${COLOR_HEX[k]}"></span>`).join(' ')}</span>` : '';
 }
 function card(s) {
   const el = document.createElement('button'), good = s.data_quality === 'source_extracted';
   el.className = 'card';
   el.innerHTML = `${s.photo ? `<img class="ph" loading="lazy" src="${s.photo.file}" alt="${escapeHtml(photoAlt(s))}">` : `<div class="flower">${flowerIcon(s)}</div>`}<h3>${escapeHtml(speciesName(s))}</h3><div class="latin">${escapeHtml(s.scientific_name)}</div>
     <div class="meta">${escapeHtml(s.growth_form || s.group_name || 'Porte por revisar')} · ${escapeHtml(s.origin_status || 'Origen por revisar')}</div>
-    <div>${colorDots(s)}${bloomWindow(s) ? ` <span class="meta">${ic('flower')} ${bloomWindow(s)}</span>` : ''}</div><div><span class="tag ${good ? '' : 'warn'}">${good ? 'Ficha estructurada' : 'Pendiente de revisión'}</span></div>`;
+    ${s.traits?.colors?.length ? `<div class="meta">${colorDots(s)} ${escapeHtml(colorNames(s))}</div>` : ''}${bloomWindow(s) ? `<div class="meta">${ic('flower')} Florece ${bloomWindow(s)}</div>` : ''}<div><div><span class="tag ${good ? '' : 'warn'}">${good ? 'Ficha estructurada' : 'Pendiente de revisión'}</span></div>`;
   el.onclick = () => showDetail(s);
   return el;
 }
 function renderCards(id, a) {
   const e = $(id);
+  e.removeAttribute('aria-busy');
   e.replaceChildren(...a.map(card));
   if (!a.length) e.textContent = 'No se encontraron coincidencias.';
 }
@@ -515,23 +538,30 @@ $('idPhotos').onchange = async e => {
   try {
     for (const f of files) ID.photos.push(await photoData(f));
     ID.active = ID.photos.length - 1;
-    $('photoStatus').textContent = `${ID.photos.length}/3 fotos · toca la miniatura activa para quitarla`;
+    $('photoStatus').textContent = `${ID.photos.length}/3 fotos · toca una miniatura para usarla en el color; ✕ la quita`;
   } catch (err) { $('photoStatus').textContent = err.message; }
   e.target.value = '';
   renderPhotos();
   aiAnalyze();
 };
+// Miniatura con botón ✕ (44 px) para quitarla; opcionalmente seleccionable
+function thumb(src, i, { on = false, select = null, remove }) {
+  const box = document.createElement('div'), x = document.createElement('button');
+  box.className = 'th';
+  const img = `<img src="${src}" alt="">`;
+  box.innerHTML = select ? `<button type="button" class="pick${on ? ' on' : ''}" aria-pressed="${on}" aria-label="Usar foto ${i + 1} para estimar el color">${img}</button>` : img.replace('alt=""', `alt="Foto ${i + 1}"`);
+  if (select) box.firstChild.onclick = select;
+  x.type = 'button'; x.className = 'x'; x.setAttribute('aria-label', `Quitar foto ${i + 1}`); x.innerHTML = `<span>${ic('xmark')}</span>`;
+  x.onclick = remove;
+  box.appendChild(x);
+  return box;
+}
 function renderPhotos() {
-  $('idThumbs').replaceChildren(...ID.photos.map((src, i) => {
-    const im = new Image();
-    im.src = src; im.alt = `Foto ${i + 1}`; im.className = i === ID.active ? 'on' : '';
-    im.onclick = () => {
-      if (i === ID.active) { ID.photos.splice(i, 1); ID.active = Math.max(0, ID.photos.length - 1); aiAnalyze(); }
-      else ID.active = i;
-      renderPhotos();
-    };
-    return im;
-  }));
+  $('idThumbs').replaceChildren(...ID.photos.map((src, i) => thumb(src, i, {
+    on: i === ID.active,
+    select: () => { ID.active = i; renderPhotos(); },
+    remove: () => { ID.photos.splice(i, 1); ID.active = Math.min(ID.active, Math.max(0, ID.photos.length - 1)); renderPhotos(); aiAnalyze(); },
+  })));
   const cv = $('sampler');
   cv.classList.toggle('hidden', !ID.photos.length);
   if (!ID.photos.length) return;
@@ -714,12 +744,7 @@ $('photo').onchange = async e => {
   renderObsPhotos();
 };
 function renderObsPhotos() {
-  $('obsThumbs').replaceChildren(...obsPhotos.map((src, i) => {
-    const im = new Image();
-    im.src = src; im.alt = 'Foto ' + (i + 1); im.title = 'Tocar para quitar';
-    im.onclick = () => { obsPhotos.splice(i, 1); renderObsPhotos(); };
-    return im;
-  }));
+  $('obsThumbs').replaceChildren(...obsPhotos.map((src, i) => thumb(src, i, { remove: () => { obsPhotos.splice(i, 1); renderObsPhotos(); } })));
   scheduleDraft();
 }
 
@@ -842,12 +867,15 @@ $('draftDiscard').onclick = async () => {
 document.addEventListener('visibilitychange', () => { if (document.hidden && draftTimer) { clearTimeout(draftTimer); saveDraft(); } });
 
 /* ---------- Mis registros ---------- */
+document.querySelectorAll('[data-go]').forEach(b => b.onclick = () => switchTab(b.dataset.go));
 const photosOf = o => o.photos?.length ? o.photos : o.photo ? [o.photo] : [];
 let map = null, mapLayer = null;
 async function renderSaved() {
   const a = (await records()).sort((x, y) => y.observed_at.localeCompare(x.observed_at));
   $('savedCount').textContent = `${a.length} observaciones guardadas · ${a.filter(o => o.latitude != null).length} con GPS`;
   renderSend(a);
+  ['summaryBox', 'exportBox'].forEach(id => $(id).classList.toggle('hidden', !a.length));
+  $('emptySaved').classList.toggle('hidden', !!a.length); $('savedCount').classList.toggle('hidden', !a.length);
   const counts = new Map();
   for (const o of a) { const k = o.species_id ?? 0; counts.set(k, (counts.get(k) || 0) + 1); }
   $('summary').innerHTML = [...counts].sort((x, y) => y[1] - x[1]).map(([k, n]) => {
@@ -859,15 +887,16 @@ async function renderSaved() {
     const div = document.createElement('div');
     div.className = 'obs';
     const conf = o.confidence != null ? ` · ${(o.confidence * 100).toFixed(0)}% (${o.identification_method.replace('_', ' ')})` : '';
-    div.innerHTML = `<div class="row" style="justify-content:space-between;align-items:start"><div><strong>${escapeHtml(o.common_name || o.scientific_name || 'Sin identificar')}</strong><div class="latin">${escapeHtml(o.scientific_name || '')}</div></div><button class="btn danger small">Eliminar</button></div>
+    div.innerHTML = `<div class="row" style="justify-content:space-between;align-items:start"><div><strong>${escapeHtml(o.common_name || o.scientific_name || 'Sin identificar')}</strong><div class="latin">${escapeHtml(o.scientific_name || '')}</div></div></div>
       <div class="meta">${new Date(o.observed_at).toLocaleString('es-CL')} · ${o.latitude === null ? 'Sin GPS' : o.latitude.toFixed(5) + ', ' + o.longitude.toFixed(5)}${o.elevation_m != null ? ' · ' + o.elevation_m + ' m' : ''}${conf}</div>
       <div class="meta">${[o.habitat, o.observer, o.validation && o.validation !== 'pendiente' ? o.validation.replace('_', ' ') : ''].filter(Boolean).map(escapeHtml).join(' · ')}</div>
-      <p>${escapeHtml(o.notes)}</p><div class="thumbs">${photosOf(o).map(p => `<img alt="Fotografía de observación" src="${p}">`).join('')}</div>`;
+      <p>${escapeHtml(o.notes)}</p><div class="thumbs">${photosOf(o).map(p => `<img alt="Fotografía de observación" src="${p}">`).join('')}</div>
+      <div class="row" style="justify-content:flex-end;margin-top:12px"><button class="btn danger small">Eliminar registro</button></div>`;
     const del = div.querySelector('.danger');
     del.onclick = async () => {
       if (del.dataset.armed) { await storeOp(st => st.delete(o.id)); renderSaved(); return; }
       del.dataset.armed = 1; del.textContent = '¿Eliminar? Tocar de nuevo';
-      setTimeout(() => { delete del.dataset.armed; del.textContent = 'Eliminar'; }, 4000);
+      setTimeout(() => { delete del.dataset.armed; del.textContent = 'Eliminar registro'; }, 4000);
     };
     return div;
   }));
@@ -1020,7 +1049,7 @@ const blobBase64 = b => new Promise((res, rej) => {
 });
 function renderSend(all) {
   if (!UPLOAD_URL) return;
-  $('sendBox').classList.remove('hidden');
+  $('sendBox').classList.toggle('hidden', !all.length);
   const pending = all.filter(o => trainable(o) && !o.sent_at);
   $('sendCount').textContent = `${pl(pending.length, 'registro nuevo', 'registros nuevos')} por enviar · ${pl(all.filter(o => o.sent_at).length, 'enviado', 'enviados')}`;
   $('sendNow').disabled = !pending.length;
