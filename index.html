@@ -134,7 +134,9 @@ footer{color:var(--label3);font-size:var(--fs-cap);line-height:1.5;margin-top:28
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{border:1px solid var(--sep);background:var(--surface);border-radius:999px;min-height:44px;padding:8px 14px;font-size:var(--fs-sub);color:var(--label);display:inline-flex;gap:8px;align-items:center}
 .chip.on{background:var(--tint);border-color:var(--tint);color:var(--on-tint);font-weight:600}
-.chip.on::before{content:"✓";font-weight:700}
+.ic{width:1.15em;height:1.15em;vertical-align:-.22em;flex:none;display:inline-block}
+.chip.on::before{content:"";width:1em;height:1em;flex:none;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/contain no-repeat}
+.card .flower .ic{width:44px;height:44px;stroke-width:1.5}.notice .ic,.confirm>.ic{margin-right:4px}
 .chip.clear{border-style:dashed;color:var(--label3)}
 .dot{width:14px;height:14px;border-radius:50%;border:1px solid rgba(0,0,0,.25);display:inline-block;vertical-align:-2px}
 .sampler{position:relative;margin-top:10px}.sampler canvas{max-width:100%;max-height:340px;width:auto;height:auto;border-radius:12px;cursor:crosshair;display:block;touch-action:manipulation}
@@ -160,14 +162,14 @@ footer{color:var(--label3);font-size:var(--fs-cap);line-height:1.5;margin-top:28
 <body>
 <div class="navbar" id="navbar" aria-hidden="true"><div class="in"><button class="backbtn hidden" id="navBack" type="button" aria-label="Volver"><svg viewBox="0 0 13 22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2 2 11l9 9"/></svg><span id="navBackLabel">Volver</span></button><div class="ttl" id="navTitle">Identificar</div><div></div></div></div>
 <header class="top">
-  <div class="app"><span>Desierto Florido <span class="flor" aria-hidden="true">✿</span> Atacama</span><span id="netState" class="pill offline hidden" role="status">Sin señal · modo terreno</span></div>
+  <div class="app"><span>Desierto Florido <svg class="ic flor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6.6" r="3.4"/><circle cx="17.1" cy="10.3" r="3.4"/><circle cx="15.2" cy="16.4" r="3.4"/><circle cx="8.8" cy="16.4" r="3.4"/><circle cx="6.9" cy="10.3" r="3.4"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg> Atacama</span><span id="netState" class="pill offline hidden" role="status">Sin señal · modo terreno</span></div>
   <h1 id="pageTitle">Identificar</h1>
   <p class="sub hidden" id="pageSub"><span id="total">119</span> taxones · <span id="reviewed">85</span> fichas estructuradas · catálogo v0.7</p>
 </header>
 <main class="shell">
 <nav class="tabs" id="tabs" aria-label="Secciones">
   <button class="tab active" data-tab="identify"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><span>Identificar</span></button>
-  <button class="tab" data-tab="explore"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="2.6"/><path d="M12 9.4c-1.6-2.8-1.6-5.4 0-6.9 1.6 1.5 1.6 4.1 0 6.9Zm0 5.2c1.6 2.8 1.6 5.4 0 6.9-1.6-1.5-1.6-4.1 0-6.9Zm-2.6-2.6c-2.8 1.6-5.4 1.6-6.9 0 1.5-1.6 4.1-1.6 6.9 0Zm5.2 0c2.8-1.6 5.4-1.6 6.9 0-1.5 1.6-4.1 1.6-6.9 0Z"/></svg><span>Guía</span></button>
+  <button class="tab" data-tab="explore"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="6.6" r="3.4"/><circle cx="17.1" cy="10.3" r="3.4"/><circle cx="15.2" cy="16.4" r="3.4"/><circle cx="8.8" cy="16.4" r="3.4"/><circle cx="6.9" cy="10.3" r="3.4"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg><span>Guía</span></button>
   <button class="tab" data-tab="observe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><path d="M12 6.5v6M9 9.5h6"/></svg><span>Registrar</span></button>
   <button class="tab" data-tab="saved"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="M8 8.5h8M8 12h8M8 15.5h5"/></svg><span>Registros</span></button>
 </nav>
@@ -306,7 +308,25 @@ const bloomWindow = s => !s.flowering_start_month ? null : s.flowering_start_mon
   : `${MONTHS[s.flowering_start_month - 1]}–${MONTHS[s.flowering_end_month - 1]}`;
 const BLOOM_SRC = { inat_floracion: 'observaciones de iNaturalist anotadas “en flor”', inat_observaciones: 'todas las observaciones de iNaturalist (sin anotación de floración; dato más débil)' };
 const BLOOM_PLACE = { atacama_coquimbo: 'regiones de Atacama y Coquimbo', chile: 'Chile' };
-const flowerIcon = s => s.traits?.growth === 'cactus' ? '🌵' : '✿';
+/* Íconos de interfaz (trazo, color del texto adyacente) en lugar de emojis */
+const ICON_PATHS = {
+  flower: '<circle cx="12" cy="6.6" r="3.4"/><circle cx="17.1" cy="10.3" r="3.4"/><circle cx="15.2" cy="16.4" r="3.4"/><circle cx="8.8" cy="16.4" r="3.4"/><circle cx="6.9" cy="10.3" r="3.4"/><circle cx="12" cy="12" r="2" fill="currentColor"/>',
+  cactus: '<path d="M10 21V5a2 2 0 0 1 4 0v16M10 13H8a2 2 0 0 1-2-2V8M14 11h2a2 2 0 0 0 2-2V7M6 21h12"/>',
+  sparkles: '<path d="M11 3.5l1.7 4.6 4.6 1.7-4.6 1.7L11 16.1l-1.7-4.6-4.6-1.7 4.6-1.7ZM18.5 14.5l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8Z"/>',
+  pin: '<path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/>',
+  calendar: '<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+  camera: '<path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.6-2.2h5.8L16.5 7h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5Z"/><circle cx="12" cy="13" r="3.5"/>',
+  warning: '<path d="M12 3.5 2.5 20h19Z"/><path d="M12 10v4.5M12 17.5h.01"/>',
+  check: '<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  xmark: '<path d="M6 6l12 12M18 6 6 18"/>',
+  approx: '<path d="M5 10c2-2 4-2 7 0s5 2 7 0M5 15c2-2 4-2 7 0s5 2 7 0"/>',
+  question: '<circle cx="12" cy="12" r="9"/><path d="M9.6 9.5a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.4M12 17h.01"/>',
+  download: '<path d="M12 4v11M7 10l5 5 5-5M5 20h14"/>',
+  up: '<path d="M12 19V5M6 11l6-6 6 6"/>',
+  right: '<path d="M5 12h14M13 6l6 6-6 6"/>',
+};
+const ic = (name, cls = '') => `<svg class="ic ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICON_PATHS[name]}</svg>`;
+const flowerIcon = s => ic(s.traits?.growth === 'cactus' ? 'cactus' : 'flower');
 const photoAlt = s => `Foto de ${s.scientific_name} (${s.photo.author}, ${s.photo.license})`;
 
 const TAB_TITLES = { identify: 'Identificar', explore: 'Guía de campo', observe: 'Registrar', saved: 'Mis registros' };
@@ -360,7 +380,7 @@ function card(s) {
   el.className = 'card';
   el.innerHTML = `${s.photo ? `<img class="ph" loading="lazy" src="${s.photo.file}" alt="${escapeHtml(photoAlt(s))}">` : `<div class="flower">${flowerIcon(s)}</div>`}<h3>${escapeHtml(speciesName(s))}</h3><div class="latin">${escapeHtml(s.scientific_name)}</div>
     <div class="meta">${escapeHtml(s.growth_form || s.group_name || 'Porte por revisar')} · ${escapeHtml(s.origin_status || 'Origen por revisar')}</div>
-    <div>${colorDots(s)}${bloomWindow(s) ? ` <span class="meta">🌸 ${bloomWindow(s)}</span>` : ''}</div><div><span class="tag ${good ? '' : 'warn'}">${good ? 'Ficha estructurada' : 'Pendiente de revisión'}</span></div>`;
+    <div>${colorDots(s)}${bloomWindow(s) ? ` <span class="meta">${ic('flower')} ${bloomWindow(s)}</span>` : ''}</div><div><span class="tag ${good ? '' : 'warn'}">${good ? 'Ficha estructurada' : 'Pendiente de revisión'}</span></div>`;
   el.onclick = () => showDetail(s);
   return el;
 }
@@ -399,7 +419,7 @@ function showDetail(s) {
   const credit = s.photo ? `<p class="credit">Foto: ${escapeHtml(s.photo.author)} · ${escapeHtml(s.photo.license)} · ${s.photo.url ? `<a href="${escapeHtml(s.photo.url)}" target="_blank" rel="noopener">${s.photo.url.includes('gbif.org') ? 'iNaturalist vía GBIF' : 'iNaturalist'}</a>` : 'Desierto Florido'}${s.photo.note ? ` · ${escapeHtml(s.photo.note)}` : ''}</p>` : '';
   $('detailContent').innerHTML = `${ph}${credit}<h2>${escapeHtml(speciesName(s))}</h2><p class="latin">${escapeHtml(s.scientific_name)}</p>
     ${s.excluded_reason ? `<p class="notice">No participa en la identificación: ${escapeHtml(s.excluded_reason)}.</p>` : ''}
-    ${s.sensitive_location ? '<p class="notice">⚠️ Especie sensible o amenazada: no la manipules. Sus coordenadas se generalizan en la exportación pública.</p>' : ''}
+    ${s.sensitive_location ? `<p class="notice">${ic('warning')}Especie sensible o amenazada: no la manipules. Sus coordenadas se generalizan en la exportación pública.</p>` : ''}
     <dl>${d.map(([k, v]) => `<dt>${k}</dt><dd>${val(v)}</dd>`).join('')}</dl>
     <h3 style="margin-top:22px">Rasgos para identificar</h3><dl>${traits}<dt>Rango latitudinal</dt><dd>${range}</dd><dt>Floración</dt><dd>${pheno}</dd></dl>
     <div class="row" style="margin-top:18px"><button class="btn" id="observeThis">Registrar esta especie</button></div>`;
@@ -451,9 +471,9 @@ async function aiStatus() {
   if (!info) try { info = await (await fetch('model/head.json')).json(); } catch { }
   if (!info) { $('aiStatus').textContent = 'Reconocimiento de fotos no disponible en esta instalación.'; btn.classList.add('hidden'); return; }
   const m = info.metrics, desc = `${m.n_classes} especies · acierta la especie en ${Math.round(m.cv_top1 * 100)}% de las fotos de prueba y la incluye entre las 3 primeras en ${Math.round(m.cv_top3 * 100)}%`;
-  if (FloraVision.ready) { $('aiStatus').innerHTML = `🤖 Reconocimiento listo, funciona sin señal (${desc}).`; btn.classList.add('hidden'); }
-  else if (cached) { $('aiStatus').innerHTML = `🤖 Modelo guardado en el dispositivo (${desc}).`; btn.textContent = 'Activar'; btn.classList.remove('hidden'); }
-  else { $('aiStatus').innerHTML = `🤖 Reconocimiento de fotos: descarga única de ${info.model_mb + 15} MB para usarlo sin señal (${desc}).`; btn.textContent = '⬇ Descargar modelo'; btn.classList.remove('hidden'); }
+  if (FloraVision.ready) { $('aiStatus').innerHTML = `${ic('sparkles')} Reconocimiento listo, funciona sin señal (${desc}).`; btn.classList.add('hidden'); }
+  else if (cached) { $('aiStatus').innerHTML = `${ic('sparkles')} Modelo guardado en el dispositivo (${desc}).`; btn.textContent = 'Activar'; btn.classList.remove('hidden'); }
+  else { $('aiStatus').innerHTML = `${ic('sparkles')} Reconocimiento de fotos: descarga única de ${info.model_mb + 15} MB para usarlo sin señal (${desc}).`; btn.innerHTML = ic('download') + 'Descargar modelo'; btn.classList.remove('hidden'); }
   return cached;
 }
 async function aiEnsure() {
@@ -471,12 +491,12 @@ async function aiAnalyze() {
   if (!FloraVision.ready && !aiWanted && !(await FloraVision.isCached())) return;
   if (!(await aiEnsure())) return;
   const photos = [...ID.photos];
-  $('aiStatus').textContent = `🤖 Analizando ${photos.length === 1 ? 'la foto' : photos.length + ' fotos'}…`;
+  $('aiStatus').innerHTML = `${ic('sparkles')} Analizando ${photos.length === 1 ? 'la foto' : photos.length + ' fotos'}…`;
   try {
     const t0 = performance.now(), res = await FloraVision.classify(photos);
     if (photos.join() !== ID.photos.join()) return;  // cambiaron las fotos durante el análisis
     ID.image = res;
-    $('aiStatus').innerHTML = `🤖 La foto se parece a: ` + res.top.map(t => {
+    $('aiStatus').innerHTML = `${ic('sparkles')} La foto se parece a: ` + res.top.map(t => {
       const s = byId.get(t.species_ids[0]);
       return `<b>${escapeHtml(s ? speciesName(s).split(',')[0] : t.name)}</b> <i>${escapeHtml(t.name)}</i> ${Math.round(t.p * 100)}%`;
     }).join(' · ') + ` <span class="muted">(${((performance.now() - t0) / 1000).toFixed(1)} s)</span>`;
@@ -540,10 +560,10 @@ $('idGps').onclick = () => getGps($('idGpsStatus'), c => {
 
 function renderPlace() {
   const lat = num('idLat'), d = $('idDate').value, m = d ? Number(d.slice(5, 7)) : null, notes = [];
-  if (lat != null) notes.push(`📍 ${regionOf(lat) || 'Fuera de Chile continental'}${ID.elev != null ? ` · ${ID.elev} m s.n.m.` : ''} · se compara con la distribución de cada especie.`);
+  if (lat != null) notes.push(`${ic('pin')} ${regionOf(lat) || 'Fuera de Chile continental'}${ID.elev != null ? ` · ${ID.elev} m s.n.m.` : ''} · se compara con la distribución de cada especie.`);
   else notes.push('Sin ubicación: no se filtra por distribución.');
-  if (m && $('inBloom').checked) notes.push(`📅 ${MONTHS_LONG[m - 1]}: se favorecen las especies que suelen florecer en este mes.` + (m < 7 || m > 11 ? ' Fuera de la temporada típica del desierto florido (julio–noviembre).' : ''));
-  else if (m) notes.push('📅 Planta sin flor: la fecha no se usa para filtrar.');
+  if (m && $('inBloom').checked) notes.push(`${ic('calendar')} ${MONTHS_LONG[m - 1]}: se favorecen las especies que suelen florecer en este mes.` + (m < 7 || m > 11 ? ' Fuera de la temporada típica del desierto florido (julio–noviembre).' : ''));
+  else if (m) notes.push(ic('calendar') + ' Planta sin flor: la fecha no se usa para filtrar.');
   $('placeNote').innerHTML = notes.join('<br>');
 }
 
@@ -582,13 +602,13 @@ function renderQuestions() {
 
 function evidenceHtml(r) {
   return r.evidence.map(e => {
-    const cls = { ok: 'ok', no: 'no', partial: 'partial', unknown: 'unk' }[e.status], mark = { ok: '✓', no: '✗', partial: '≈', unknown: '?' }[e.status];
+    const cls = { ok: 'ok', no: 'no', partial: 'partial', unknown: 'unk' }[e.status], mark = ic({ ok: 'check', no: 'xmark', partial: 'approx', unknown: 'question' }[e.status]);
     if (e.key === 'geo') {
       const t = e.status === 'unknown' ? 'distribución sin datos' : e.status === 'ok' ? 'dentro de su distribución' : `fuera de su distribución (~${Math.round(e.distanceDeg * 111)} km)`;
-      return `<span class="${cls}">📍 ${t}</span>`;
+      return `<span class="${cls}">${ic('pin')} ${t}</span>`;
     }
-    if (e.key === 'image') return `<span class="${cls}">📷 foto: ${e.status === 'unknown' ? 'sin fotos de entrenamiento' : (e.p * 100).toFixed(e.p < .1 ? 1 : 0) + '%'}</span>`;
-    if (e.key === 'month') return `<span class="${cls}">📅 ${e.status === 'unknown' ? 'floración sin datos' : e.status === 'ok' ? 'florece en este mes' : e.status === 'partial' ? 'floración ocasional en este mes' : 'rara vez florece en este mes'}</span>`;
+    if (e.key === 'image') return `<span class="${cls}">${ic('camera')} foto: ${e.status === 'unknown' ? 'sin fotos de entrenamiento' : (e.p * 100).toFixed(e.p < .1 ? 1 : 0) + '%'}</span>`;
+    if (e.key === 'month') return `<span class="${cls}">${ic('calendar')} ${e.status === 'unknown' ? 'floración sin datos' : e.status === 'ok' ? 'florece en este mes' : e.status === 'partial' ? 'floración ocasional en este mes' : 'rara vez florece en este mes'}</span>`;
     const short = QMAP[e.key].short;
     const detail = e.status === 'unknown' ? 'sin dato' : FloraID.optionLabel(e.key, e.value);
     return `<span class="${cls}">${mark} ${escapeHtml(short)}: ${escapeHtml(detail)}${e.src === 'por_verificar' ? ' <span class="tag warn">por verificar</span>' : ''}</span>`;
@@ -624,7 +644,7 @@ function renderResults() {
     return;
   }
   const [a, b] = res, strong = a.p >= .5 && a.p >= 3 * b.p;
-  $('qTop').innerHTML = `Ahora la más probable: <b>${escapeHtml(speciesName(a.species).split(',')[0])}</b> <i>${escapeHtml(a.species.scientific_name)}</i> ${(a.p * 100).toFixed(0)}% · <a href="#idResultsBox">ver resultado ↑</a>`;
+  $('qTop').innerHTML = `Ahora la más probable: <b>${escapeHtml(speciesName(a.species).split(',')[0])}</b> <i>${escapeHtml(a.species.scientific_name)}</i> ${(a.p * 100).toFixed(0)}% · <a href="#idResultsBox">ver resultado ${ic('up')}</a>`;
   $('qTop').classList.remove('hidden');
   $('idVerdict').innerHTML = (strong ? `<p class="notice green">Identificación probable. Confirma con la ficha antes de registrar.</p>`
     : `<p class="muted" style="font-size:var(--fs-sub)">Varias candidatas compatibles. Responde la pregunta sugerida para separarlas.</p>`)
@@ -633,8 +653,8 @@ function renderResults() {
     const s = r.species, div = document.createElement('div');
     div.className = 'res' + (i === 0 ? ' first' : '');
     div.innerHTML = `<div class="head"><div class="who">${s.photo ? `<img class="thumb" loading="lazy" src="${s.photo.file}" alt="">` : ''}<div><b>${s.photo ? '' : flowerIcon(s) + ' '}${escapeHtml(speciesName(s))}</b><div class="latin">${escapeHtml(s.scientific_name)}</div></div></div><div class="pct">${(r.p * 100).toFixed(r.p < .1 ? 1 : 0)}%</div></div>
-      <div class="bar"><i style="width:${Math.max(1, r.p * 100)}%"></i></div><div class="ev">${evidenceHtml(r)}${s.sensitive_location ? '<span class="partial">⚠️ sensible</span>' : ''}</div>
-      <div class="row" style="margin-top:8px;gap:8px"><button class="btn small" data-act="reg">Es esta → registrar</button><button class="btn alt small" data-act="ficha">Ver ficha</button></div>`;
+      <div class="bar"><i style="width:${Math.max(1, r.p * 100)}%"></i></div><div class="ev">${evidenceHtml(r)}${s.sensitive_location ? `<span class="partial">${ic('warning')} sensible</span>` : ''}</div>
+      <div class="row" style="margin-top:8px;gap:8px"><button class="btn small" data-act="reg">Es esta: registrar ${ic('right')}</button><button class="btn alt small" data-act="ficha">Ver ficha</button></div>`;
     div.querySelector('[data-act=reg]').onclick = () => registerFromId(r);
     div.querySelector('[data-act=ficha]').onclick = () => showDetail(s);
     return div;
@@ -740,7 +760,7 @@ $('obsform').onsubmit = async e => {
   };
   try {
     await storeOp(st => st.put(o));
-    $('saveStatus').textContent = '✓ Observación guardada en este dispositivo';
+    $('saveStatus').innerHTML = ic('check') + ' Observación guardada en este dispositivo';
     const observer = $('observer').value;
     $('obsform').reset(); $('observer').value = observer; $('date').value = nowLocal();
     obsPhotos = []; pendingId = null; renderObsPhotos(); $('fromId').classList.add('hidden');
@@ -958,7 +978,7 @@ $('sendNow').onclick = async () => {
       await storeOp(s => p.ids.forEach(id => s.put({ ...byId.get(id), sent_at: now })));
       sent += p.ids.length;
     }
-    st.textContent = `✓ ${pl(sent, 'registro enviado', 'registros enviados')}. ¡Gracias por aportar!`;
+    st.innerHTML = `${ic('check')} ${pl(sent, 'registro enviado', 'registros enviados')}. ¡Gracias por aportar!`;
   } catch (err) {
     st.textContent = (sent ? `Se enviaron ${sent}; ` : '') + 'no se pudo enviar: ' + err.message + '. Intenta de nuevo más tarde.';
   }
