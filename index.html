@@ -90,6 +90,7 @@ a{color:var(--tint-text)}b,strong{font-weight:600}
 .notice .btn.alt{background:var(--surface);border:1px solid var(--sep)}
 .btn.small{padding:8px 14px;font-size:var(--fs-sub);border-radius:10px}
 .btn.big{width:100%;min-height:52px;font-size:var(--fs-headline);border-radius:14px}
+.photobtns{display:flex;flex-wrap:wrap;gap:10px}.photobtns .btn{flex:1 1 140px;width:auto}
 .btn.danger{background:var(--bad-bg);color:var(--bad-ink)}
 .btn:disabled{opacity:.45;cursor:default}
 .btn svg{width:20px;height:20px;flex:none}
@@ -235,8 +236,9 @@ body.sheet-open .shell{padding-bottom:calc(52vh + 24px);padding-bottom:calc(52dv
     <div>
       <div class="detail">
         <div class="step">Paso 1 de 3</div><h3>Fotografía la planta</h3>
-        <p class="lead">Hasta 3 fotos: flor completa, planta u hojas y un detalle. Luego <b>toca un pétalo en la foto</b> para estimar el color.</p>
-        <label class="btn big" for="idPhotos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.6-2.2h5.8L16.5 7h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5Z"/><circle cx="12" cy="13" r="3.5"/></svg>Agregar foto</label><input id="idPhotos" type="file" accept="image/*" capture="environment" multiple class="hidden">
+        <p class="lead">Hasta 3 fotos: flor completa, planta u hojas y un detalle. Tómalas ahora o elige fotos de una salida anterior. Luego <b>toca un pétalo en la foto</b> para estimar el color.</p>
+        <div class="photobtns"><button type="button" class="btn big" data-pick="idPhotos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8.5A1.5 1.5 0 0 1 5.5 7h2l1.6-2.2h5.8L16.5 7h2A1.5 1.5 0 0 1 20 8.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5Z"/><circle cx="12" cy="13" r="3.5"/></svg>Tomar foto</button><button type="button" class="btn big alt" data-pick="idFiles"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><circle cx="9" cy="9.5" r="1.8"/><path d="m20.5 15-4.5-4.5L6 19.5"/></svg>Galería</button></div>
+        <input id="idPhotos" type="file" accept="image/*" capture="environment" multiple class="hidden"><input id="idFiles" type="file" accept="image/*" multiple class="hidden">
         <p id="photoStatus" class="muted" role="status" style="margin:8px 0 0;font-size:var(--fs-sub)"></p>
         <div id="idThumbs" class="thumbs"></div>
         <div id="aiBox" class="confirm" style="margin-top:12px"><span id="aiStatus">Reconocimiento de fotos: cargando…</span> <button type="button" class="btn alt small hidden" id="aiLoad"></button></div>
@@ -287,7 +289,7 @@ body.sheet-open .shell{padding-bottom:calc(52vh + 24px);padding-bottom:calc(52dv
       <div class="field"><label for="speciesSelect">Especie (puedes dejar sin identificar)</label><select id="speciesSelect"><option value="">Sin identificar</option></select></div>
       <div class="row">
         <div class="field"><label for="date">Fecha y hora</label><input id="date" type="datetime-local" required></div>
-        <div class="field"><label for="photo">Fotografías (opcional)</label><input id="photo" type="file" accept="image/*" capture="environment" multiple></div>
+        <div class="field"><label for="photo">Fotografías (opcional)</label><input id="photo" type="file" accept="image/*" multiple></div>
       </div>
       <div id="obsThumbs" class="thumbs" style="margin:-4px 0 12px"></div>
       <button type="button" class="btn alt" id="gps"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4 3.5 10.8l7 2.7 2.7 7Z"/></svg>Usar mi ubicación</button>
@@ -506,6 +508,46 @@ function photoData(file) {
   });
 }
 
+/* Fotos de archivo: fecha de captura y GPS desde el EXIF del JPEG. iPhone y Android a veces quitan el GPS al elegir desde la galería. */
+async function photoMeta(file) {
+  try {
+    const v = new DataView(await file.slice(0, 256 * 1024).arrayBuffer());
+    if (v.getUint16(0) !== 0xFFD8) return null;
+    for (let o = 2; o + 10 < v.byteLength;) {
+      const m = v.getUint16(o);
+      if ((m & 0xFF00) !== 0xFF00) return null;
+      if (m === 0xFFE1 && v.getUint32(o + 4) === 0x45786966) return readExif(v, o + 10);
+      o += 2 + v.getUint16(o + 2);
+    }
+  } catch { }
+  return null;
+}
+function readExif(v, t) {
+  const le = v.getUint16(t) === 0x4949, u16 = o => v.getUint16(t + o, le), u32 = o => v.getUint32(t + o, le);
+  const ifd = o => { const tags = {}; for (let i = 0, n = u16(o); i < n; i++) tags[u16(o + 2 + i * 12)] = o + 2 + i * 12; return tags; };
+  const str = e => { const n = u32(e + 4), p = n > 4 ? u32(e + 8) : e + 8; let r = ''; for (let i = 0; i < n - 1; i++) r += String.fromCharCode(v.getUint8(t + p + i)); return r; };
+  const rats = e => { const p = u32(e + 8), r = []; for (let i = 0; i < u32(e + 4); i++) r.push(u32(p + i * 8) / u32(p + i * 8 + 4)); return r; };
+  const ref = e => String.fromCharCode(v.getUint8(t + e + 8));
+  const out = {}, ifd0 = ifd(u32(4));
+  let time = null;
+  if (ifd0[0x8769]) { const ex = ifd(u32(ifd0[0x8769] + 8)), e = ex[0x9003] || ex[0x9004]; if (e) time = str(e); }
+  if (!time && ifd0[0x0132]) time = str(ifd0[0x0132]);
+  const m = time?.match(/^(\d{4}):(\d\d):(\d\d) (\d\d):(\d\d)/);  // "2025:09:14 10:32:05" → "2025-09-14T10:32"
+  if (m && m[1] !== '0000') out.time = `${m[1]}-${m[2]}-${m[3]}T${m[4]}:${m[5]}`;
+  if (ifd0[0x8825]) {
+    const g = ifd(u32(ifd0[0x8825] + 8)), dms = a => a[0] + a[1] / 60 + a[2] / 3600;
+    if (g[2] && g[4]) {
+      const lat = dms(rats(g[2])) * (g[1] && ref(g[1]) === 'S' ? -1 : 1), lon = dms(rats(g[4])) * (g[3] && ref(g[3]) === 'W' ? -1 : 1);
+      if (isFinite(lat) && isFinite(lon) && (lat || lon)) {
+        out.lat = lat; out.lon = lon;
+        if (g[6]) out.alt = rats(g[6])[0] * (g[5] && v.getUint8(t + g[5] + 8) === 1 ? -1 : 1);
+      }
+    }
+  }
+  return out;
+}
+const fmtDate = iso => iso.slice(0, 10).split('-').reverse().join('-');
+
 /* ---------- GPS ---------- */
 function getGps(statusEl, done) {
   if (!navigator.geolocation) { statusEl.textContent = 'GPS no disponible en este navegador.'; return; }
@@ -566,19 +608,37 @@ async function aiAnalyze() {
   renderIdentify();
 }
 
-$('idPhotos').onchange = async e => {
+document.querySelectorAll('[data-pick]').forEach(b => b.onclick = () => $(b.dataset.pick).click());
+async function addIdPhotos(e, gallery) {
   const files = [...e.target.files].slice(0, 3 - ID.photos.length);
+  e.target.value = '';
   if (!files.length) { $('photoStatus').textContent = 'Máximo 3 fotos.'; return; }
   $('photoStatus').textContent = 'Procesando…';
+  let note = '';
   try {
     for (const f of files) ID.photos.push(await photoData(f));
     ID.active = ID.photos.length - 1;
-    $('photoStatus').textContent = `${ID.photos.length}/3 fotos · toca una miniatura para usarla en el color; ✕ la quita`;
+    if (gallery) note = applyPhotoMeta((await Promise.all(files.map(photoMeta))).find(m => m?.time || m?.lat != null));
+    $('photoStatus').textContent = `${ID.photos.length}/3 fotos · toca una miniatura para usarla en el color; la X la quita.` + note;
   } catch (err) { $('photoStatus').textContent = err.message; }
-  e.target.value = '';
   renderPhotos();
+  renderIdentify();
   aiAnalyze();
-};
+}
+// Foto de archivo: la fecha y el lugar de la foto valen más que los de hoy (floración y distribución)
+function applyPhotoMeta(m) {
+  if (m?.time) { ID.photoTime = m.time; $('idDate').value = m.time.slice(0, 10); }
+  if (m?.lat != null) { $('idLat').value = m.lat.toFixed(6); $('idLon').value = m.lon.toFixed(6); ID.elev = m.alt != null ? Math.round(m.alt) : null; }
+  let note = m?.time && m?.lat != null ? ` Fecha (${fmtDate(m.time)}) y ubicación tomadas de la foto; corrígelas en el paso 2 si no corresponden.`
+    : m?.time ? ` Fecha (${fmtDate(m.time)}) tomada de la foto; corrígela en el paso 2 si no corresponde.`
+    : m?.lat != null ? ' Ubicación tomada de la foto; corrígela en el paso 2 si no corresponde.' : '';
+  if (!m?.time && m?.lat == null) note += ' La foto no trae fecha ni ubicación: indica en el paso 2 cuándo y dónde la tomaste.';
+  else if (!m?.time) note += ' La foto no trae fecha: indica en el paso 2 cuándo la tomaste.';
+  else if (m?.lat == null) note += ' La foto no trae ubicación: indica en el paso 2 dónde la tomaste.';
+  return note;
+}
+$('idPhotos').onchange = e => addIdPhotos(e, false);
+$('idFiles').onchange = e => addIdPhotos(e, true);
 // Miniatura con botón ✕ (44 px) para quitarla; opcionalmente seleccionable
 function thumb(src, i, { on = false, select = null, remove }) {
   const box = document.createElement('div'), x = document.createElement('button');
@@ -743,7 +803,7 @@ function refocus(k) {
 }
 
 $('idReset').onclick = () => {
-  Object.assign(ID, { answers: {}, fromPhoto: false, photos: [], active: 0, elev: null, shown: 5, image: null });
+  Object.assign(ID, { answers: {}, fromPhoto: false, photos: [], active: 0, elev: null, shown: 5, image: null, photoTime: null });
   aiStatus();
   ['idLat', 'idLon'].forEach(id => $(id).value = '');
   $('idDate').value = todayIso(); $('photoStatus').textContent = ''; $('idGpsStatus').textContent = '';
@@ -803,6 +863,7 @@ function registerFromId(r) {
   };
   $('speciesSelect').value = s.id;
   $('lat').value = $('idLat').value; $('lon').value = $('idLon').value; $('elev').value = ID.elev ?? '';
+  if (ID.photoTime) $('date').value = ID.photoTime;
   if (zone && !$('habitat').value) $('habitat').value = zone === 'costa' ? 'Costa / dunas / litoral' : 'Interior / cerros / quebradas';
   const answered = Object.entries(ID.answers).filter(([, v]) => v != null).map(([k, v]) => FloraID.optionLabel(k, v)).join(', ');
   if (!$('notes').value && answered) $('notes').value = 'Rasgos observados: ' + answered;
@@ -819,8 +880,19 @@ $('gps').onclick = () => getGps($('gpsStatus'), c => {
   scheduleDraft();
 });
 $('photo').onchange = async e => {
-  try { for (const f of [...e.target.files]) if (obsPhotos.length < 3) obsPhotos.push(await photoData(f)); }
-  catch (err) { $('saveStatus').textContent = err.message; }
+  try {
+    const files = [...e.target.files].slice(0, 3 - obsPhotos.length);
+    for (const f of files) obsPhotos.push(await photoData(f));
+    // Fecha y lugar de la foto (si los trae); la ubicación solo si el campo está vacío
+    const m = (await Promise.all(files.map(photoMeta))).find(x => x?.time || x?.lat != null), got = [];
+    if (m?.time) { $('date').value = m.time; got.push('Fecha'); }
+    if (m?.lat != null && !$('lat').value && !$('lon').value) {
+      $('lat').value = m.lat.toFixed(7); $('lon').value = m.lon.toFixed(7);
+      if (m.alt != null && !$('elev').value) $('elev').value = Math.round(m.alt);
+      got.push('Ubicación');
+    }
+    $('gpsStatus').textContent = got.length === 2 ? 'Fecha y ubicación tomadas de la foto; revísalas.' : got.length ? `${got[0]} tomada de la foto; revísala.` : '';
+  } catch (err) { $('saveStatus').textContent = err.message; }
   e.target.value = '';
   renderObsPhotos();
 };
