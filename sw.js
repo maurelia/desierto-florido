@@ -1,4 +1,4 @@
-const CACHE = 'flora-atacama-v23', TILES = 'flora-atacama-tiles', MAX_TILES = 1500;
+const CACHE = 'flora-atacama-v24', TILES = 'flora-atacama-tiles', MAX_TILES = 1500;
 // Modelo de fotos y motor ONNX: pesados, se guardan al primer uso y sobreviven a actualizaciones de la app.
 // Subir MODEL_CACHE solo si cambia vision.onnx (otro modelo base); head.json se actualiza solo.
 const MODEL_CACHE = 'flora-atacama-model-v1';
@@ -7,7 +7,8 @@ const IMG_CACHE = 'flora-atacama-img-v1';
 const ASSETS = ['./', './index.html', './identify.js', './vision.js', './lib/ort/ort.wasm.min.js', './species.json', './manifest.webmanifest', './icon.svg',
   './lib/leaflet.js', './lib/leaflet.css', './lib/images/marker-icon.png', './lib/images/marker-icon-2x.png', './lib/images/marker-shadow.png'];
 
-self.addEventListener('install', e => e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting())));
+// cache:'reload' salta la caché HTTP del navegador (GitHub Pages: max-age=600); si no, una versión nueva podía guardar el index.html anterior
+self.addEventListener('install', e => e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS.map(u => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting())));
 self.addEventListener('activate', e => e.waitUntil(
   caches.keys().then(ks => Promise.all(ks.filter(k => ![CACHE, TILES, MODEL_CACHE, IMG_CACHE].includes(k)).map(k => caches.delete(k)))).then(() => self.clients.claim())));
 
