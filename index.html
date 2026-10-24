@@ -881,11 +881,11 @@ $('gps').onclick = () => getGps($('gpsStatus'), c => {
 });
 $('photo').onchange = async e => {
   try {
-    const files = [...e.target.files].slice(0, 3 - obsPhotos.length);
+    const files = [...e.target.files].slice(0, 3 - obsPhotos.length), first = !obsPhotos.length;
     for (const f of files) obsPhotos.push(await photoData(f));
-    // Fecha y lugar de la foto (si los trae); la ubicación solo si el campo está vacío
+    // Fecha y lugar de la foto (si los trae): la fecha solo desde la primera foto del registro; la ubicación solo si el campo está vacío
     const m = (await Promise.all(files.map(photoMeta))).find(x => x?.time || x?.lat != null), got = [];
-    if (m?.time) { $('date').value = m.time; got.push('Fecha'); }
+    if (m?.time && first) { $('date').value = m.time; got.push('Fecha'); }
     if (m?.lat != null && !$('lat').value && !$('lon').value) {
       $('lat').value = m.lat.toFixed(7); $('lon').value = m.lon.toFixed(7);
       if (m.alt != null && !$('elev').value) $('elev').value = Math.round(m.alt);
